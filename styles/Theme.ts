@@ -1,10 +1,10 @@
 export const theme = {
     lightColors: {
       primary: '#f2f2f2',
-      secondary: '#f2f2f2',
+      secondary: '#2D2D2D',
       white: '#f2f2f2',
       black: '#222222',
-      grey0: '#f2f2f2',
+      grey0: '#9B9B9B',
       grey1: '#f2f2f2',
       grey2: '#f2f2f2',
       grey3: '#f2f2f2',
@@ -12,9 +12,9 @@ export const theme = {
       grey5: '#f2f2f2',
       greyOutline: '#f2f2f2',
       searchBg: '#f2f2f2',
-      success: '#f2f2f2',
+      success: '#2AA952',
       warning: '#f2f2f2',
-      error: '#f2f2f2',
+      error: '#F01F0E',
       disabled: '#f2f2f2',
       divider: '#f2f2f2'
     }, 
@@ -31,9 +31,9 @@ export const theme = {
       grey5: '#f2f2f2',
       greyOutline: '#f2f2f2',
       searchBg: '#f2f2f2',
-      success: '#f2f2f2',
+      success: '#2AA952',
       warning: '#f2f2f2',
-      error: '#f2f2f2',
+      error: '#F01F0E',
       disabled: '#f2f2f2',
       divider: '#f2f2f2'
     },

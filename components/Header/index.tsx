@@ -52,8 +52,8 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                     </View>
                 }
                 centerComponent={{ text: title, style: styles.heading }}
-                backgroundColor={'transparent'}
-                containerStyle={{ borderBottomColor: 'transparent' }}
+                // backgroundColor={'transparent'}
+                // containerStyle={{ borderBottomColor: 'transparent' }}
             />
             {heading && (
                 <View style={styles.title}>

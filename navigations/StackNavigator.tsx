@@ -18,6 +18,7 @@ const AppStack = (props) => {
               theme={props.theme}
               navigation={navigation}
               showBackIcon
+              showSearchIcon
               heading={t('common:login')}
             />
           ),

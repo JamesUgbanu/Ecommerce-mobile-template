@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Input, Button } from '@rneui/base';
 import { styles } from './styles';
+import AnimatedTextInput from '../../components/AnimatedInput';
+import { validateEmail  } from '../../utils/validateEmail';
 
-const Login = ({ navigation }) => {
+const Login = () => {
+    const [email, setEmail] = useState('');
+
     return (
         <View style={styles.container}>
-            <Input
+            <AnimatedTextInput
                 placeholder="Email"
-                // value={'teghh'}
-                inputStyle={styles.inputContainer}
-                label="Email"
+                value={email}
+                textInputProps={{
+                    keyboardType: 'email-address'
+                }}
+                onChangeText={data => setEmail(data)}
+                isValid={validateEmail(email)}
+            />
+            <AnimatedTextInput
+                placeholder="Password"
+                value={''}
+                textInputProps={{
+                    keyboardType: 'default',
+                    secureTextEntry: true
+                }}
+                onChangeText={() => { }}
             />
         </View>
     );
