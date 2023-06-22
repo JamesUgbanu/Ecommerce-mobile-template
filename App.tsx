@@ -22,6 +22,19 @@ const myTheme = createTheme({
       h3Style: {
         fontWeight: '100',
       },
+    },
+    Button: {
+      buttonStyle: {
+        backgroundColor: '#DB3022',
+        borderRadius: 25,
+        paddingVertical: 15,
+      },
+      containerStyle: {
+        height: 48,
+      },
+      titleStyle: {
+        fontSize: 14
+      }
     }
   }
   

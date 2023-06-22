@@ -3,5 +3,6 @@ export default {
     password: 'Password',
     login: 'Login',
     welcome: 'Welcome',
-    register: 'Register'
+    register: 'Register',
+    forgotPassword: 'Forgot Password?'
    };

@@ -38,7 +38,7 @@ const AnimatedTextInput = (props: InputTextProps) => {
     labelTopValue = -20,
     borderColor = 'transparent',
     borderWidth = 1,
-    paddingVertical = 18,
+    paddingVertical = 15,
     borderRadius = 4,
     placeholder = 'Email',
     value = '',
@@ -108,7 +108,7 @@ const AnimatedTextInput = (props: InputTextProps) => {
           <Animated.Text
             style={[
               animatedLabelProps,
-              { color: theme.colors.grey0, paddingHorizontal: 2 },
+              { color:  isValid === false && value ? theme.colors.error : theme.colors.grey0, paddingHorizontal: 2 },
             ]}
           >
             {placeholder}
