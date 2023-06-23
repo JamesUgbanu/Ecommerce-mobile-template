@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableHighlight, TouchableOpacity, Text } from 'react-native';
 import { Icon, useTheme, Button } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import { styles } from './styles';
 import AnimatedTextInput from '../../components/AnimatedInput';
+import SvgIcon from '../../components/SvgIcon';
 import { validateEmail } from '../../utils/validateEmail';
 
 const Login = ({ navigation }) => {
@@ -46,8 +47,19 @@ const Login = ({ navigation }) => {
                 <Button
                     title={t('common:login')}
                     uppercase
-                    onPress={() => console.log('aye')}
+                    onPress={() => { }}
                 />
+            </View>
+            <View style={styles.socialContainer}>
+                <Text>{t('common:loginWithSocials')}</Text>
+                <View style={styles.socials}>
+                    <TouchableOpacity style={styles.socialButton}>
+                        <SvgIcon name="google" width={24} height={24} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.socialButton}>
+                        <SvgIcon name="facebook" width={24} height={24} />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
