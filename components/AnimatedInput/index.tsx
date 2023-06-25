@@ -2,7 +2,7 @@ import {
   Pressable,
   TextInput,
   TextInputProps,
-  View,
+  View
 } from 'react-native';
 import React, { useRef, useEffect } from 'react';
 import Animated, {
@@ -11,7 +11,7 @@ import Animated, {
   useSharedValue,
   withTiming
 } from 'react-native-reanimated';
-import { useTheme } from '@rneui/themed';
+import { useTheme, Text } from '@rneui/themed';
 import { Feather } from "@expo/vector-icons";
 import { styles } from './styles';
 
@@ -26,8 +26,10 @@ type InputTextProps = {
   marginBottom?: number;
   value: string;
   onChangeText: (value: string) => void;
+  onBlur: (value: any) => void;
   placeholderBackgroundColor?: string;
-  isValid?: boolean;
+  isError?: boolean;
+  errorText?: string;
 };
 
 const AnimatedIcon = Animated.createAnimatedComponent(Feather);
@@ -44,11 +46,13 @@ const AnimatedTextInput = (props: InputTextProps) => {
     value = '',
     marginBottom = 10,
     onChangeText,
-    isValid
+    onBlur,
+    isError,
+    errorText
   } = props;
 
   const labelSharedValue = useSharedValue(0);
-  const iconSharedValue = useSharedValue(value === "" ? 0 : 1);
+  const iconSharedValue = useSharedValue(0);
   const { theme } = useTheme();
 
   const inputRef = useRef<TextInput>(null);
@@ -87,41 +91,58 @@ const AnimatedTextInput = (props: InputTextProps) => {
   };
 
   useEffect(() => {
-    iconSharedValue.value = withTiming(value === "" ? 0 : 1);
-  }, [labelHandler, value]);
+    iconSharedValue.value = withTiming(1);
+  }, [labelHandler]);
+
 
   return (
-    <View style={styles(paddingVertical, borderWidth, borderRadius, isValid === false && value ? theme.colors.error : borderColor, marginBottom).textInput}>
-      <TextInput
-        {...textInputProps}
-        ref={inputRef}
-        onFocus={() => (labelSharedValue.value = 1)}
-        onBlur={() => {
-          if (!value) labelSharedValue.value = 0;
-        }}
-        value={value}
-        onChangeText={onChangeText}
-        style={[styles().textInputStyle]}
-      />
-      <Animated.View style={styles().textInputLabelWrapper}>
-        <Pressable onPress={labelHandler}>
-          <Animated.Text
-            style={[
-              animatedLabelProps,
-              { color:  isValid === false && value ? theme.colors.error : theme.colors.grey0, paddingHorizontal: 2 },
-            ]}
-          >
-            {placeholder}
-          </Animated.Text>
-        </Pressable>
-      </Animated.View>
-        <Animated.View style={[styles().icon, animatedIconProps]}>
-          <AnimatedIcon
-            name={isValid ? "check" : "x"}
-            size={24}
-            color={isValid ? theme.colors.success : theme.colors.error}
-          />
+    <View style={{ marginBottom: marginBottom }}>
+      <View style={styles(paddingVertical, borderWidth, borderRadius, isError ? theme.colors.error : borderColor).textInput}>
+        <TextInput
+          {...textInputProps}
+          ref={inputRef}
+          onFocus={() => (labelSharedValue.value = 1)}
+          onBlur={onBlur}
+          value={value}
+          onChangeText={onChangeText}
+          style={[styles().textInputStyle]}
+        />
+        <Animated.View style={styles().textInputLabelWrapper}>
+          <Pressable onPress={labelHandler}>
+            <Animated.Text
+              style={[
+                animatedLabelProps,
+                { color: isError ? theme.colors.error : theme.colors.grey0, paddingHorizontal: 2 },
+              ]}
+            >
+              {placeholder}
+            </Animated.Text>
+          </Pressable>
         </Animated.View>
+        {
+          isError && (
+            <Animated.View style={[styles().icon, animatedIconProps]}>
+              <AnimatedIcon
+                name={"x"}
+                size={24}
+                color={theme.colors.error}
+              />
+            </Animated.View>
+          )
+        }
+        {
+          !isError && value && (
+            <Animated.View style={[styles().icon, animatedIconProps]}>
+              <AnimatedIcon
+                name={"check"}
+                size={24}
+                color={theme.colors.success}
+              />
+            </Animated.View>
+          )
+        }
+      </View>
+      {isError && <Text h3 style={{ color: theme.colors.error, textAlign: 'center', marginTop: 2 }}>{errorText}</Text>}
     </View>
   );
 };

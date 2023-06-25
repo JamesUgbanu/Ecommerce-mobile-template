@@ -20,7 +20,8 @@ const myTheme = createTheme({
         fontWeight: '300',
       },
       h3Style: {
-        fontWeight: '100',
+        fontWeight: '300',
+        fontSize: 11
       },
     },
     Button: {
