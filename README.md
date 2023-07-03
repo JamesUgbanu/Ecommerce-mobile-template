@@ -4,7 +4,7 @@ This is a simple e-commerce template built with React Native and Expo. It provid
 
 ## Screenshots
 
-| ![Login Screen](/assets/screenshot/login_screen.png) | ![Register Screen](/assets/screenshot/register_screen.png) | ![Forgot Password](/assets/screenshot/forgot_password_screen.png)
+<img src="p/assets/screenshots/login_screen.png" alt="Image" width="400"> | <img src="p/assets/screenshots/register_screen.png" alt="Image" width="400">  | <img src="p/assets/screenshots/forgot_password_screen.png" alt="Image" width="400"> 
 
 ## Features
 
