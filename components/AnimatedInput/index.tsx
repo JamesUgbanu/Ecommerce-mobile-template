@@ -24,12 +24,14 @@ type InputTextProps = {
   paddingVertical?: number;
   borderRadius?: number;
   marginBottom?: number;
+  marginTop?: number;
   value: string;
   onChangeText: (value: string) => void;
   onBlur: (value: any) => void;
   placeholderBackgroundColor?: string;
   isError?: boolean;
   errorText?: string;
+  style?: any;
 };
 
 const AnimatedIcon = Animated.createAnimatedComponent(Feather);
@@ -45,10 +47,12 @@ const AnimatedTextInput = (props: InputTextProps) => {
     placeholder = 'Email',
     value = '',
     marginBottom = 10,
+    marginTop = 0,
     onChangeText,
     onBlur,
     isError,
-    errorText
+    errorText,
+    style
   } = props;
 
   const labelSharedValue = useSharedValue(0);
@@ -96,7 +100,7 @@ const AnimatedTextInput = (props: InputTextProps) => {
 
 
   return (
-    <View style={{ marginBottom: marginBottom }}>
+    <View style={{ marginBottom, marginTop, ...style }}>
       <View style={styles(paddingVertical, borderWidth, borderRadius, isError ? theme.colors.error : borderColor).textInput}>
         <TextInput
           {...textInputProps}

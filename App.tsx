@@ -21,6 +21,10 @@ const myTheme = createTheme({
       },
       h3Style: {
         fontWeight: '300',
+        fontSize: 14
+      },
+      h4Style: {
+        fontWeight: '300',
         fontSize: 11
       },
     },

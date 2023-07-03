@@ -5,10 +5,14 @@ export default {
     login: 'Login',
     welcome: 'Welcome',
     register: 'Register',
-    forgotPassword: 'Forgot your Password?',
+    forgotYourPassword: 'Forgot your Password?',
     loginWithSocials: 'Or login with social account',
+    registerWithSocials: 'Or sign up with social account',
     invalidEmail: 'Invalid email',
-    emailRequired: 'Email is required',
-    passwordRequired: 'Password is required',
-    passwordCharacters: 'Password must be at least {{ numbers }} characters'
+    textRequired: '{{ text }} is required',
+    textCharacters: '{{ text }} must be at least {{ numbers }} characters',
+    name: 'Name',
+    send: 'Send',
+    forgotPassword: 'Forgot password',
+    signUp: 'Sign up',
    };

@@ -22,15 +22,11 @@ export const styles = StyleSheet.create({
   },
   linkContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: "center",
+    justifyContent: 'flex-end',
     marginVertical: 5
   },
   link: {
-    flex: 1, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    justifyContent: 'center',
+    flex: 1,
   },
   buttonContainer: {
     marginTop: 30,

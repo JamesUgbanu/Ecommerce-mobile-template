@@ -20,25 +20,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  linkContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: "center",
-    marginVertical: 5
-  },
-  link: {
-    flex: 1, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    justifyContent: 'center',
-  },
   buttonContainer: {
     marginTop: 30,
-  },
-  socialContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50,
-  },
+  }
 });

@@ -8,6 +8,7 @@ type SocialsProps = {
     spacing?: number;
     width?: number;
     height?: number;
+    loginOrRegisterText?: string;
 };
 
 const Socials = (props: SocialsProps) => {
@@ -15,12 +16,13 @@ const Socials = (props: SocialsProps) => {
     const {
         width = 24,
         height = 24,
-        spacing = 10
+        spacing = 10,
+        loginOrRegisterText
     } = props
 
     return (
         <View>
-            <Text>{t('common:loginWithSocials')}</Text>
+            <Text>{loginOrRegisterText}</Text>
             <View style={styles.socials}>
                 <TouchableOpacity style={styles.socialButton}>
                     <SvgIcon name="google" width={width} height={height} />
