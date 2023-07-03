@@ -49,7 +49,7 @@ git clone https://github.com/JamesUgbanu/Ecommerce-mobile.git
 2. Navigate to the project directory:
 
 ```
-cd ecommerce-mobile
+cd ecommerce-mobile-template
 ```
 
 3. Install dependencies:
