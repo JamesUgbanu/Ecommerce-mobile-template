@@ -2,6 +2,10 @@
 
 This is a simple e-commerce template built with React Native and Expo. It provides a basic structure and components to help you kickstart your e-commerce app development.
 
+## Screenshots
+
+| ![Login Screen](/assets/screenshot/login_screen.png) | ![Register Screen](/assets/screenshot/register_screen.png) | ![Forgot Password](/assets/screenshot/forgot_password_screen.png)
+
 ## Features
 
 - User authentication (Sign up, Sign in, Forgot password)
