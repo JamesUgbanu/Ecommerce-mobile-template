@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { useTranslation } from "react-i18next";
 import { styles } from './styles';
 import SvgIcon from '../../components/SvgIcon';
 
@@ -12,7 +11,6 @@ type SocialsProps = {
 };
 
 const Socials = (props: SocialsProps) => {
-    const { t } = useTranslation();
     const {
         width = 24,
         height = 24,

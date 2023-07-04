@@ -8,10 +8,11 @@ export const styles = StyleSheet.create({
     icon: {
         fontSize: 18
     },
-    heading: {
-        marginTop: 5,
-    },
     title: {
+        marginTop: 5,
+        fontSize: 18
+    },
+    heading: {
         marginTop: 10,
         marginLeft: 15
     }

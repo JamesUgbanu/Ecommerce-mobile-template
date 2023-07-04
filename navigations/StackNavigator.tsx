@@ -6,23 +6,20 @@ import Login from "../screens/LoginScreen";
 import Register from "../screens/RegisterScreen";
 import ForgotPassword from "../screens/ForgotPasswordScreen";
 import Header from '../components/Header';
-import { getHeaderTitle } from '../utils/getHeaderTitle';
 
 const Stack = createStackNavigator();
+
 
 const AppStack = (props) => {
   const { t } = useTranslation();
 
   return (
     <Stack.Navigator
-      screenOptions={({ route }) => ({
-        header: ({ navigation }) => (
+      screenOptions={() => ({
+        header: (properties) => (
           <Header
+            {...properties}
             theme={props.theme}
-            navigation={navigation}
-            showBackIcon
-            showSearchIcon
-            heading={getHeaderTitle(route)}
           />
         ),
       })}
@@ -41,7 +38,7 @@ const AppStack = (props) => {
           headerTransparent: true,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name={t("common:forgotPassword")}
         component={ForgotPassword}
         options={{

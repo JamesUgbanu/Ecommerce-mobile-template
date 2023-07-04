@@ -4,11 +4,12 @@ import React from 'react';
 import { ThemeProvider, createTheme } from '@rneui/themed';
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "./navigations/StackNavigator";
+import TabNavigator from "./navigations/TabNavigator";
 import { theme } from './styles/Theme';
 import './localization/i18n';
 
 const myTheme = createTheme({
-  ...theme, 
+  ...theme,
   mode: 'light',
   components: {
     Text: {
@@ -42,16 +43,19 @@ const myTheme = createTheme({
       }
     }
   }
-  
+
 });
 
 const App = () => {
+  const isAuthenticated = true;
   return (
-        <NavigationContainer>
-          <ThemeProvider theme={myTheme}>
-            <StackNavigator />
-          </ThemeProvider>
-      </NavigationContainer>
+    <NavigationContainer>
+      <ThemeProvider theme={myTheme}>
+        {
+          isAuthenticated ? <TabNavigator /> : <StackNavigator />
+        }
+      </ThemeProvider>
+    </NavigationContainer>
   );
 };
 

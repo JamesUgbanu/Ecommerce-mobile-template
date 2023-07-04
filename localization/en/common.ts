@@ -15,4 +15,7 @@ export default {
     send: 'Send',
     forgotPassword: 'Forgot password',
     signUp: 'Sign up',
+    categories: 'Categories',
+    home: 'Home',
+    check: 'Check',
    };
