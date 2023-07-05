@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { styles } from './styles';
 import { images } from "../../constants";
 import ProductCard from '../../components/ProductCard';
+import { products } from "../../data";
 
 const Home = ({ navigation }) => {
     const { t } = useTranslation();
@@ -36,7 +37,18 @@ const Home = ({ navigation }) => {
                 </View>
                 <ScrollView horizontal>
                     <View style={styles().productContainer}>
-                        <ProductCard category="Dorothy Perkins" name="Evening Dress" ratingValue={3} totalRating={10} />
+                        {products && products.map((product, index) => (
+                            <ProductCard
+                                key={index}
+                                category={product.category}
+                                name={product.name}
+                                ratingValue={product.ratingValue}
+                                totalRating={product.totalRating}
+                                price={product.price}
+                                salePrice={product.salePrice}
+                                image={product.image}
+                            />
+                        ))}
                     </View>
                 </ScrollView>
             </View>

@@ -1,32 +1,31 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const styles = (width?) => StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: "column",
-        width: 150,
+        flexBasis: '44%',
         borderRadius: 12,
         elevation: 2,
+        width,
         shadowColor: "#777",
         shadowOffset: {
             height: 1,
             width: 0
         },
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        marginVertical: 10,
+        justifyContent: "flex-start",
     },
     imageContainer: {
         flex: 1,
-        width: 150,
+        width
     },
     image: {
-        width: 150,
-        height: 184,
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
+        width
     },
     productInfo: {
-        flex: 1,
-        marginTop: 10
+        marginTop: 10,
     },
     star: {
         flexDirection: "row",

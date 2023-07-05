@@ -1,53 +1,60 @@
 import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { Badge, Icon, Text } from '@rneui/themed';
+import { scale, verticalScale } from "react-native-size-matters";
 import { styles } from './styles';
-import { images } from "../../constants";
 
 type ProductCardProps = {
-    image?: string;
+    image?: any;
     imageStyle?: { [key: string]: any };
     label?: string;
     badgeStyle?: { [key: string]: any };
-    ratingValue: number;
+    ratingValue?: number;
     ratingCount?: number;
     ratingColor?: string;
     totalRating?: number;
     ratingSize?: number;
     salePrice?: number;
-    price?: number;
+    price: number;
     currency?: string;
     category: string;
     name: string;
+    imageWidth?: number;
+    imageHeight?: number;
 };
 
 const ProductCard = (props: ProductCardProps) => {
-    const {
+    let {
         imageStyle,
+        image,
         label = "NEW",
         badgeStyle,
-        ratingValue = 4,
+        ratingValue = 0,
         ratingCount = 5,
         ratingColor = "#FFBA49",
         totalRating = 0,
         ratingSize = 15,
-        salePrice = 12,
-        price = 15,
+        salePrice,
+        price,
         currency = "$",
         category,
-        name
-    } = props
+        name,
+        imageWidth = 135,
+        imageHeight = 150
+    } = props;
+
+    imageWidth = scale(imageWidth);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.imageContainer} >
+        <View style={[styles(imageWidth).container]}>
+            <View style={styles(imageWidth).imageContainer} >
                 <TouchableOpacity onPress={() => { }}>
-                    <Image source={images.bigBanner} resizeMode="cover" style={[styles.image, imageStyle]} />
+                    <Image source={image} resizeMode="cover" style={[styles(imageWidth).image, imageStyle, { height: verticalScale(imageHeight) }]} />
                     <Badge
                         status="primary"
                         value={label}
                         containerStyle={{ position: 'absolute', top: 10, left: 10 }}
-                        badgeStyle={[{ backgroundColor: "#000", borderColor: 'transparent', height: 24, width: 40 }, badgeStyle]}
+                        badgeStyle={[{ backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25 }, badgeStyle]}
                         textStyle={{ fontSize: 11, fontWeight: "700" }}
                     />
                     <Icon
@@ -60,8 +67,8 @@ const ProductCard = (props: ProductCardProps) => {
                         onPress={() => console.log('hello')} />
                 </TouchableOpacity>
             </View>
-            <View style={styles.productInfo}>
-                <View style={styles.star}>
+            <View style={styles().productInfo}>
+                <View style={styles().star}>
                     {(() => {
                         let rating = [];
                         for (let i = 1; i <= ratingCount; i++) {
@@ -75,11 +82,11 @@ const ProductCard = (props: ProductCardProps) => {
                     })()}
                     <Text h4>({totalRating})</Text>
                 </View>
-                <Text style={styles.text} h4>{category}</Text>
-                <Text style={styles.text}>{name}</Text>
-                <View style={styles.priceContainer}>
-                    <Text style={[styles.price, salePrice && { textDecorationLine: 'line-through', }]}>{price}{currency}</Text>
-                    {salePrice && <Text style={styles.salePrice}>{salePrice}{currency}</Text>}
+                <Text style={styles().text} h4>{category}</Text>
+                <Text style={styles().text}>{name}</Text>
+                <View style={styles().priceContainer}>
+                    <Text style={[styles().price, salePrice && { textDecorationLine: 'line-through', }]}>{price}{currency}</Text>
+                    {salePrice && <Text style={styles().salePrice}>{salePrice}{currency}</Text>}
                 </View>
             </View>
 

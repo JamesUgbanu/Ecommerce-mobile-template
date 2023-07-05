@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = (height?: number) => StyleSheet.create({
   container: {
+    flex: 1,
     height: '100%',
     marginBottom: 20
   },
@@ -37,8 +38,9 @@ export const styles = (height?: number) => StyleSheet.create({
     color: '#9B9B9B'
   },
   productContainer: {
-    marginTop: 30,
+    marginTop: 20,
     marginHorizontal: 10,
     flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 });
