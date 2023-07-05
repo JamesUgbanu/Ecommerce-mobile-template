@@ -5,7 +5,7 @@ import { styles } from './styles';
 import SvgIcon from '../../components/SvgIcon';
 
 type TabBarProps = {
-    style?: any;
+    style?: {[key: string]: any};
     navigation?: any;
     height?: number;
     state: any;

@@ -31,7 +31,7 @@ type InputTextProps = {
   placeholderBackgroundColor?: string;
   isError?: boolean;
   errorText?: string;
-  style?: any;
+  style?:  {[key: string]: any};
 };
 
 const AnimatedIcon = Animated.createAnimatedComponent(Feather);

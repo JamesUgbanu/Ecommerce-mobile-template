@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = (height?: number) => StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
+    marginBottom: 20
   },
   imageContainer: {
-    flex: 1,
-    maxHeight: height,
+    height,
   },
   image: {
     flex: 1,
@@ -22,9 +22,23 @@ export const styles = (height?: number) => StyleSheet.create({
     width: 190
   },
   button: {
-    // height: 36,
     width: 160,
     marginTop: 20,
     textAlign : "center",
+  },
+  titleContainer: {
+    marginTop:30,
+    marginHorizontal: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: "center",
+  },
+  subTitle: {
+    color: '#9B9B9B'
+  },
+  productContainer: {
+    marginTop: 30,
+    marginHorizontal: 10,
+    flexDirection: 'row',
   }
 });

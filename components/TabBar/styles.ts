@@ -8,7 +8,6 @@ export const styles = (height?: number) => StyleSheet.create({
         borderTopRightRadius: 12,
         elevation: 8,
         shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOpacity: 1,
         shadowRadius: 8,
     },
     content: {

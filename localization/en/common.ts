@@ -18,4 +18,8 @@ export default {
     categories: 'Categories',
     home: 'Home',
     check: 'Check',
+    fashionSale: 'Fashion sale',
+    new: 'New',
+    homeSubTitle: "You've never seen it before!",
+    viewAll: 'View all'
    };
