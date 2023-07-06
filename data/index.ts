@@ -33,3 +33,41 @@ export const banner = {
     text: "Fashion Sale",
     buttonText: "check"
 }
+
+export const category = [{
+    title: "Women"
+}, {
+    title: "Men"
+}, {
+    title: "Kids"
+}]
+
+export const categories = [
+    {
+        "name": "Men",
+        "subcategories": [
+            "New",
+            "Clothing",
+            "Shoes",
+            "Accessories"
+        ]
+    },
+    {
+        "name": "Women",
+        "subcategories": [
+            "New",
+            "Clothing",
+            "Shoes",
+            "Accessories"
+        ]
+    },
+    {
+        "name": "Kids",
+        "subcategories": [
+            "New",
+            "Boys",
+            "Girls",
+            "Baby"
+        ]
+    }
+]

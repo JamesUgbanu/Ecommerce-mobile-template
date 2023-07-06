@@ -1,27 +1,51 @@
-import React, { useState } from 'react';
-import { View, } from 'react-native';
-import { Text, Tab } from '@rneui/themed';
+import React from 'react';
+import { Tab, FullTheme, withTheme } from '@rneui/themed';
 import { styles } from './styles';
+import { TAB_HEIGHT } from '../../constants';
 
 type TabProps = {
     style?: { [key: string]: any };
+    theme?: FullTheme;
+    setIndex: any;
+    index: number;
+    items: {
+        name?: string;
+    }[];
 };
-
+const MAXIMUM_NUMBER_OF_ITEMS: number = 4;
 const RneTab = (props: TabProps) => {
     const {
         style,
+        items,
+        setIndex,
+        index
     } = props
-
-    const [index, setIndex] = useState(0);
 
 
     return (
-        <Tab value={index} onChange={setIndex} dense>
-            <Tab.Item>Tab</Tab.Item>
-            <Tab.Item>Tab</Tab.Item>
-        </Tab>
+        <>
+            {
+                items && items.length && (
+                    <Tab
+                        value={index}
+                        onChange={setIndex}
+                        dense
+                        indicatorStyle={styles(props.theme.colors.error).indicatorStyle}
+                        containerStyle={[styles().container, style, { height: TAB_HEIGHT}]}
+                        scrollable={items.length > MAXIMUM_NUMBER_OF_ITEMS && true}
+                    >
+                        {
+                            items.map((item, index) => (
+                                <Tab.Item key={index} title={item.name} />
+                            ))
+                        }
+                    </Tab>
+
+                )
+            }
+        </>
     );
 }
 
 
-export default RneTab;
+export default withTheme(RneTab);

@@ -9,10 +9,7 @@ const AppContainer = ({ children }: any) => {
 
     return (
         <View style={{
-            marginTop: insets.top + HEADER_HEIGHT,
-            paddingBottom: insets.bottom,
-            paddingLeft: insets.left,
-            paddingRight: insets.right,
+            marginTop: insets.top + HEADER_HEIGHT
         }}>
             {children}
         </View>

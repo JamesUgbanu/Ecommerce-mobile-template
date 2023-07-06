@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { Text } from '@rneui/themed';
 import { styles } from './styles';
 import SvgIcon from '../../components/SvgIcon';
+import { TAB_BAR_HEIGHT } from '../../constants';
 
 type TabBarProps = {
     style?: {[key: string]: any};
@@ -16,7 +17,7 @@ const TabBar = (props: TabBarProps) => {
     const {
         style,
         navigation,
-        height = 90,
+        height = TAB_BAR_HEIGHT,
         state,
         descriptors
     } = props
