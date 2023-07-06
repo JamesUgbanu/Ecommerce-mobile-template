@@ -9,6 +9,7 @@ type ProductCardProps = {
     imageStyle?: { [key: string]: any };
     label?: string;
     badgeStyle?: { [key: string]: any };
+    buttonStyle?: { [key: string]: any };
     ratingValue?: number;
     ratingCount?: number;
     ratingColor?: string;
@@ -21,6 +22,12 @@ type ProductCardProps = {
     name: string;
     imageWidth?: number;
     imageHeight?: number;
+    button?: {
+        iconName?: string;
+        iconType?: string;
+        iconColor?: string;
+        iconSize?: number;
+    };
 };
 
 const ProductCard = (props: ProductCardProps) => {
@@ -29,6 +36,7 @@ const ProductCard = (props: ProductCardProps) => {
         image,
         label = "NEW",
         badgeStyle,
+        buttonStyle,
         ratingValue = 0,
         ratingCount = 5,
         ratingColor = "#FFBA49",
@@ -40,7 +48,13 @@ const ProductCard = (props: ProductCardProps) => {
         category,
         name,
         imageWidth = 135,
-        imageHeight = 150
+        imageHeight = 150,
+        button = {
+            iconName: "favorite-border",
+            iconType: "material-icons",
+            iconColor: "#9B9B9B",
+            iconSize: 18
+        }
     } = props;
 
     imageWidth = scale(imageWidth);
@@ -53,17 +67,17 @@ const ProductCard = (props: ProductCardProps) => {
                     <Badge
                         status="primary"
                         value={label}
-                        containerStyle={{ position: 'absolute', top: 10, left: 10 }}
-                        badgeStyle={[{ backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25 }, badgeStyle]}
+                        containerStyle={{ position: 'absolute', top: 10, left: 8 }}
+                        badgeStyle={[{ backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25, paddingHorizontal: 5, height: 24  }, badgeStyle]}
                         textStyle={{ fontSize: 11, fontWeight: "700" }}
                     />
                     <Icon
                         raised
-                        name='favorite-border'
-                        type='material-icons'
-                        color='#9B9B9B'
-                        size={18}
-                        containerStyle={{ position: 'absolute', bottom: -20, right: -10 }}
+                        name={button.iconName}
+                        type={button.iconType}
+                        color={button.iconColor}
+                        size={button.iconSize}
+                        containerStyle={[{ position: 'absolute', bottom: -20, right: -10 }, buttonStyle]}
                         onPress={() => console.log('hello')} />
                 </TouchableOpacity>
             </View>

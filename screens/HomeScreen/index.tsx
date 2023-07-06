@@ -10,7 +10,7 @@ import { products } from "../../data";
 const Home = ({ navigation }) => {
     const { t } = useTranslation();
     const screenHeight = Dimensions.get('window').height;
-    const sixtyFivePercentOfScreenHeight = screenHeight * 0.65;
+    const sixtyFivePercentOfScreenHeight = screenHeight * 0.67;
 
     return (
         <ScrollView>
