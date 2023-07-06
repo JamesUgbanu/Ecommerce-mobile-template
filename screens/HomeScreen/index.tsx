@@ -4,6 +4,7 @@ import { Button, Text } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import { styles } from './styles';
 import ProductCard from '../../components/ProductCard';
+import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import { products, banner } from "../../data";
 
 const Home = ({ navigation }) => {
@@ -30,7 +31,7 @@ const Home = ({ navigation }) => {
                         <Text h1>{t('common:new')}</Text>
                         <Text h3 style={styles().subTitle}>{t('common:homeSubTitle')}</Text>
                     </View>
-                    <TouchableHighlight underlayColor="transparent" onPress={() => navigation.navigate('Profile')}>
+                    <TouchableHighlight underlayColor="transparent" onPress={() => navigation.navigate(t('common:shop'))}>
                         <Text h3>{t('common:viewAll')}</Text>
                     </TouchableHighlight>
                 </View>
@@ -56,4 +57,4 @@ const Home = ({ navigation }) => {
 }
 
 
-export default Home;
+export default ErrorBoundary(Home);

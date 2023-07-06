@@ -2,9 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    marginTop: 200,
+    marginTop: 120,
     paddingHorizontal: 15
   },
   inputContainer: {
@@ -36,7 +34,6 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   socialContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 50,

@@ -1,7 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { withTheme } from '@rneui/themed';
-import { useTranslation } from "react-i18next";
 import Home from "../screens/HomeScreen";
 import Shop from "../screens/ShopScreen";
 import Bag from "../screens/RegisterScreen";
@@ -13,7 +12,6 @@ import TabBar from "../components/TabBar";
 const Tab = createBottomTabNavigator();
 
 const MainTab = (props) => {
-    const { t } = useTranslation();
 
     return (
         <Tab.Navigator

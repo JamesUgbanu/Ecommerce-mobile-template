@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Header as HeaderRNE, Icon, FullTheme, Text } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useTranslation } from "react-i18next";
 import { styles } from './styles';
 import { getRouteName, getHeaderTitle } from '../../utils/getRoute';
@@ -32,7 +31,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
 
     return (
 
-        <SafeAreaProvider>
+        <View>
             {
                 isShowHeader && (
                     <>
@@ -73,7 +72,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                     </>
                 )
             }
-        </SafeAreaProvider>
+        </View>
     );
 };
 

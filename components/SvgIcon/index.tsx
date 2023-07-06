@@ -37,7 +37,7 @@ const SvgIcon = (props: IconProps) => {
     `;
 
     const homeSvg = `<svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2941 27V18.5294H17.9412V27H25V15.7059H29.2353L15.1176 3L1 15.7059H5.23529V27H12.2941Z" fill=${color}/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2941 27V18.5294H17.9412V27H25V15.7059H29.2353L15.1176 3L1 15.7059H5.23529V27H12.2941Z" ${isFocused ? `fill=${color}` : `stroke=${color}`}/>
     </svg>`;
 
     const cartSvg = `<svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">

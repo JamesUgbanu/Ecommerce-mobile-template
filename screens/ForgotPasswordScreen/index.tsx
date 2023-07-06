@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AnimatedTextInput from '../../components/AnimatedInput';
+import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import { styles } from './styles';
 
 const ForgotPassword = () => {
@@ -51,4 +52,4 @@ const ForgotPassword = () => {
 }
 
 
-export default ForgotPassword;
+export default ErrorBoundary(ForgotPassword);

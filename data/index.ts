@@ -13,7 +13,7 @@ export const products = [{
     name: "Sport Dress",
     category: "Sitily",
     ratingValue: 5,
-    totalRating: 10,
+    totalRating: 2,
     salePrice: 22,
     price: 19,
     currency: "$",
@@ -22,7 +22,7 @@ export const products = [{
     name: "Sport Dress",
     category: "Dorothy Perkins",
     ratingValue: 3,
-    totalRating: 10,
+    totalRating: 1,
     price: 14,
     currency: "$",
     image: images.product3
