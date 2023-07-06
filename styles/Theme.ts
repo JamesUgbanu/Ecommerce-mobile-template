@@ -2,7 +2,7 @@ export const theme = {
     lightColors: {
       primary: '#f2f2f2',
       secondary: '#2D2D2D',
-      white: '#f2f2f2',
+      white: '#fff',
       black: '#222222',
       grey0: '#9B9B9B',
       grey1: '#f2f2f2',
@@ -21,7 +21,7 @@ export const theme = {
     darkColors: {
       primary: '#121212',
       secondary: '#f2f2f2',
-      white: '#222222',
+      white: '#000',
       black: '#fff',
       grey0: '#f2f2f2',
       grey1: '#f2f2f2',

@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { withTheme } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import Home from "../screens/HomeScreen";
-import Shop from "../screens/LoginScreen";
+import Shop from "../screens/ShopScreen";
 import Bag from "../screens/RegisterScreen";
 import Favorites from "../screens/ForgotPasswordScreen";
 import Profile from "../screens/ProfileScreen";

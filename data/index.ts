@@ -27,3 +27,9 @@ export const products = [{
     currency: "$",
     image: images.product3
 }]
+
+export const banner = {
+    image: images.bigBanner,
+    text: "Fashion Sale",
+    buttonText: "check"
+}

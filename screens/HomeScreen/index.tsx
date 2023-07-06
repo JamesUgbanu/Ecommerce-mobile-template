@@ -3,9 +3,8 @@ import { ScrollView, View, ImageBackground, TouchableHighlight, Dimensions } fro
 import { Button, Text } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import { styles } from './styles';
-import { images } from "../../constants";
 import ProductCard from '../../components/ProductCard';
-import { products } from "../../data";
+import { products, banner } from "../../data";
 
 const Home = ({ navigation }) => {
     const { t } = useTranslation();
@@ -16,11 +15,11 @@ const Home = ({ navigation }) => {
         <ScrollView>
             <View style={styles().container}>
                 <View style={styles(sixtyFivePercentOfScreenHeight).imageContainer}>
-                    <ImageBackground source={images.bigBanner} resizeMode="cover" style={styles().image}>
-                        <Text style={styles().text}>{t('common:fashionSale')}</Text>
+                    <ImageBackground source={banner.image} resizeMode="cover" style={styles().image}>
+                        <Text style={styles().text}>{banner.text}</Text>
                         <Button
                             size="sm"
-                            title={t('common:check')}
+                            title={banner.buttonText}
                             onPress={() => { }}
                             containerStyle={styles().button}
                         />

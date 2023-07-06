@@ -20,6 +20,7 @@ const AppStack = (props) => {
           <Header
             {...properties}
             theme={props.theme}
+            isShowHeading
           />
         ),
       })}

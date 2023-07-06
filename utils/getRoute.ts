@@ -13,6 +13,8 @@ export const getRouteName = (route: any) => {
       return t("common:forgotPassword");
     case t("common:home"):
       return t("common:home");
+    case t("common:shop"):
+      return t("common:shop");
     case 'Profile':
       return 'My Profile';
     default:
@@ -22,12 +24,14 @@ export const getRouteName = (route: any) => {
 
 export const getHeaderTitle = (route) => {
   const { t } = useTranslation();
-  
+
   switch (getRouteName(route)) {
     case t("common:login"):
     case t("common:register"):
     case t("common:forgotPassword"):
       return '';
+    case t("common:shop"):
+      return t("common:categories");
     case 'Profile':
       return 'My Profile';
     default:

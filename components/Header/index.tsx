@@ -12,18 +12,19 @@ interface HeaderComponentProps {
     theme: FullTheme;
     navigation?: any;
     route?: any;
+    isShowHeading?: boolean;
 };
 
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     const { t } = useTranslation();
-    const { theme, route, navigation } = props;
+    const { theme, route, navigation, isShowHeading = false } = props;
 
     const isShowBackIcon = getHeaderTitle(route) !== t("common:home");
-    const isShowSearchIcon = getRouteName(route) === t("common:categories");
+    const isShowSearchIcon = getRouteName(route) === t("common:shop");
     const isShowHeader = getRouteName(route) !== t("common:home");
     const title = getHeaderTitle(route);
-    const heading = getHeaderTitle(route);
+    const heading = getRouteName(route);
 
     const docsNavigate = () => {
         alert(`hi`);
@@ -38,7 +39,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                         <StatusBar style="auto" />
                         <HeaderRNE
                             leftComponent={
-                                <View style={styles.header}>
+                                <View>
                                     {isShowBackIcon && (
                                         <TouchableOpacity
                                             onPress={() => navigation.canGoBack() && navigation.goBack()}
@@ -49,21 +50,22 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                                 </View>
                             }
                             rightComponent={
-                                <View style={styles.header}>
+                                <View>
                                     {
                                         isShowSearchIcon && (
                                             <TouchableOpacity
                                                 onPress={docsNavigate}
                                             >
-                                                <Icon type="antdesign" name="search1" color={theme.colors.black} iconStyle={styles.icon} />
+                                                <Icon type="fontawesome-5" name="search" color={theme.colors.black} iconStyle={styles.icon} />
                                             </TouchableOpacity>
                                         )
                                     }
                                 </View>
                             }
                             centerComponent={{ text: title, style: styles.title }}
+                            backgroundColor={!isShowHeading && theme.colors.white}
                         />
-                        {heading && (
+                        {isShowHeading && heading && (
                             <View style={styles.heading}>
                                 <Text h1>{heading}</Text>
                             </View>
