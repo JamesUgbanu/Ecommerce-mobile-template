@@ -34,40 +34,72 @@ export const banner = {
     buttonText: "check"
 }
 
-export const category = [{
-    title: "Women"
-}, {
-    title: "Men"
-}, {
-    title: "Kids"
-}]
-
 export const categories = [
     {
-        "name": "Men",
-        "subcategories": [
-            "New",
-            "Clothing",
-            "Shoes",
-            "Accessories"
+        "name": "Women",
+        "subcategories": [{
+            "name": "New",
+            "image": images.image4
+        },
+        {
+            "name": "Clothing",
+            "image": images.image1
+        },
+        {
+            "name": "Shoes",
+            "image": images.image2
+        },
+        {
+            "name": "Accessories",
+            "image": images.image3
+        },
         ]
     },
     {
-        "name": "Women",
+        "name": "Men",
         "subcategories": [
-            "New",
-            "Clothing",
-            "Shoes",
-            "Accessories"
+            {
+                "name": "New",
+                "image": null
+            },
+            {
+                "name": "Clothing",
+                "image": null
+            },
+            {
+                "name": "Shoes",
+                "image": null
+            },
+            {
+                "name": "Accessories",
+                "image": null
+            }
         ]
     },
     {
         "name": "Kids",
         "subcategories": [
-            "New",
-            "Boys",
-            "Girls",
-            "Baby"
+            {
+                "name": "New",
+                "image": null
+            },
+            {
+                "name": "Boys",
+                "image": null
+            },
+            {
+                "name": "Girls",
+                "image": null
+            },
+            {
+                "name": "Baby",
+                "image": null
+            },
         ]
     }
-]
+];
+
+export const categoryBanner = {
+    title: "SUMMER SALES",
+    subTitle: "Up to 50% off"
+}
