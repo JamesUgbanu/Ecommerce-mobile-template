@@ -9,7 +9,7 @@ const AppContainer = ({ children }: any) => {
 
     return (
         <ScrollView style={{
-            marginTop: insets.top + HEADER_HEIGHT
+            marginTop: insets.top
         }}>
             {children}
         </ScrollView>

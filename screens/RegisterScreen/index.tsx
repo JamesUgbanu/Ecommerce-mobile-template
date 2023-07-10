@@ -10,7 +10,7 @@ import Socials from '../../components/Socials';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import AppContainer from '../../components/HOC/AppContainer';
 
-const Register = () => {
+const Register = ({ navigation }) => {
     const { theme } = useTheme();
     const { t } = useTranslation();
 
@@ -61,9 +61,9 @@ const Register = () => {
                                 errorText={errors.password}
                             />
                             <View style={styles.linkContainer}>
-                                <TouchableHighlight underlayColor="transparent" onPress={() => alert('hi')}>
+                                <TouchableHighlight underlayColor="transparent" onPress={() => navigation.navigate('Login')}>
                                     <View>
-                                        <Text h3>{t('common:forgotPassword')}</Text>
+                                        <Text h3>{t('common:haveAnAccount')}</Text>
                                     </View>
                                 </TouchableHighlight>
                                 <Icon type="material-icons" size={16} name="trending-flat" color={theme.colors.error} />

@@ -16,48 +16,75 @@ const MainTab = (props) => {
     return (
         <Tab.Navigator
             tabBar={(props) => <TabBar navigation={props.navigation} state={props.state} descriptors={props.descriptors} />}
-            screenOptions={{
-                header: (properties) => (
-                    <Header
-                        {...properties}
-                        theme={props.theme}
-                    />)
-            }}
         >
             <Tab.Screen
                 name="Home"
                 component={Home}
                 options={{
                     headerTransparent: true,
-                  }}
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            theme={props.theme}
+                            isShowBackIcon={false}
+                        />)
+                }}
             />
             <Tab.Screen
                 name="Shop"
                 component={Shop}
                 options={{
                     headerTransparent: true,
-                  }}
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            theme={props.theme}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
             />
             <Tab.Screen
                 name="Bag"
                 component={Bag}
                 options={{
                     headerTransparent: true,
-                  }}
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            theme={props.theme}
+                            isShowBackIcon={true}
+                            isShowSearchIcon
+                        />)
+                }}
             />
             <Tab.Screen
                 name="Favorites"
                 component={Favorites}
                 options={{
                     headerTransparent: true,
-                  }}
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            theme={props.theme}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
             />
             <Tab.Screen
                 name="Profile"
                 component={Profile}
                 options={{
                     headerTransparent: true,
-                  }}
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            theme={props.theme}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
             />
         </Tab.Navigator>
     );

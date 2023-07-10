@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, View, ImageBackground, TouchableHighlight, Dimensions } from 'react-native';
-import { Button, Text } from '@rneui/themed';
+import { Button, Text, useTheme } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import { styles } from './styles';
 import ProductCard from '../../components/ProductCard';
@@ -9,6 +9,7 @@ import { products, banner } from "../../data";
 
 const Home = ({ navigation }) => {
     const { t } = useTranslation();
+    const { theme } = useTheme();
     const screenHeight = Dimensions.get('window').height;
     const sixtyFivePercentOfScreenHeight = screenHeight * 0.67;
 
@@ -47,6 +48,7 @@ const Home = ({ navigation }) => {
                                 price={product.price}
                                 salePrice={product.salePrice}
                                 image={product.image}
+                                buttonStyle={{ backgroundColor: `${theme.colors.primary}` }}
                             />
                         ))}
                     </View>

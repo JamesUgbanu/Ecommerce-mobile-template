@@ -50,7 +50,7 @@ const withErrorBoundary = <P extends any>(
                     </View>
                 );
                 if (this.state.isError && this.state.errorInfo) {
-                    return <AppContainer className="">{errorComponent}</AppContainer>;
+                    return <AppContainer>{errorComponent}</AppContainer>;
                 }
             }
             return <ComponentToBeRendered {...(this.props)} />;

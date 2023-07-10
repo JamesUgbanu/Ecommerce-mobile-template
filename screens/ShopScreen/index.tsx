@@ -8,6 +8,7 @@ import TabView from "../../components/TabView";
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import AppContainer from '../../components/HOC/AppContainer';
 import { categories, categoryBanner } from "../../data";
+import { HEADER_HEIGHT } from '../../constants';
 
 const Shop = ({ navigation }) => {
     const { t } = useTranslation();
@@ -17,7 +18,7 @@ const Shop = ({ navigation }) => {
 
     return (
         <AppContainer>
-            <View>
+            <View style={{ marginTop: HEADER_HEIGHT}}>
                 <Tab items={categories} index={index} setIndex={setIndex} />
                 <View style={[styles.banner, { width: screenWidth, height: screenHeight }]}>
                     <Text style={styles.title}>{categoryBanner.title}</Text>

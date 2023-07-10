@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Header as HeaderRNE, Icon, FullTheme, Text } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useTranslation } from "react-i18next";
+import { HEADER_HEIGHT } from '../../constants';
 import { styles } from './styles';
 import { getRouteName, getHeaderTitle } from '../../utils/getRoute';
 
@@ -12,36 +12,39 @@ interface HeaderComponentProps {
     navigation?: any;
     route?: any;
     isShowHeading?: boolean;
+    isShowBackIcon?: boolean;
+    isShowSearchIcon?: boolean;
 };
 
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
-    const { t } = useTranslation();
-    const { theme, route, navigation, isShowHeading = false } = props;
+    const { theme, route, navigation, isShowHeading = false, isShowBackIcon = true, isShowSearchIcon = false } = props;
 
-    const isShowBackIcon = getHeaderTitle(route) !== t("common:home");
-    const isShowSearchIcon = getRouteName(route) === t("common:shop");
-    const isShowHeader = getRouteName(route) !== t("common:home");
     const title = getHeaderTitle(route);
     const heading = getRouteName(route);
+    const isShowHeader = isShowBackIcon || isShowSearchIcon;
 
     const docsNavigate = () => {
         alert(`hi`);
     };
 
+    const goBack = () => {
+        navigation.canGoBack() && navigation.goBack()
+    }
+
     return (
 
-        <View>
+        <>
             {
                 isShowHeader && (
-                    <>
+                    <View>
                         <StatusBar style="auto" />
                         <HeaderRNE
                             leftComponent={
                                 <View>
                                     {isShowBackIcon && (
                                         <TouchableOpacity
-                                            onPress={() => navigation.canGoBack() && navigation.goBack()}
+                                            onPress={goBack}
                                         >
                                             <Icon type="antdesign" name="left" color={theme.colors.black} iconStyle={styles.icon} />
                                         </TouchableOpacity>
@@ -69,10 +72,10 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                                 <Text h1>{heading}</Text>
                             </View>
                         )}
-                    </>
+                    </View>
                 )
             }
-        </View>
+        </>
     );
 };
 

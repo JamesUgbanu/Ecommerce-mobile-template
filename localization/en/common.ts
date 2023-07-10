@@ -23,4 +23,5 @@ export default {
     homeSubTitle: "You've never seen it before!",
     viewAll: 'View all',
     shop: 'Shop',
+    haveAnAccount: 'Already have an Account?'
    };
