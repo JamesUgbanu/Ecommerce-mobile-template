@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { withTheme } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import Login from "../screens/LoginScreen";
 import Register from "../screens/RegisterScreen";
@@ -19,7 +18,6 @@ const AppStack = (props) => {
         header: (properties) => (
           <Header
             {...properties}
-            theme={props.theme}
             isShowHeading
           />
         ),
@@ -50,4 +48,4 @@ const AppStack = (props) => {
   );
 };
 
-export default withTheme(AppStack);
+export default AppStack;

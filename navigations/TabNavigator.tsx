@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { withTheme } from '@rneui/themed';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "../screens/HomeScreen";
 import Shop from "../screens/ShopScreen";
 import Bag from "../screens/RegisterScreen";
@@ -9,9 +9,79 @@ import Profile from "../screens/ProfileScreen";
 import Header from '../components/Header';
 import TabBar from "../components/TabBar";
 
+
+const HomeStack = createNativeStackNavigator();
+
+const HomeStackScreen = () => {
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen
+                name="HomeStack"
+                component={Home}
+                options={{ headerShown: false }}
+            />
+        </HomeStack.Navigator>
+    );
+}
+
+const ShopStack = createNativeStackNavigator();
+
+const ShopStackScreen = () => {
+    return (
+        <ShopStack.Navigator>
+            <ShopStack.Screen
+                name="ShopStack"
+                component={Shop}
+                options={{ headerShown: false }}
+            />
+        </ShopStack.Navigator>
+    );
+}
+
+const BagStack = createNativeStackNavigator();
+
+const BagStackScreen = () => {
+    return (
+        <BagStack.Navigator>
+            <BagStack.Screen
+                name="BagStack"
+                component={Bag}
+                options={{ headerShown: false }}
+            />
+        </BagStack.Navigator>
+    );
+}
+
+const FavoritesStack = createNativeStackNavigator();
+const FavoritesStackScreen = () => {
+    return (
+        <FavoritesStack.Navigator>
+            <FavoritesStack.Screen
+                name="FavoritesStack"
+                component={Favorites}
+                options={{ headerShown: false }}
+            />
+        </FavoritesStack.Navigator>
+    );
+}
+
+const ProfileStack = createNativeStackNavigator();
+const ProfileStackScreen = () => {
+    return (
+        <ProfileStack.Navigator>
+            <ProfileStack.Screen
+                name="ProfileStack"
+                component={Profile}
+                options={{ headerShown: false }}
+            />
+        </ProfileStack.Navigator>
+    );
+}
+
+
 const Tab = createBottomTabNavigator();
 
-const MainTab = (props) => {
+const MainTabs = () => {
 
     return (
         <Tab.Navigator
@@ -19,54 +89,51 @@ const MainTab = (props) => {
         >
             <Tab.Screen
                 name="Home"
-                component={Home}
+                component={HomeStackScreen}
                 options={{
                     headerTransparent: true,
                     header: (properties) => (
                         <Header
                             {...properties}
-                            theme={props.theme}
                             isShowBackIcon={false}
                         />)
                 }}
             />
             <Tab.Screen
                 name="Shop"
-                component={Shop}
+                component={ShopStackScreen}
                 options={{
                     headerTransparent: true,
                     header: (properties) => (
                         <Header
                             {...properties}
-                            theme={props.theme}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
+
+            />
+            <Tab.Screen
+                name="Bag"
+                component={BagStackScreen}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
                             isShowBackIcon={false}
                             isShowSearchIcon
                         />)
                 }}
             />
             <Tab.Screen
-                name="Bag"
-                component={Bag}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            theme={props.theme}
-                            isShowBackIcon={true}
-                            isShowSearchIcon
-                        />)
-                }}
-            />
-            <Tab.Screen
                 name="Favorites"
-                component={Favorites}
+                component={FavoritesStackScreen}
                 options={{
                     headerTransparent: true,
                     header: (properties) => (
                         <Header
                             {...properties}
-                            theme={props.theme}
                             isShowBackIcon={false}
                             isShowSearchIcon
                         />)
@@ -74,13 +141,12 @@ const MainTab = (props) => {
             />
             <Tab.Screen
                 name="Profile"
-                component={Profile}
+                component={ProfileStackScreen}
                 options={{
                     headerTransparent: true,
                     header: (properties) => (
                         <Header
                             {...properties}
-                            theme={props.theme}
                             isShowBackIcon={false}
                             isShowSearchIcon
                         />)
@@ -90,4 +156,18 @@ const MainTab = (props) => {
     );
 };
 
-export default withTheme(MainTab);
+
+const RootStack = createNativeStackNavigator();
+
+const App = () => (
+
+    <RootStack.Navigator>
+        <RootStack.Screen
+            name="App" component={MainTabs}
+            options={{ headerShown: false }}
+        />
+    </RootStack.Navigator>
+
+);
+
+export default App;

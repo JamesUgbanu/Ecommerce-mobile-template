@@ -1,14 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Header as HeaderRNE, Icon, FullTheme, Text } from '@rneui/themed';
+import { Header as HeaderRNE, Icon, Text, useTheme } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { HEADER_HEIGHT } from '../../constants';
 import { styles } from './styles';
 import { getRouteName, getHeaderTitle } from '../../utils/getRoute';
 
 interface HeaderComponentProps {
-    theme: FullTheme;
     navigation?: any;
     route?: any;
     isShowHeading?: boolean;
@@ -18,7 +16,8 @@ interface HeaderComponentProps {
 
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
-    const { theme, route, navigation, isShowHeading = false, isShowBackIcon = true, isShowSearchIcon = false } = props;
+    const { route, navigation, isShowHeading = false, isShowBackIcon = true, isShowSearchIcon = false } = props;
+    const { theme } = useTheme();
 
     const title = getHeaderTitle(route);
     const heading = getRouteName(route);
