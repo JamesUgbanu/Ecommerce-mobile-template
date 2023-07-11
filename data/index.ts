@@ -113,3 +113,5 @@ export const categoryBanner = {
     title: "SUMMER SALES",
     subTitle: "Up to 50% off"
 }
+
+export const tags = ["T-shirts", "Crop tops", "Blouses", "sport", "sport"]

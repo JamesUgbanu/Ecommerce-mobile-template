@@ -72,7 +72,7 @@ const ProductCard = (props: ProductCardProps) => {
                         status="primary"
                         value={label ? label : ""}
                         containerStyle={{ position: 'absolute', top: 10, left: 8 }}
-                        badgeStyle={[label && { backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25, paddingHorizontal: 5, height: 24 }, badgeStyle]}
+                        badgeStyle={[label && { backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25, paddingHorizontal: 2, height: 24 }, badgeStyle]}
                         textStyle={{ fontSize: 11, fontWeight: "700" }}
                     />
                     <Icon
