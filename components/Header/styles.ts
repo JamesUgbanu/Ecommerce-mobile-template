@@ -9,9 +9,5 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
      
-    },
-    heading: {
-        marginTop: 10,
-        marginLeft: 15
     }
 });

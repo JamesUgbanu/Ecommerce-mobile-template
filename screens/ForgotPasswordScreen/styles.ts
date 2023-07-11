@@ -4,8 +4,11 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: 200,
-    paddingHorizontal: 15
+    marginTop: 10
+  },
+  form: {
+    paddingHorizontal: 15,
+    marginTop: 50
   },
   inputContainer: {
     backgroundColor: '#FFFFFF',
@@ -22,5 +25,9 @@ export const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 30,
+  },
+  heading: {
+    marginTop: 10,
+    marginLeft: 15
   }
 });

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "../screens/HomeScreen";
 import Shop from "../screens/ShopScreen";
 import Bag from "../screens/RegisterScreen";
+import Category from "../screens/CategoryScreen";
 import Favorites from "../screens/ForgotPasswordScreen";
 import Profile from "../screens/ProfileScreen";
 import Header from '../components/Header';
@@ -18,7 +19,14 @@ const HomeStackScreen = () => {
             <HomeStack.Screen
                 name="HomeStack"
                 component={Home}
-                options={{ headerShown: false }}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon={false}
+                        />)
+                }}
             />
         </HomeStack.Navigator>
     );
@@ -32,7 +40,28 @@ const ShopStackScreen = () => {
             <ShopStack.Screen
                 name="ShopStack"
                 component={Shop}
-                options={{ headerShown: false }}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
+            />
+            <ShopStack.Screen
+                name="Category"
+                component={Category}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon
+                            isShowSearchIcon
+                        />)
+                }}
             />
         </ShopStack.Navigator>
     );
@@ -46,7 +75,15 @@ const BagStackScreen = () => {
             <BagStack.Screen
                 name="BagStack"
                 component={Bag}
-                options={{ headerShown: false }}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
             />
         </BagStack.Navigator>
     );
@@ -59,7 +96,15 @@ const FavoritesStackScreen = () => {
             <FavoritesStack.Screen
                 name="FavoritesStack"
                 component={Favorites}
-                options={{ headerShown: false }}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
             />
         </FavoritesStack.Navigator>
     );
@@ -72,7 +117,15 @@ const ProfileStackScreen = () => {
             <ProfileStack.Screen
                 name="ProfileStack"
                 component={Profile}
-                options={{ headerShown: false }}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon={false}
+                            isShowSearchIcon
+                        />)
+                }}
             />
         </ProfileStack.Navigator>
     );
@@ -90,67 +143,27 @@ const MainTabs = () => {
             <Tab.Screen
                 name="Home"
                 component={HomeStackScreen}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            isShowBackIcon={false}
-                        />)
-                }}
+                options={{ headerShown: false }}
             />
             <Tab.Screen
                 name="Shop"
                 component={ShopStackScreen}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            isShowBackIcon={false}
-                            isShowSearchIcon
-                        />)
-                }}
-
+                options={{ headerShown: false }}
             />
             <Tab.Screen
                 name="Bag"
                 component={BagStackScreen}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            isShowBackIcon={false}
-                            isShowSearchIcon
-                        />)
-                }}
+                options={{ headerShown: false }}
             />
             <Tab.Screen
                 name="Favorites"
                 component={FavoritesStackScreen}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            isShowBackIcon={false}
-                            isShowSearchIcon
-                        />)
-                }}
+                options={{ headerShown: false }}
             />
             <Tab.Screen
                 name="Profile"
                 component={ProfileStackScreen}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            isShowBackIcon={false}
-                            isShowSearchIcon
-                        />)
-                }}
+                options={{ headerShown: false }}
             />
         </Tab.Navigator>
     );

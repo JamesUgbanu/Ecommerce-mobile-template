@@ -49,6 +49,7 @@ const Home = ({ navigation }) => {
                                 salePrice={product.salePrice}
                                 image={product.image}
                                 buttonStyle={{ backgroundColor: `${theme.colors.primary}` }}
+                                label="NEW"
                             />
                         ))}
                     </View>

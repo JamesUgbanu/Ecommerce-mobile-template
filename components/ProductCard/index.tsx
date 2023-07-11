@@ -28,13 +28,14 @@ type ProductCardProps = {
         iconColor?: string;
         iconSize?: number;
     };
+    onPress?: () => void;
 };
 
 const ProductCard = (props: ProductCardProps) => {
     let {
         imageStyle,
         image,
-        label = "NEW",
+        label,
         badgeStyle,
         buttonStyle = {
             backgroundColor: '#fff'
@@ -57,6 +58,7 @@ const ProductCard = (props: ProductCardProps) => {
             iconColor: "#9B9B9B",
             iconSize: 18
         },
+        onPress
     } = props;
 
     imageWidth = scale(imageWidth);
@@ -64,13 +66,13 @@ const ProductCard = (props: ProductCardProps) => {
     return (
         <View style={[styles(imageWidth).container]}>
             <View style={styles(imageWidth).imageContainer} >
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={onPress}>
                     <Image source={image} resizeMode="cover" style={[styles(imageWidth).image, imageStyle, { height: verticalScale(imageHeight) }]} />
                     <Badge
                         status="primary"
-                        value={label}
+                        value={label ? label : ""}
                         containerStyle={{ position: 'absolute', top: 10, left: 8 }}
-                        badgeStyle={[{ backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25, paddingHorizontal: 5, height: 24 }, badgeStyle]}
+                        badgeStyle={[label && { backgroundColor: "#000", borderColor: 'transparent', borderRadius: 25, paddingHorizontal: 5, height: 24 }, badgeStyle]}
                         textStyle={{ fontSize: 11, fontWeight: "700" }}
                     />
                     <Icon

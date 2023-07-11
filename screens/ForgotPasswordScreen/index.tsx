@@ -1,11 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button, Text} from '@rneui/themed';
+import { Button, Text } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AnimatedTextInput from '../../components/AnimatedInput';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
+import AppContainer from '../../components/HOC/AppContainer';
 import { styles } from './styles';
 
 const ForgotPassword = () => {
@@ -16,38 +17,45 @@ const ForgotPassword = () => {
     });
 
     return (
-        <View style={styles.container}>
-            <Formik
-                initialValues={{ email: '' }}
-                validationSchema={validationSchema}
-                onSubmit={values => console.log(values)}
-            >
-                {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
-                    <>
-                    <Text h3>Please, enter your email address. You will receive a link to create a new password via email.</Text>
-                        <AnimatedTextInput
-                            placeholder={t('common:email')}
-                            value={values.email}
-                            textInputProps={{
-                                keyboardType: 'email-address'
-                            }}
-                            onChangeText={handleChange('email')}
-                            onBlur={handleBlur('email')}
-                            isError={touched.email && errors.email ? true : false}
-                            errorText={errors.email}
-                            style={{marginTop: 10}}
-                        />
-                        <View style={styles.buttonContainer}>
-                            <Button
-                                title={t('common:send')}
-                                uppercase
-                                onPress={() => handleSubmit()}
+        <AppContainer>
+            <View style={styles.container}>
+                <View style={styles.heading}>
+                    <Text h1>{t('common:forgotPassword')}</Text>
+                </View>
+                <View style={styles.form}>
+                <Formik
+                    initialValues={{ email: '' }}
+                    validationSchema={validationSchema}
+                    onSubmit={values => console.log(values)}
+                >
+                    {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+                        <>
+                            <Text h3>Please, enter your email address. You will receive a link to create a new password via email.</Text>
+                            <AnimatedTextInput
+                                placeholder={t('common:email')}
+                                value={values.email}
+                                textInputProps={{
+                                    keyboardType: 'email-address'
+                                }}
+                                onChangeText={handleChange('email')}
+                                onBlur={handleBlur('email')}
+                                isError={touched.email && errors.email ? true : false}
+                                errorText={errors.email}
+                                style={{ marginTop: 10 }}
                             />
-                        </View>
-                    </>
-                )}
-            </Formik>
-        </View>
+                            <View style={styles.buttonContainer}>
+                                <Button
+                                    title={t('common:send')}
+                                    uppercase
+                                    onPress={() => handleSubmit()}
+                                />
+                            </View>
+                        </>
+                    )}
+                </Formik>
+                </View>
+            </View>
+        </AppContainer>
     );
 }
 

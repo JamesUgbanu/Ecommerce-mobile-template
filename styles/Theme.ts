@@ -14,7 +14,7 @@ export const theme = {
       searchBg: '#f2f2f2',
       success: '#2AA952',
       warning: '#f2f2f2',
-      error: '#F01F0E',
+      error: '#DB3022',
       disabled: '#f2f2f2',
       divider: '#f2f2f2'
     }, 
@@ -33,7 +33,7 @@ export const theme = {
       searchBg: '#f2f2f2',
       success: '#2AA952',
       warning: '#f2f2f2',
-      error: '#F01F0E',
+      error: '#DB3022',
       disabled: '#f2f2f2',
       divider: '#f2f2f2'
     },

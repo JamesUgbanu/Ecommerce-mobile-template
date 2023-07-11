@@ -4,9 +4,11 @@ import React from 'react';
 import { ThemeProvider, createTheme } from '@rneui/themed';
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from "react-redux";
 import StackNavigator from "./navigations/StackNavigator";
 import TabNavigator from "./navigations/TabNavigator";
 import { theme } from './styles/Theme';
+import store from "./store";
 import './localization/i18n';
 
 const myTheme = createTheme({
@@ -50,6 +52,7 @@ const myTheme = createTheme({
 const App = () => {
   const isAuthenticated = true;
   return (
+    <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer>
           <ThemeProvider theme={myTheme}>
@@ -59,6 +62,7 @@ const App = () => {
           </ThemeProvider>
         </NavigationContainer>
       </SafeAreaProvider>
+    </Provider>
   );
 };
 

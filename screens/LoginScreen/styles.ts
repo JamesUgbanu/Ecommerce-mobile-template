@@ -2,8 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 120,
-    paddingHorizontal: 15
+    marginTop: 10,
+  },
+  form: {
+    paddingHorizontal: 15,
+    marginTop: 50
   },
   inputContainer: {
     backgroundColor: '#FFFFFF',
@@ -25,9 +28,9 @@ export const styles = StyleSheet.create({
     marginVertical: 5
   },
   link: {
-    flex: 1, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   buttonContainer: {
@@ -38,4 +41,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 100,
   },
+  heading: {
+    marginTop: 10,
+    marginLeft: 15
+  }
 });

@@ -9,39 +9,51 @@ import Header from '../components/Header';
 const Stack = createStackNavigator();
 
 
-const AppStack = (props) => {
+const AppStack = () => {
   const { t } = useTranslation();
 
   return (
-    <Stack.Navigator
-      screenOptions={() => ({
-        header: (properties) => (
-          <Header
-            {...properties}
-            isShowHeading
-          />
-        ),
-      })}
-    >
+    <Stack.Navigator>
       <Stack.Screen
-        name={t("common:login")}
+        name={"Login"}
         component={Login}
         options={{
           headerTransparent: true,
-        }}
+          header: (properties) => (
+              <Header
+                  {...properties}
+                  isShowHeading
+                  isShowBackIcon={false}     
+
+              />)
+      }}
       />
       <Stack.Screen
-        name={t("common:register")}
+        name={"Register"}
         component={Register}
         options={{
           headerTransparent: true,
-        }}
+          header: (properties) => (
+              <Header
+                  {...properties}
+                  isShowBackIcon
+                  isShowHeading      
+
+              />)
+      }}
       />
       <Stack.Screen
-        name={t("common:forgotPassword")}
+        name={"ForgotPassword"}
         component={ForgotPassword}
         options={{
           headerTransparent: true,
+          header: (properties) => (
+            <Header
+                {...properties}
+                isShowBackIcon
+                isShowHeading      
+
+            />)
         }}
       />
     </Stack.Navigator>

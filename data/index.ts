@@ -17,7 +17,8 @@ export const products = [{
     salePrice: 22,
     price: 19,
     currency: "$",
-    image: images.product2
+    image: images.product2,
+    discount: '-20%'
 }, {
     name: "Sport Dress",
     category: "Dorothy Perkins",
@@ -26,6 +27,15 @@ export const products = [{
     price: 14,
     currency: "$",
     image: images.product3
+}, {
+    name: "Light Blouse",
+    category: "Dorothy Perkins",
+    ratingValue: 5,
+    totalRating: 50,
+    price: 12,
+    currency: "$",
+    image: images.product3,
+    discount: '-20%'
 }]
 
 export const banner = {

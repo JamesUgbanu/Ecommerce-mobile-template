@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useSelector } from 'react-redux';
 import { Header as HeaderRNE, Icon, Text, useTheme } from '@rneui/themed';
 import { styles } from './styles';
-import { getRouteName, getHeaderTitle } from '../../utils/getRoute';
+import { getHeaderTitle } from '../../utils/getRoute';
+import { IRootState } from '../../store';
 
 interface HeaderComponentProps {
     navigation?: any;
@@ -16,11 +18,12 @@ interface HeaderComponentProps {
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     const { route, navigation, isShowHeading = false, isShowBackIcon = true, isShowSearchIcon = false } = props;
+    const productState: any = useSelector((state: IRootState) => state.product);
     const { theme } = useTheme();
 
-    const title = getHeaderTitle(route);
-    const heading = getRouteName(route);
+    let title = getHeaderTitle(route);
     const isShowHeader = isShowBackIcon || isShowSearchIcon;
+    title = title ? title : productState.category;
 
     const docsNavigate = () => {
         alert(`hi`);
@@ -31,49 +34,39 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     }
 
     return (
-
-        <>
-            {
-                isShowHeader && (
-                    <View>
-                        <StatusBar style="auto" />
-                        <HeaderRNE
-                            leftComponent={
-                                <View>
-                                    {isShowBackIcon && (
-                                        <TouchableOpacity
-                                            onPress={goBack}
-                                        >
-                                            <Icon type="antdesign" name="left" color={theme.colors.black} iconStyle={styles.icon} />
-                                        </TouchableOpacity>
-                                    )}
-                                </View>
+        <View>
+            <StatusBar style="auto" />
+            {isShowHeader && (
+                <HeaderRNE
+                    leftComponent={
+                        <View>
+                            {isShowBackIcon && (
+                                <TouchableOpacity
+                                    onPress={goBack}
+                                >
+                                    <Icon type="antdesign" name="left" color={theme.colors.black} iconStyle={styles.icon} />
+                                </TouchableOpacity>
+                            )}
+                        </View>
+                    }
+                    rightComponent={
+                        <View>
+                            {
+                                isShowSearchIcon && (
+                                    <TouchableOpacity
+                                        onPress={docsNavigate}
+                                    >
+                                        <Icon type="fontawesome-5" name="search" color={theme.colors.black} iconStyle={styles.icon} />
+                                    </TouchableOpacity>
+                                )
                             }
-                            rightComponent={
-                                <View>
-                                    {
-                                        isShowSearchIcon && (
-                                            <TouchableOpacity
-                                                onPress={docsNavigate}
-                                            >
-                                                <Icon type="fontawesome-5" name="search" color={theme.colors.black} iconStyle={styles.icon} />
-                                            </TouchableOpacity>
-                                        )
-                                    }
-                                </View>
-                            }
-                            centerComponent={{ text: title, style: styles.title }}
-                            backgroundColor={!isShowHeading && theme.colors.white}
-                        />
-                        {isShowHeading && heading && (
-                            <View style={styles.heading}>
-                                <Text h1>{heading}</Text>
-                            </View>
-                        )}
-                    </View>
-                )
-            }
-        </>
+                        </View>
+                    }
+                    centerComponent={{ text: title, style: styles.title }}
+                    backgroundColor={!isShowHeading && theme.colors.white}
+                />
+            )}
+        </View>
     );
 };
 

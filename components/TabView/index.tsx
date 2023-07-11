@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, View, Dimensions } from 'react-native';
-import { TabView, FullTheme, withTheme, Text } from '@rneui/themed';
+import { TabView, FullTheme, withTheme } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { verticalScale } from "react-native-size-matters";
 import { HEADER_HEIGHT, TAB_BAR_HEIGHT, TAB_HEIGHT } from '../../constants';

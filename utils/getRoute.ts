@@ -2,18 +2,18 @@ import { useTranslation } from "react-i18next";
 
 export const getRouteName = (route: any) => {
   const { t } = useTranslation();
-  const routeName = route.name ?? t("common:login");
+  const routeName: string = route.name ?? "Login";
 
   switch (routeName) {
-    case t("common:login"):
+    case "Login":
       return t("common:login");
-    case t("common:register"):
+    case "Register":
       return t("common:register");
-    case t("common:forgotPassword"):
+    case "ForgotPassword":
       return t("common:forgotPassword");
-    case t("common:home"):
+    case "HomeStack":
       return t("common:home");
-    case t("common:shop"):
+    case "ShopStack":
       return t("common:shop");
     case 'Profile':
       return 'My Profile';
