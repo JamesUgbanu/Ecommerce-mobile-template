@@ -1,8 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Header as HeaderRNE, Icon, Text, useTheme } from '@rneui/themed';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './styles';
 import { getRouteName, getHeaderTitle } from '../../utils/getRoute';
 

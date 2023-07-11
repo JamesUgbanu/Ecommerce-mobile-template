@@ -22,10 +22,6 @@ const withErrorBoundary = <P extends any>(
 
         // Catch errors in any components below and re-render with error message.
         componentDidCatch(error, errorInfo) {
-            const logPayload: CreateErrorLog = {
-                isFrontendError: true,
-                error: error && `${error.toString()} at ${window.location}`
-            }; /**< Log Payload */
 
             this.setState({
                 error: error,

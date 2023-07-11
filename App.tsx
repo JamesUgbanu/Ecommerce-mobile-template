@@ -50,15 +50,15 @@ const myTheme = createTheme({
 const App = () => {
   const isAuthenticated = true;
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <ThemeProvider theme={myTheme}>
-          {
-            isAuthenticated ? <TabNavigator /> : <StackNavigator />
-          }
-        </ThemeProvider>
-      </NavigationContainer>
-    </SafeAreaProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <ThemeProvider theme={myTheme}>
+            {
+              isAuthenticated ? <TabNavigator /> : <StackNavigator />
+            }
+          </ThemeProvider>
+        </NavigationContainer>
+      </SafeAreaProvider>
   );
 };
 
