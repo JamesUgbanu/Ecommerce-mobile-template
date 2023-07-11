@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Header as HeaderRNE, Icon, Text, useTheme } from '@rneui/themed';
 import { styles } from './styles';
 import { getHeaderTitle } from '../../utils/getRoute';
 import { IRootState } from '../../store';
+import { reset } from "../../store/productSlice";
 
 interface HeaderComponentProps {
     navigation?: any;
@@ -19,6 +20,7 @@ interface HeaderComponentProps {
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     const { route, navigation, isShowHeading = false, isShowBackIcon = true, isShowSearchIcon = false } = props;
     const productState: any = useSelector((state: IRootState) => state.product);
+    const dispatch: Dispatch<any> = useDispatch();
     const { theme } = useTheme();
 
     let title = getHeaderTitle(route);
@@ -31,6 +33,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
 
     const goBack = () => {
         navigation.canGoBack() && navigation.goBack()
+        dispatch(reset())
     }
 
     return (

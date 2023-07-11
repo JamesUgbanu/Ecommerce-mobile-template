@@ -13,8 +13,9 @@ const slice = createSlice({
   name: 'product',
   initialState,
   reducers: {
+    reset: () => initialState,
     category(state, action) {
-      const { category } = action.payload;
+      const category = action.payload.category;
       state.category = category;
     },
   }
@@ -22,6 +23,8 @@ const slice = createSlice({
 
 export const reducer = slice.reducer;
 
-export const changeCategory = (category) => (dispatch) => {
+export const changeCategory = (category: any) => (dispatch) => {
   dispatch(slice.actions.category({ category }));
 };
+
+export const { reset } = slice.actions;
