@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
-import { useTheme } from '@rneui/themed';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { useTheme, Text, Icon } from '@rneui/themed';
 import { styles } from './styles';
 import ProductCard from '../../components/ProductCard';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
@@ -15,13 +15,25 @@ const Category = ({ route }) => {
     return (
         <AppContainer>
             <View style={styles.container}>
-                <ScrollView horizontal>
-                    {tags.length && tags.map((tag: string, index: number) => (
-                        <Chip key={index} color={theme.colors.white} backgroundColor={theme.colors.black} text={tag} />
-                    ))}
-                </ScrollView>
-                <View>
-
+                <View style={styles.topBox}>
+                    <ScrollView horizontal>
+                        {tags.length && tags.map((tag: string, index: number) => (
+                            <Chip key={index} color={theme.colors.white} backgroundColor={theme.colors.black} text={tag} />
+                        ))}
+                    </ScrollView>
+                    <View style={styles.filterContainer}>
+                        <TouchableOpacity style={styles.row} onPress={() => console.log('hi')}>
+                            <Icon type="material-icons" size={25} name="filter-list" color={theme.colors.black} />
+                            <Text style={styles.filterText}>{'Filters'}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.row}>
+                            <Icon type="material-icons" size={25} name="swap-vert" color={theme.colors.black} />
+                            <Text style={styles.filterText}>{'Price: lowest to high'}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.row}>
+                            <Icon type="material-icons" size={25} name="view-list" color={theme.colors.black} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={styles.productContainer}>
                     {products && products.map((product, index) => (

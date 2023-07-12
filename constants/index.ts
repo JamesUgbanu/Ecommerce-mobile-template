@@ -1,6 +1,6 @@
 import images from './images';
 
-const HEADER_HEIGHT = 25;
+const HEADER_HEIGHT = 20;
 const TAB_BAR_HEIGHT = 90;
 const TAB_HEIGHT = 44;
 
