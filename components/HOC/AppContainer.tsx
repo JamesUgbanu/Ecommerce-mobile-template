@@ -3,8 +3,11 @@ import { ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HEADER_HEIGHT } from '../../constants';
 
+type AppContainerProps = {
+    children: React.ReactNode;
+};
 
-const AppContainer = ({ children }: any) => {
+const AppContainer = ({ children }: AppContainerProps) => {
     const insets = useSafeAreaInsets()
 
     return (

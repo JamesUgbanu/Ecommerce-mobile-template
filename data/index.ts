@@ -113,3 +113,20 @@ export const categoryBanner = {
 }
 
 export const tags = ["T-shirts", "Crop tops", "Blouses", "sport", "Light dress"]
+
+export const sortItems = [{
+    id: "popularity",
+    name: "Popular"
+}, {
+    id: "newest",
+    name: "Newest"
+}, {
+    id: "review",
+    name: "Customer review"
+}, {
+    id: "asc",
+    name: "Price: lowest to high"
+}, {
+    id: "desc",
+    name: "Price: highest to low"
+}]
