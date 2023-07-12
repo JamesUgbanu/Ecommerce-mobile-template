@@ -22,15 +22,13 @@ export const products = [{
 }, {
     name: "Sport Dress",
     category: "Dorothy Perkins",
-    ratingValue: 3,
-    totalRating: 1,
     price: 14,
     currency: "$",
     image: images.product3
 }, {
     name: "Light Blouse",
     category: "Dorothy Perkins",
-    ratingValue: 5,
+    ratingValue: 4,
     totalRating: 50,
     price: 12,
     currency: "$",
@@ -114,4 +112,4 @@ export const categoryBanner = {
     subTitle: "Up to 50% off"
 }
 
-export const tags = ["T-shirts", "Crop tops", "Blouses", "sport", "sport"]
+export const tags = ["T-shirts", "Crop tops", "Blouses", "sport", "Light dress"]

@@ -21,7 +21,7 @@ const Category = ({ route }) => {
                     ))}
                 </ScrollView>
                 <View>
-                    
+
                 </View>
                 <View style={styles.productContainer}>
                     {products && products.map((product, index) => (

@@ -2,7 +2,7 @@ import React, { Dispatch } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useSelector, useDispatch } from 'react-redux';
-import { Header as HeaderRNE, Icon, Text, useTheme } from '@rneui/themed';
+import { Header as HeaderRNE, Icon, useTheme } from '@rneui/themed';
 import { styles } from './styles';
 import { getHeaderTitle } from '../../utils/getRoute';
 import { IRootState } from '../../store';

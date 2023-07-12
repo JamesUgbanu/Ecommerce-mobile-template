@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
-import { Badge, Icon, Text } from '@rneui/themed';
+import { Badge, Icon, Text, useTheme } from '@rneui/themed';
 import { scale, verticalScale } from "react-native-size-matters";
 import { styles } from './styles';
 
@@ -12,7 +12,6 @@ type ProductCardProps = {
     buttonStyle?: { [key: string]: any };
     ratingValue?: number;
     ratingCount?: number;
-    ratingColor?: string;
     totalRating?: number;
     ratingSize?: number;
     salePrice?: number;
@@ -32,6 +31,7 @@ type ProductCardProps = {
 };
 
 const ProductCard = (props: ProductCardProps) => {
+    const { theme } = useTheme();
     let {
         imageStyle,
         image,
@@ -42,7 +42,6 @@ const ProductCard = (props: ProductCardProps) => {
         },
         ratingValue = 0,
         ratingCount = 5,
-        ratingColor = "#FFBA49",
         totalRating = 0,
         ratingSize = 15,
         salePrice,
@@ -91,9 +90,9 @@ const ProductCard = (props: ProductCardProps) => {
                         let rating = [];
                         for (let i = 1; i <= ratingCount; i++) {
                             if (i <= ratingValue && totalRating !== 0) {
-                                rating.push(<Icon key={i} name="star" type="ionicons" color={ratingColor} size={ratingSize} />);
+                                rating.push(<Icon key={i} name="star" type="ionicons" color={theme.colors.warning} size={ratingSize} />);
                             } else {
-                                rating.push(<Icon key={i} name="star-outline" type="ionicons" color={ratingColor} size={ratingSize} />);
+                                rating.push(<Icon key={i} name="star-outline" type="ionicons" color={theme.colors.grey0} size={ratingSize} />);
                             }
                         }
                         return rating;
