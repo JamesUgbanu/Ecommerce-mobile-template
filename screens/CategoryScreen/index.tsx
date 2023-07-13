@@ -6,7 +6,7 @@
 
 import React, { useRef, useState } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { useTheme, Text, Icon, ListItem } from '@rneui/themed';
+import { useTheme, Text, Icon } from '@rneui/themed';
 import { ActionSheetRef } from "react-native-actions-sheet";
 import { styles } from './styles';
 import ProductCard from '../../components/ProductCard';

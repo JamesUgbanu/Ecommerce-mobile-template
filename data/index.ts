@@ -130,3 +130,25 @@ export const sortItems = [{
     id: "desc",
     name: "Price: highest to low"
 }]
+
+export const colors = [{
+    color: 'black',
+    selected: true
+},
+{
+    color: 'grey',
+    selected: false
+}, {
+    color: 'red',
+    selected: false
+}, {
+    color: 'green',
+    selected: false
+}, {
+    color: 'gold',
+    selected: true
+},
+{
+    color: 'blue',
+    selected: false
+}]

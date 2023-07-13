@@ -23,10 +23,27 @@ export const styles = StyleSheet.create({
   },
   horizontalContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     marginHorizontal: 10,
+    // justifyContent: 'flex-start'
   },
   valueText: {
     fontSize: 14,
   },
+  smallCircle: {
+    height: 36,
+    width: 36,
+    borderRadius: 25,
+  },
+  bigCircle: {
+    height: 44,
+    width: 44,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 25,
+  },
+  selected: {
+    borderColor: 'red',
+    borderWidth: 1,
+  }
 });
