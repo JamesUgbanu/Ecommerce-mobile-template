@@ -169,4 +169,6 @@ export const sizes = [{
 }, {
     size: 'XL',
     selected: false
-}]
+}];
+
+export const productCategories = ["All", "Women", "Men", "Boys", "Girls"];

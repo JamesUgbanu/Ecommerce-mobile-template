@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginLeft: 10,
+    marginVertical: 5,
   },
   horizontalContainer: {
     flexDirection: 'row',
@@ -53,11 +54,25 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 25,
   },
-  selectedSquare: {
+  rectangle: {
+    height: 40,
+    width: 110,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 25,
+    marginBottom: 15,
+  },
+  selectedBox: {
     backgroundColor: '#DB3022'
   },
-  unSelectedSquare: {
+  unSelectedBox: {
     borderColor: '#9B9B9B',
     borderWidth: 1,
   },
+  wrapContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    flexWrap: 'wrap',
+  }
 });

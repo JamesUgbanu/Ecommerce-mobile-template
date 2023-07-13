@@ -26,7 +26,7 @@ const SizeSelection = (props: SizeSelectionProps) => {
                             sizes.length && sizes.map((size, index) => (
                                 <TouchableOpacity
                                     onPress={() => onSizeSelection(index)}
-                                    key={index} style={[styles.square, size.selected ? styles.selectedSquare : styles.unSelectedSquare]}>
+                                    key={index} style={[styles.square, size.selected ? styles.selectedBox : styles.unSelectedBox]}>
                                     <Text style={size.selected && { color: '#fff' }} >{size.size}</Text>
                                 </TouchableOpacity>
                             ))
