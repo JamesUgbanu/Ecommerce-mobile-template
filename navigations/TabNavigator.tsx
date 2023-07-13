@@ -70,18 +70,6 @@ const ShopStackScreen = () => {
                         />)
                 }}
             />
-            <ShopStack.Screen
-                name="ProductFilter"
-                component={ProductFilter}
-                options={{
-                    headerTransparent: true,
-                    header: (properties) => (
-                        <Header
-                            {...properties}
-                            isShowBackIcon
-                        />)
-                }}
-            />
         </ShopStack.Navigator>
     );
 }
@@ -197,6 +185,18 @@ const App = () => (
         <RootStack.Screen
             name="App" component={MainTabs}
             options={{ headerShown: false }}
+        />
+        <ShopStack.Screen
+            name="ProductFilter"
+            component={ProductFilter}
+            options={{
+                headerTransparent: true,
+                header: (properties) => (
+                    <Header
+                        {...properties}
+                        isShowBackIcon
+                    />)
+            }}
         />
     </RootStack.Navigator>
 

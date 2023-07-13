@@ -1,4 +1,11 @@
-import React, { useCallback, useState } from 'react';
+/**
+ * PriceRange.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
+import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import { Text } from '@rneui/themed';
 import Slider from 'rn-range-slider';
