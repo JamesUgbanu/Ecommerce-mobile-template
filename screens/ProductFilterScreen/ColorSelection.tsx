@@ -24,7 +24,7 @@ const ColorSelection = (props: ColorSelectionProps) => {
                     <View style={styles.horizontalContainer}>
                         {
                             colors.length && colors.map((color, index) => (
-                                <View key={index} style={[styles.bigCircle, color.selected && styles.selected]}>
+                                <View key={index} style={[styles.bigCircle, color.selected && styles.selectedCircle]}>
                                     <TouchableOpacity onPress={() => onColorSelection(index)} style={[styles.smallCircle, { backgroundColor: color.color }]} />
                                 </View>
                             ))

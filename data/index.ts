@@ -151,4 +151,22 @@ export const colors = [{
 {
     color: 'blue',
     selected: false
+}];
+
+export const sizes = [{
+    size: 'XS',
+    selected: false
+},
+{
+    size: 'S',
+    selected: true
+}, {
+    size: 'M',
+    selected: true
+}, {
+    size: 'L',
+    selected: false
+}, {
+    size: 'XL',
+    selected: false
 }]

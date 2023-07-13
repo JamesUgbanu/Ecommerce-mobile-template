@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
   horizontalContainer: {
     flexDirection: 'row',
     marginHorizontal: 10,
-    // justifyContent: 'flex-start'
   },
   valueText: {
     fontSize: 14,
@@ -42,8 +41,23 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 25,
   },
-  selected: {
+  selectedCircle: {
     borderColor: 'red',
     borderWidth: 1,
-  }
+  },
+  square: {
+    height: 40,
+    width: 40,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 25,
+  },
+  selectedSquare: {
+    backgroundColor: '#DB3022'
+  },
+  unSelectedSquare: {
+    borderColor: '#9B9B9B',
+    borderWidth: 1,
+  },
 });
