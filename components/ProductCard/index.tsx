@@ -1,3 +1,9 @@
+/**
+ * ProductCard.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { Badge, Icon, Text, useTheme } from '@rneui/themed';

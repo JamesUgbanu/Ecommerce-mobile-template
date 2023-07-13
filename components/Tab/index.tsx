@@ -1,3 +1,10 @@
+/**
+ * Tab.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import React from 'react';
 import { Tab, FullTheme, withTheme } from '@rneui/themed';
 import { styles } from './styles';

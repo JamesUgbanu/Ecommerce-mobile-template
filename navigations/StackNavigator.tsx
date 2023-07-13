@@ -1,3 +1,9 @@
+/**
+ * StackNavigator.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";

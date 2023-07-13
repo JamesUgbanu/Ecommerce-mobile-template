@@ -1,3 +1,9 @@
+/**
+ * TabNavigator.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -5,6 +11,7 @@ import Home from "../screens/HomeScreen";
 import Shop from "../screens/ShopScreen";
 import Bag from "../screens/RegisterScreen";
 import Category from "../screens/CategoryScreen";
+import ProductFilter from "../screens/ProductFilterScreen";
 import Favorites from "../screens/ForgotPasswordScreen";
 import Profile from "../screens/ProfileScreen";
 import Header from '../components/Header';
@@ -60,6 +67,18 @@ const ShopStackScreen = () => {
                             {...properties}
                             isShowBackIcon
                             isShowSearchIcon
+                        />)
+                }}
+            />
+            <ShopStack.Screen
+                name="ProductFilter"
+                component={ProductFilter}
+                options={{
+                    headerTransparent: true,
+                    header: (properties) => (
+                        <Header
+                            {...properties}
+                            isShowBackIcon
                         />)
                 }}
             />

@@ -1,3 +1,10 @@
+/**
+ * TabView.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import React from 'react';
 import { ScrollView, View, Dimensions } from 'react-native';
 import { TabView, FullTheme, withTheme } from '@rneui/themed';

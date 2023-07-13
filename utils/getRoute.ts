@@ -15,6 +15,8 @@ export const getRouteName = (route: any) => {
       return t("common:home");
     case "ShopStack":
       return t("common:shop");
+    case "ProductFilter":
+      return t("common:filters");
     case 'Profile':
       return 'My Profile';
     default:
@@ -32,6 +34,8 @@ export const getHeaderTitle = (route) => {
       return '';
     case t("common:shop"):
       return t("common:categories");
+    case t("common:filters"):
+      return t("common:filters");
     case 'Profile':
       return 'My Profile';
     default:

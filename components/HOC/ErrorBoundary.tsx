@@ -1,12 +1,13 @@
+/**
+ * ErrorBoundary.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text } from '@rneui/themed';
 import AppContainer from './AppContainer';
-
-type CreateErrorLog = {
-    error: string;
-    isFrontendError: boolean;
-}
 
 
 const withErrorBoundary = <P extends any>(

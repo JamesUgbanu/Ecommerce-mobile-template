@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: { width: 1, height: 3 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     elevation: 5,
   },
   filterContainer: {

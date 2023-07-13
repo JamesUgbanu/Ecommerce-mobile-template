@@ -1,3 +1,10 @@
+/**
+ * Header.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import React, { Dispatch } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -37,7 +44,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <StatusBar style="auto" />
             {isShowHeader && (
                 <HeaderRNE

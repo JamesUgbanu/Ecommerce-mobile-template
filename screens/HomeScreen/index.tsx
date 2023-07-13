@@ -1,3 +1,10 @@
+/**
+ * HomeScreen.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import React from 'react';
 import { ScrollView, View, ImageBackground, TouchableHighlight, Dimensions } from 'react-native';
 import { Button, Text, useTheme } from '@rneui/themed';

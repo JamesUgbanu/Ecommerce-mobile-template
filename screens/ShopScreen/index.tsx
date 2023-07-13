@@ -1,3 +1,10 @@
+/**
+ * ShopScreen.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import React, { useState, Dispatch } from 'react';
 import { View, Dimensions, Text } from 'react-native';
 import { scale, verticalScale } from "react-native-size-matters";

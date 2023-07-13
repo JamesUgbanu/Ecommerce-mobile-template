@@ -1,3 +1,9 @@
+/**
+ * CategoryCard.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React from 'react';
 import { View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Text, withTheme } from '@rneui/themed';

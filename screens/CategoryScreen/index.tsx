@@ -1,3 +1,9 @@
+/**
+ * CategoreyScreen.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React, { useRef, useState } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { useTheme, Text, Icon, ListItem } from '@rneui/themed';
@@ -11,7 +17,7 @@ import Chip from "../../components/Chip";
 import Dialog from "../../components/Dialog";
 import SortBy from "./SortBy";
 
-const Category = ({ route }) => {
+const Category = ({ route, navigation }) => {
     const { theme } = useTheme();
     const actionSheetRef = useRef<ActionSheetRef>(null);
     const [ currentSortIndex, setCurrentSort ] = useState(3)
@@ -27,7 +33,7 @@ const Category = ({ route }) => {
                         ))}
                     </ScrollView>
                     <View style={styles.filterContainer}>
-                        <TouchableOpacity style={styles.row} onPress={() => console.log('hi')}>
+                        <TouchableOpacity style={styles.row} onPress={() => navigation.navigate('ProductFilter')}>
                             <Icon type="material-icons" size={25} name="filter-list" color={theme.colors.black} />
                             <Text style={styles.filterText}>{'Filters'}</Text>
                         </TouchableOpacity>
