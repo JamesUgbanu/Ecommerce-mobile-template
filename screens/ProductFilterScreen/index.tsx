@@ -72,14 +72,14 @@ const ProductFilter = ({ navigation }) => {
                 <View style={[styles.horizontalContainer, { justifyContent: 'space-between' }]}>
                     <Button
                         title={t('common:discard')}
-                        onPress={() => { }}
+                        onPress={() => navigation.goBack()}
                         style={{ width: scale(155) }}
                         buttonStyle={[styles.button, { borderColor: theme.colors.black }]}
                         titleStyle={{ color: theme.colors.black, fontWeight: '500' }}
                     />
                     <Button
                         title={t('common:apply')}
-                        onPress={() => { }}
+                        onPress={() => {}}
                         style={{ width: scale(155) }}
                     />
                 </View>

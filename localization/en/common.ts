@@ -31,4 +31,6 @@ export default {
     category: 'Category',
     discard: 'Discard',
     apply: 'Apply',
+    visualSearch: 'Visual Search',
+    searchPhoto: 'Search by taking a photo'
 };

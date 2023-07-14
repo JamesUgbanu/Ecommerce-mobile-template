@@ -34,8 +34,8 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     const isShowHeader = isShowBackIcon || isShowSearchIcon;
     title = title ? title : productState.category;
 
-    const docsNavigate = () => {
-        alert(`hi`);
+    const handleSearch = () => {
+        navigation.navigate('VisualSearch');
     };
 
     const goBack = () => {
@@ -64,7 +64,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                             {
                                 isShowSearchIcon && (
                                     <TouchableOpacity
-                                        onPress={docsNavigate}
+                                        onPress={handleSearch}
                                     >
                                         <Icon type="fontawesome-5" name="search" color={theme.colors.black} iconStyle={styles.icon} />
                                     </TouchableOpacity>

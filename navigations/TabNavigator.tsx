@@ -14,6 +14,8 @@ import Category from "../screens/CategoryScreen";
 import ProductFilter from "../screens/ProductFilterScreen";
 import Favorites from "../screens/ForgotPasswordScreen";
 import Profile from "../screens/ProfileScreen";
+import VisualSearch from "../screens/VisualSearchScreen";
+import SearchPhoto from "../screens/SearchPhotoScreen";
 import Header from '../components/Header';
 import TabBar from "../components/TabBar";
 
@@ -189,6 +191,30 @@ const App = () => (
         <ShopStack.Screen
             name="ProductFilter"
             component={ProductFilter}
+            options={{
+                headerTransparent: true,
+                header: (properties) => (
+                    <Header
+                        {...properties}
+                        isShowBackIcon
+                    />)
+            }}
+        />
+         <HomeStack.Screen
+            name="VisualSearch"
+            component={VisualSearch}
+            options={{
+                headerTransparent: true,
+                header: (properties) => (
+                    <Header
+                        {...properties}
+                        isShowBackIcon
+                    />)
+            }}
+        />
+        <HomeStack.Screen
+            name="SearchPhoto"
+            component={SearchPhoto}
             options={{
                 headerTransparent: true,
                 header: (properties) => (

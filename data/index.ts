@@ -42,6 +42,11 @@ export const banner = {
     buttonText: "check"
 }
 
+export const visualSearchBanner = {
+    image: images.visualBanner,
+    text: "Search for an outfit by taking a photo or uploading an image",
+}
+
 export const categories = [
     {
         "name": "Women",

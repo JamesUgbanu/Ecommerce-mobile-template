@@ -17,6 +17,10 @@ export const getRouteName = (route: any) => {
       return t("common:shop");
     case "ProductFilter":
       return t("common:filters");
+    case "VisualSearch":
+      return t("common:visualSearch");
+    case "SearchPhoto":
+      return t("common:searchPhoto");
     case 'Profile':
       return 'My Profile';
     default:
@@ -36,6 +40,10 @@ export const getHeaderTitle = (route) => {
       return t("common:categories");
     case t("common:filters"):
       return t("common:filters");
+    case t("common:visualSearch"):
+      return t("common:visualSearch");
+    case t("common:searchPhoto"):
+      return t("common:searchPhoto");
     case 'Profile':
       return 'My Profile';
     default:
