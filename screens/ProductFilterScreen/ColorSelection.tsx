@@ -1,5 +1,5 @@
 /**
- * CategorySelection.tsx
+ * ColorSelection.tsx
  * Copyright (c) 2023 James Ugbanu.
  * Licensed under the MIT License.
  */

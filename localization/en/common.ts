@@ -25,4 +25,10 @@ export default {
     shop: 'Shop',
     haveAnAccount: 'Already have an Account?',
     filters: 'Filters',
-   };
+    priceRange: 'Price range',
+    colors: 'Colors',
+    sizes: 'Sizes',
+    category: 'Category',
+    discard: 'Discard',
+    apply: 'Apply',
+};
