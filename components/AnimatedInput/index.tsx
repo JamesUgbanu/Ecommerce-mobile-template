@@ -1,3 +1,10 @@
+/**
+ * AnimatedInput.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import {
   Pressable,
   TextInput,
@@ -31,7 +38,7 @@ type InputTextProps = {
   placeholderBackgroundColor?: string;
   isError?: boolean;
   errorText?: string;
-  style?: any;
+  style?:  {[key: string]: any};
 };
 
 const AnimatedIcon = Animated.createAnimatedComponent(Feather);

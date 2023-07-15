@@ -1,10 +1,10 @@
 # E-commerce Template using React Native and Expo
 
-This is a simple e-commerce template built with React Native and Expo. It provides a basic structure and components to help you kickstart your e-commerce app development.
+This is a simple e-commerce template built with React Native and Expo. It provides a basic structure and components to help you kickstart your e-commerce app development. Link to the UX design can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
 
 ## Screenshots
 
-<img src="/assets/screenshots/login_screen.png" alt="Image" width="400"> | <img src="/assets/screenshots/register_screen.png" alt="Image" width="400">  | <img src="/assets/screenshots/forgot_password_screen.png" alt="Image" width="400"> 
+<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200">  | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Vissual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200">  
 
 ## Features
 
@@ -52,7 +52,13 @@ git clone https://github.com/JamesUgbanu/Ecommerce-mobile.git
 cd ecommerce-mobile-template
 ```
 
-3. Install dependencies:
+3. Remove 2 packages that doesn't support react 19 from package.json
+
+```
+@tensorflow/tfjs-react-native and @tensorflow-models/mobilenet
+```
+
+4. Install dependencies:
 
 ```
 npm install
@@ -62,17 +68,23 @@ or
 yarn install
 ```
 
-4. Start the development server:
+5. Force install the 2 package removed initially
 
 ```
-expo start
+npm install @tensorflow/tfjs-react-native @tensorflow-models/mobilenet --force
+```
+
+6. Start the development server:
+
+```
+npm run start
 ```
 
 This will open the Expo Developer Tools in your browser.
 
-5. Choose the desired platform (iOS, Android, or web) to run the app.
+7. Choose the desired platform (iOS, Android, or web) to run the app.
 
-6. Use the Expo client app or an emulator to run the app on your device.
+8. Use the Expo client app or an emulator to run the app on your device.
 
 ## Configuration
 
@@ -112,7 +124,7 @@ Feel free to modify the folder structure based on your project requirements.
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. UX design can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
 
 ## License
 

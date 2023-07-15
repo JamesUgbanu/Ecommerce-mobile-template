@@ -2,17 +2,19 @@ import { StyleSheet } from 'react-native';
 
 
 export const styles = StyleSheet.create({
-    header: {
-      display: 'flex',
+    container: {
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 2 },
+        shadowOpacity: 0.05,
+        elevation: 3,
     },
     icon: {
-        fontSize: 18
-    },
-    heading: {
-        marginTop: 5,
+        fontSize: 22
     },
     title: {
-        marginTop: 10,
-        marginLeft: 15
+        fontSize: 18,
+        fontWeight: '500',
+     
     }
 });

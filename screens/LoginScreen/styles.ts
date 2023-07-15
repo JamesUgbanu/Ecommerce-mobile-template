@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    marginTop: 200,
-    paddingHorizontal: 15
+    marginTop: 10,
+  },
+  form: {
+    paddingHorizontal: 15,
+    marginTop: 50
   },
   inputContainer: {
     backgroundColor: '#FFFFFF',
@@ -27,18 +28,21 @@ export const styles = StyleSheet.create({
     marginVertical: 5
   },
   link: {
-    flex: 1, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   buttonContainer: {
     marginTop: 30,
   },
   socialContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 100,
   },
+  heading: {
+    marginTop: 10,
+    marginLeft: 15
+  }
 });

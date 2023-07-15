@@ -1,55 +1,69 @@
+/**
+ * StackNavigator.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { withTheme } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import Login from "../screens/LoginScreen";
 import Register from "../screens/RegisterScreen";
 import ForgotPassword from "../screens/ForgotPasswordScreen";
 import Header from '../components/Header';
-import { getHeaderTitle } from '../utils/getHeaderTitle';
 
 const Stack = createStackNavigator();
 
-const AppStack = (props) => {
+
+const AppStack = () => {
   const { t } = useTranslation();
 
   return (
-    <Stack.Navigator
-      screenOptions={({ route }) => ({
-        header: ({ navigation }) => (
-          <Header
-            theme={props.theme}
-            navigation={navigation}
-            showBackIcon
-            showSearchIcon
-            heading={getHeaderTitle(route)}
-          />
-        ),
-      })}
-    >
+    <Stack.Navigator>
       <Stack.Screen
-        name={t("common:login")}
+        name={"Login"}
         component={Login}
         options={{
           headerTransparent: true,
-        }}
+          header: (properties) => (
+              <Header
+                  {...properties}
+                  isShowHeading
+                  isShowBackIcon={false}     
+
+              />)
+      }}
       />
       <Stack.Screen
-        name={t("common:register")}
+        name={"Register"}
         component={Register}
         options={{
           headerTransparent: true,
-        }}
+          header: (properties) => (
+              <Header
+                  {...properties}
+                  isShowBackIcon
+                  isShowHeading      
+
+              />)
+      }}
       />
-       <Stack.Screen
-        name={t("common:forgotPassword")}
+      <Stack.Screen
+        name={"ForgotPassword"}
         component={ForgotPassword}
         options={{
           headerTransparent: true,
+          header: (properties) => (
+            <Header
+                {...properties}
+                isShowBackIcon
+                isShowHeading      
+
+            />)
         }}
       />
     </Stack.Navigator>
   );
 };
 
-export default withTheme(AppStack);
+export default AppStack;

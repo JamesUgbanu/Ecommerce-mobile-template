@@ -1,64 +1,82 @@
-import React from 'react';
-import { View } from 'react-native';
+/**
+ * Header.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
+import React, { Dispatch } from 'react';
+import { View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Header as HeaderRNE, Icon, FullTheme, Text } from '@rneui/themed';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useSelector, useDispatch } from 'react-redux';
+import { Header as HeaderRNE, Icon, useTheme } from '@rneui/themed';
 import { styles } from './styles';
+import { getHeaderTitle } from '../../utils/getRoute';
+import { IRootState } from '../../store';
+import { reset } from "../../store/productSlice";
 
 interface HeaderComponentProps {
-    theme: FullTheme;
     navigation?: any;
-    showBackIcon?: boolean;
-    showSearchIcon?: boolean;
-    title?: string;
-    heading?: string;
+    route?: any;
+    isShowHeading?: boolean;
+    isShowBackIcon?: boolean;
+    isShowSearchIcon?: boolean;
 };
 
 
 const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
-    const { theme, navigation, showBackIcon = false, showSearchIcon = false, title = '', heading } = props;
+    const { route, navigation, isShowHeading = false, isShowBackIcon = true, isShowSearchIcon = false } = props;
+    const productState: any = useSelector((state: IRootState) => state.product);
+    const dispatch: Dispatch<any> = useDispatch();
+    const { theme } = useTheme();
 
-    const docsNavigate = () => {
-        alert(`hi`);
+    let title = getHeaderTitle(route);
+    const isShowHeader = isShowBackIcon || isShowSearchIcon;
+    title = title ? title : productState.category;
+
+    const handleSearch = () => {
+        navigation.navigate('VisualSearch');
     };
 
+    const goBack = () => {
+        navigation.canGoBack() && navigation.goBack()
+        dispatch(reset())
+    }
+
     return (
-        <SafeAreaProvider>
+        <View style={styles.container}>
             <StatusBar style="auto" />
-            <HeaderRNE
-                leftComponent={
-                    <View style={styles.header}>
-                        {showBackIcon && (
-                            <TouchableOpacity
-                                onPress={() => navigation.canGoBack() && navigation.goBack()}
-                            >
-                                <Icon type="antdesign" name="left" color={theme.colors.black} iconStyle={styles.icon} />
-                            </TouchableOpacity>
-                        )}
-                    </View>
-                }
-                rightComponent={
-                    <View style={styles.header}>
-                        {
-                            showSearchIcon && (
+            {isShowHeader && (
+                <HeaderRNE
+                    leftComponent={
+                        <View>
+                            {isShowBackIcon && (
                                 <TouchableOpacity
-                                    onPress={docsNavigate}
+                                    onPress={goBack}
                                 >
-                                    <Icon type="antdesign" name="search1" color={theme.colors.black} iconStyle={styles.icon} />
+                                    <Icon type="antdesign" name="left" color={theme.colors.black} iconStyle={styles.icon} />
                                 </TouchableOpacity>
-                            )
-                        }
-                    </View>
-                }
-                centerComponent={{ text: title, style: styles.heading }}
-            />
-            {heading && (
-                <View style={styles.title}>
-                    <Text h1>{heading}</Text>
-                </View>
+                            )}
+                        </View>
+                    }
+                    rightComponent={
+                        <View>
+                            {
+                                isShowSearchIcon && (
+                                    <TouchableOpacity
+                                        onPress={handleSearch}
+                                    >
+                                        <Icon type="fontawesome-5" name="search" color={theme.colors.black} iconStyle={styles.icon} />
+                                    </TouchableOpacity>
+                                )
+                            }
+                        </View>
+                    }
+                    centerComponent={{ text: title, style: styles.title }}
+                    backgroundColor={!isShowHeading && theme.colors.white}
+                />
             )}
-        </SafeAreaProvider>
+        </View>
     );
 };
 
