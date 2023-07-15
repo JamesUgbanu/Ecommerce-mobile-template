@@ -16,6 +16,7 @@ import Favorites from "../screens/ForgotPasswordScreen";
 import Profile from "../screens/ProfileScreen";
 import VisualSearch from "../screens/VisualSearchScreen";
 import SearchPhoto from "../screens/SearchPhotoScreen";
+import CropPhoto from "../screens/CropPhotoScreen";
 import Header from '../components/Header';
 import TabBar from "../components/TabBar";
 
@@ -215,6 +216,18 @@ const App = () => (
         <HomeStack.Screen
             name="SearchPhoto"
             component={SearchPhoto}
+            options={{
+                headerTransparent: true,
+                header: (properties) => (
+                    <Header
+                        {...properties}
+                        isShowBackIcon
+                    />)
+            }}
+        />
+        <HomeStack.Screen
+            name="CropPhoto"
+            component={CropPhoto}
             options={{
                 headerTransparent: true,
                 header: (properties) => (

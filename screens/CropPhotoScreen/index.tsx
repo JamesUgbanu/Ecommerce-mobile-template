@@ -5,9 +5,9 @@
  */
 
 
-import React, { useRef, useState, useEffect } from 'react';
-import { View, ImageBackground, Dimensions, TouchableOpacity, Image, Platform } from 'react-native';
-import { useTheme, Icon } from '@rneui/themed';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { View, ImageBackground, Dimensions, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { useTheme, Icon, Text } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-react-native";
@@ -17,43 +17,43 @@ import { fetch } from "@tensorflow/tfjs-react-native";
 import { styles } from './styles';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 
-const SearchPhoto = ({ route, navigation }) => {
+const CropPhoto = ({ route, navigation }) => {
     const { t } = useTranslation();
     const { theme } = useTheme();
     const [isModelReady, setIsModelReady] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
     const [isTfReady, setIsTfReady] = useState(false);
     const searchImage = route.params;
     const screenHeight = Dimensions.get('window').height;
     const model = useRef(null);
 
 
-    useEffect(() => {
-        const initializeTfAsync = async () => {
-            await tf.ready();
-            setIsTfReady(true);
-        };
+    const initializeTfAsync = async () => {
+        await tf.ready();
+        setIsTfReady(true);
+    };
 
-        const initializeModelAsync = async () => {
-            model.current = await mobilenet.load();
-            setIsModelReady(true);
-        };
+    const initializeModelAsync = useCallback(async () => {
+        model.current = await mobilenet.load();
+        setIsModelReady(true);
+    }, []);
+
+    useEffect(() => {
         initializeTfAsync();
         initializeModelAsync();
-
     }, []);
-    
-    useEffect(() => {
-        if (isModelReady) classifyImageAsync(searchImage)
-    }, [isModelReady]);
+
 
     const classifyImageAsync = async (source) => {
         try {
+            setIsSearching(true);
             const imageAssetPath = Image.resolveAssetSource(source);
             const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
             const rawImageData = await response.arrayBuffer();
             const imageTensor = imageToTensor(rawImageData);
             const newPredictions = await model.current.classify(imageTensor);
             console.log(newPredictions);
+            setIsSearching(false);
         } catch (error) {
             console.log("Exception Error: ", error);
         }
@@ -83,31 +83,21 @@ const SearchPhoto = ({ route, navigation }) => {
             <View style={styles().container}>
                 <View style={styles(screenHeight).imageContainer}>
                     <ImageBackground source={searchImage} resizeMode="cover" style={styles().image}>
+                        {isSearching && (
+                            <ActivityIndicator size="large" color="#fff" />
+                        )}
                     </ImageBackground>
                 </View>
             </View>
             <View style={styles().bottom}>
                 <View style={[styles().horizontalContainer]}>
-                    <TouchableOpacity onPress={() => console.log('hello')}>
-                        <Icon
-                            name='flash'
-                            type='font-awesome'
-                            color={theme.colors.black}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('hello')}>
+                    <TouchableOpacity onPress={isModelReady ? () => classifyImageAsync(searchImage) : undefined}>
                         <Icon
                             reverse
-                            name='camera'
+                            name='search'
                             type='font-awesome'
                             color={theme.colors.error}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('hello')}>
-                        <Icon
-                            name='refresh'
-                            type='font-awesome'
-                            color={theme.colors.black}
+                            disabled={isSearching || !isModelReady}
                         />
                     </TouchableOpacity>
                 </View>
@@ -117,4 +107,4 @@ const SearchPhoto = ({ route, navigation }) => {
 }
 
 
-export default ErrorBoundary(SearchPhoto);
+export default ErrorBoundary(CropPhoto);

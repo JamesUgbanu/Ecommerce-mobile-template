@@ -32,5 +32,6 @@ export default {
     discard: 'Discard',
     apply: 'Apply',
     visualSearch: 'Visual Search',
-    searchPhoto: 'Search by taking a photo'
+    searchPhoto: 'Search by taking a photo',
+    cropPhoto: 'Crop the item'
 };

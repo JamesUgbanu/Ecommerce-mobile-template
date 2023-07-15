@@ -21,6 +21,8 @@ export const getRouteName = (route: any) => {
       return t("common:visualSearch");
     case "SearchPhoto":
       return t("common:searchPhoto");
+    case "CropPhoto":
+      return t("common:cropPhoto");
     case 'Profile':
       return 'My Profile';
     default:
@@ -44,6 +46,8 @@ export const getHeaderTitle = (route) => {
       return t("common:visualSearch");
     case t("common:searchPhoto"):
       return t("common:searchPhoto");
+    case t("common:cropPhoto"):
+      return t("common:cropPhoto");
     case 'Profile':
       return 'My Profile';
     default:
