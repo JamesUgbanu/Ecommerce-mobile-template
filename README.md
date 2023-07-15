@@ -1,6 +1,6 @@
 # E-commerce Template using React Native and Expo
 
-This is a simple e-commerce template built with React Native and Expo. It provides a basic structure and components to help you kickstart your e-commerce app development.
+This is a simple e-commerce template built with React Native and Expo. It provides a basic structure and components to help you kickstart your e-commerce app development. Link to the UX design can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
 
 ## Screenshots
 
@@ -124,7 +124,7 @@ Feel free to modify the folder structure based on your project requirements.
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. UX can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. UX design can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
 
 ## License
 
