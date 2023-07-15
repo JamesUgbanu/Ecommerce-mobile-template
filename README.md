@@ -58,7 +58,7 @@ cd ecommerce-mobile-template
 @tensorflow/tfjs-react-native and @tensorflow-models/mobilenet
 ```
 
-3. Install dependencies:
+4. Install dependencies:
 
 ```
 npm install
@@ -68,13 +68,13 @@ or
 yarn install
 ```
 
-4. Force install the 2 package removed initially
+5. Force install the 2 package removed initially
 
 ```
 npm install @tensorflow/tfjs-react-native @tensorflow-models/mobilenet --force
 ```
 
-5. Start the development server:
+6. Start the development server:
 
 ```
 npm run start
@@ -82,9 +82,9 @@ npm run start
 
 This will open the Expo Developer Tools in your browser.
 
-6. Choose the desired platform (iOS, Android, or web) to run the app.
+7. Choose the desired platform (iOS, Android, or web) to run the app.
 
-7. Use the Expo client app or an emulator to run the app on your device.
+8. Use the Expo client app or an emulator to run the app on your device.
 
 ## Configuration
 
