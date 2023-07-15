@@ -89,8 +89,6 @@ This will open the Expo Developer Tools in your browser.
 ## Configuration
 
 To configure the app, you can modify the following files:
-
-- `config.js`: Update the Firebase configuration with your own Firebase project details.
 - `constants.js`: Modify any constant values such as API endpoints or app-wide configurations.
 
 ## Folder Structure
