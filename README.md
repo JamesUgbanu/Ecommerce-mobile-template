@@ -52,7 +52,7 @@ git clone https://github.com/JamesUgbanu/Ecommerce-mobile.git
 cd ecommerce-mobile-template
 ```
 
-3. Remove 2 packages that doesn't support react 19 from package.json
+3. Remove 2 packages that doesn't support react 18 from package.json
 
 ```
 @tensorflow/tfjs-react-native and @tensorflow-models/mobilenet
@@ -86,11 +86,6 @@ This will open the Expo Developer Tools in your browser.
 
 8. Use the Expo client app or an emulator to run the app on your device.
 
-## Configuration
-
-To configure the app, you can modify the following files:
-- `constants.js`: Modify any constant values such as API endpoints or app-wide configurations.
-
 ## Folder Structure
 
 The project structure is organized as follows:
@@ -105,9 +100,12 @@ The project structure is organized as follows:
 │   ├── common
 │   ├── products
 │   ├── profile
+├── constants
+├── localization
 ├── navigation
 ├── screens
 ├── services
+├── store
 ├── utils
 ```
 
