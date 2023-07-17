@@ -17,6 +17,7 @@ import { categories, categoryBanner } from "../../data";
 import { HEADER_HEIGHT } from '../../constants';
 import { useDispatch } from 'react-redux';
 import { changeCategory } from "../../store/productSlice";
+import mobilenetClassificationUtil from '../../utils/mobilenetClassification';
 
 const Shop = ({ navigation }) => {
     const dispatch: Dispatch<any> = useDispatch();

@@ -4,7 +4,7 @@ This is a simple e-commerce template built with React Native and Expo. It provid
 
 ## Screenshots
 
-<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200">  | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Vissual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200">  
+<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200">  | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Vissual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200"> | <img src="/assets/screenshots/sort_screen.png" alt="Sort Screen" width="200">  
 
 ## Features
 
@@ -52,7 +52,7 @@ git clone https://github.com/JamesUgbanu/Ecommerce-mobile.git
 cd ecommerce-mobile-template
 ```
 
-3. Remove 2 packages that doesn't support react 19 from package.json
+3. Remove 2 packages that doesn't support react 18 from package.json
 
 ```
 @tensorflow/tfjs-react-native and @tensorflow-models/mobilenet
@@ -86,13 +86,6 @@ This will open the Expo Developer Tools in your browser.
 
 8. Use the Expo client app or an emulator to run the app on your device.
 
-## Configuration
-
-To configure the app, you can modify the following files:
-
-- `config.js`: Update the Firebase configuration with your own Firebase project details.
-- `constants.js`: Modify any constant values such as API endpoints or app-wide configurations.
-
 ## Folder Structure
 
 The project structure is organized as follows:
@@ -107,9 +100,12 @@ The project structure is organized as follows:
 │   ├── common
 │   ├── products
 │   ├── profile
+├── constants
+├── localization
 ├── navigation
 ├── screens
 ├── services
+├── store
 ├── utils
 ```
 
