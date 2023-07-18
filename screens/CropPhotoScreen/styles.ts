@@ -29,5 +29,15 @@ export const styles = (height?: number) => StyleSheet.create({
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 0.2,
     elevation: 3,
+  },
+  searchOverlay: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 100,
+  },
+  searchText: {
+    textAlign: 'center',
+    marginTop: 15,
   }
 });

@@ -1,4 +1,11 @@
 
+/**
+ * App.tsx
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import 'react-native-gesture-handler';
 import React from 'react';
 import { ThemeProvider, createTheme } from '@rneui/themed';

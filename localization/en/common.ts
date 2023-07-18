@@ -33,5 +33,6 @@ export default {
     apply: 'Apply',
     visualSearch: 'Visual Search',
     searchPhoto: 'Search by taking a photo',
-    cropPhoto: 'Crop the item'
+    cropPhoto: 'Crop the item',
+    findingResults: 'Finding similar results...',
 };

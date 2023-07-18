@@ -1,3 +1,10 @@
+/**
+ * index.ts
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
   
