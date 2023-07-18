@@ -5,8 +5,8 @@
  */
 
 
-import React, { useRef, useState } from 'react';
-import { View, ImageBackground, Dimensions, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
+import { View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { useTheme, Icon } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import "@tensorflow/tfjs-react-native";
@@ -14,6 +14,7 @@ import { fetch } from "@tensorflow/tfjs-react-native";
 import { styles } from './styles';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import mobilenetClassification from '../../utils/mobilenetClassification';
+import Loading from '../../components/Loading';
 
 const CropPhoto = ({ route, navigation }) => {
     const { t } = useTranslation();
@@ -21,7 +22,6 @@ const CropPhoto = ({ route, navigation }) => {
     const [isSearching, setIsSearching] = useState(false);
     const searchImage = route.params;
     const screenHeight = Dimensions.get('window').height;
-    const model = useRef(null);
 
 
 
@@ -33,7 +33,7 @@ const CropPhoto = ({ route, navigation }) => {
             const rawImageData = await response.arrayBuffer();
             const newPredictions = await await mobilenetClassification.classify(
                 rawImageData
-              );;
+            );;
             console.log(newPredictions);
             setIsSearching(false);
         } catch (error) {
@@ -44,13 +44,17 @@ const CropPhoto = ({ route, navigation }) => {
 
     return (
         <>
+            <Loading
+                isVisible={isSearching}
+                iconColor={theme.colors.error}
+                text={t('common:findingResults')}
+                iconProps={{ size: 44, name: 'search' }}
+                color={theme.colors.black}
+            />
+
             <View style={styles().container}>
                 <View style={styles(screenHeight).imageContainer}>
-                    <ImageBackground source={searchImage} resizeMode="cover" style={styles().image}>
-                        {isSearching && (
-                            <ActivityIndicator size="large" color="#fff" />
-                        )}
-                    </ImageBackground>
+                    <Image source={searchImage} resizeMode="cover" style={styles().image} />
                 </View>
             </View>
             <View style={styles().bottom}>

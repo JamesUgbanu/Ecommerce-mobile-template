@@ -1,3 +1,10 @@
+/**
+ * mobileClassification.ts
+ * Copyright (c) 2023 James Ugbanu.
+ * Licensed under the MIT License.
+ */
+
+
 import * as tf from "@tensorflow/tfjs";
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as jpeg from "jpeg-js";
@@ -14,7 +21,7 @@ class MobilenetClassification {
         return this.mobilenetModel;
     }
 
-    imageToTensor(rawImageData) {
+    imageToTensor(rawImageData: ArrayBuffer) {
         const { width, height, data } = jpeg.decode(rawImageData, {
             useTArray: true,
         }); // return as Uint8Array
