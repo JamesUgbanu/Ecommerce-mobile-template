@@ -7,7 +7,7 @@
 
 import React, { useEffect } from 'react';
 import { Icon, Text, Overlay, IconProps } from '@rneui/themed';
-import Animated, { useAnimatedStyle, Keyframe, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { styles } from './styles';
 
 

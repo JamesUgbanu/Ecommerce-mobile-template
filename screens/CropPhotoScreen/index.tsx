@@ -6,7 +6,7 @@
 
 
 import React, { useState } from 'react';
-import { View, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { View, Dimensions, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { useTheme, Icon } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import { fetch } from "@tensorflow/tfjs-react-native";
@@ -14,6 +14,7 @@ import { styles } from './styles';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import mobilenetClassification from '../../utils/mobilenetClassification';
 import Loading from '../../components/Loading';
+import DraggableResizableBox from '../../components/DraggableResizableBox';
 
 const CropPhoto = ({ route, navigation }) => {
     const { t } = useTranslation();
@@ -52,7 +53,9 @@ const CropPhoto = ({ route, navigation }) => {
 
             <View style={styles().container}>
                 <View style={styles(screenHeight).imageContainer}>
-                    <Image source={searchImage} resizeMode="cover" style={styles().image} />
+                    <ImageBackground source={searchImage} resizeMode="cover" style={styles().image}>
+                        <DraggableResizableBox />
+                    </ImageBackground>
                 </View>
             </View>
             <View style={styles().bottom}>
