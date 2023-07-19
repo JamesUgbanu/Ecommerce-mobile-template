@@ -5,9 +5,9 @@
  */
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Icon, Text, Overlay, IconProps } from '@rneui/themed';
-import "@tensorflow/tfjs-react-native";
+import Animated, { useAnimatedStyle, Keyframe, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { styles } from './styles';
 
 
@@ -27,19 +27,36 @@ const Loading = (props: ILoadingProps) => {
     const {
         fullScreen = true,
         isVisible, iconColor, text, iconName = 'search',
-        iconType = 'font-awesome', iconProps = { size: 44, name: 'search' },
+        iconType = 'font-awesome', iconProps = { size: 30, name: 'search' },
         color
     } = props;
 
+    const sharedValue = useSharedValue(1);
+
+    useEffect(() => {
+        sharedValue.value = withRepeat(withTiming(2, { duration: 1000 }), -1, true);
+    }, [sharedValue]);
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ scale: sharedValue.value }],
+        };
+    });
+
+
     return (
         <Overlay fullScreen={fullScreen} isVisible={isVisible} overlayStyle={styles.searchOverlay}>
-            {iconName && (
-                <Icon
-                    name={iconName}
-                    type={iconType}
-                    color={iconColor}
-                    iconProps={iconProps}
-                />
+            {iconColor && (
+                <Animated.View
+                    style={animatedStyle}
+                >
+                    <Icon
+                        name={iconName}
+                        type={iconType}
+                        color={iconColor}
+                        iconProps={iconProps}
+                    />
+                </Animated.View>
             )}
             <Text h1 style={[styles.searchText, { color }]}>{text}</Text>
         </Overlay>

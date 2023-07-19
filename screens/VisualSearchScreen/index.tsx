@@ -51,7 +51,7 @@ const VisualSearch = ({ navigation }) => {
                     status,
                 } = await ImagePicker.requestMediaLibraryPermissionsAsync();
                 if (status !== "granted") {
-                    alert("Sorry, we need camera roll permissions to make this work!");
+                    alert(t('common:cameraAccessPermissionAlert'));
                 }
             }
         };
@@ -65,13 +65,13 @@ const VisualSearch = ({ navigation }) => {
                         <Text style={styles().text}>{visualSearchBanner.text}</Text>
                         <Button
                             uppercase
-                            title="TAKE A PHOTO"
+                            title={t('common:takeAPhoto')}
                             onPress={() => navigation.navigate('SearchPhoto')}
                             containerStyle={styles().button}
                         />
                         <Button
                             uppercase
-                            title="UPLOAD AN IMAGE"
+                            title={t('common:uploadImage')}
                             onPress={selectImageAsync}
                             containerStyle={styles().button}
                             buttonStyle={styles().border}

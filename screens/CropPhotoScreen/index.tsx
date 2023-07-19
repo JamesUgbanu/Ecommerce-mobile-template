@@ -6,7 +6,7 @@
 
 
 import React, { useState } from 'react';
-import { View, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { View, Dimensions, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { useTheme, Icon } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import "@tensorflow/tfjs-react-native";
@@ -48,7 +48,6 @@ const CropPhoto = ({ route, navigation }) => {
                 isVisible={isSearching}
                 iconColor={theme.colors.error}
                 text={t('common:findingResults')}
-                iconProps={{ size: 44, name: 'search' }}
                 color={theme.colors.black}
             />
 

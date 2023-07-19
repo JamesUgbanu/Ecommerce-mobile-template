@@ -35,4 +35,8 @@ export default {
     searchPhoto: 'Search by taking a photo',
     cropPhoto: 'Crop the item',
     findingResults: 'Finding similar results...',
+    loading: 'Loading...',
+    takeAPhoto: 'Take a photo',
+    uploadImage: 'Upload an image',
+    cameraAccessPermissionAlert: 'Sorry, we need camera roll permissions to make this work'
 };
