@@ -6,6 +6,7 @@
 
 
 import * as tf from "@tensorflow/tfjs";
+// import "@tensorflow/tfjs-react-native";
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as jpeg from "jpeg-js";
 
@@ -45,7 +46,7 @@ class MobilenetClassification {
             await this.loadModel();
         }
 
-        const imageTensor = this.imageToTensor(imageBuffer);
+        const imageTensor = this.imageToTensor(imageBuffer) as any;
         return this.mobilenetModel?.classify(imageTensor, topk);
     };
 }
