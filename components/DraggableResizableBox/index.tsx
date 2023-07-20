@@ -2,23 +2,27 @@ import React, { useRef } from 'react';
 import { View, PanResponder, Dimensions } from 'react-native';
 import { styles } from './styles';
 
+type DraggableResizableBoxProps = {
+  cardWidth: number;
+  cardHeight: number;
+  setCardWidth: (width: number) => void;
+  setCardHeight: (width: number) => void;
+  initialWidth?: number;
+  initialHeight?: number;
+};
 
-const DraggableResizableBox = () => {
-  const cardRef = useRef(null);
+const DraggableResizableBox = (props: DraggableResizableBoxProps) => {
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-
-  // Initial card dimensions
-  const initialWidth = screenWidth * 0.6;
-  const initialHeight = screenHeight * 0.2;
-
-  // Initialize state for card dimensions
-  const [cardWidth, setCardWidth] = React.useState(initialWidth);
-  const [cardHeight, setCardHeight] = React.useState(initialHeight);
+  const {
+    cardWidth, cardHeight, setCardWidth, setCardHeight,
+    initialWidth = screenWidth * 0.6, initialHeight = screenHeight * 0.2
+  } = props;
+  const cardRef = useRef(null);
 
   // Initialize PanResponder
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: (event, gestureState) => {
+    onPanResponderMove: (_, gestureState) => {
       // Calculate the new card dimensions based on the gesture distance
       const newWidth = Math.max(initialWidth, cardWidth - gestureState.dx);
       const newHeight = Math.max(initialHeight, cardHeight + gestureState.dy);
@@ -36,7 +40,6 @@ const DraggableResizableBox = () => {
       </View>
     </View>
   );
-  };
-  
-  export default DraggableResizableBox;
-  
+};
+
+export default DraggableResizableBox;

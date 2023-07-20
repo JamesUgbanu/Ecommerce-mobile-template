@@ -8,5 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderColor: 'white',
     borderWidth: 5,
-  },
+    borderRadius: 1,
+    borderStyle: 'dashed',
+  }
   });

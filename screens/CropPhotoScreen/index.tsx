@@ -15,19 +15,26 @@ import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import mobilenetClassification from '../../utils/mobilenetClassification';
 import Loading from '../../components/Loading';
 import DraggableResizableBox from '../../components/DraggableResizableBox';
+import { resizeImage } from '../../utils/resizeImage';
 
 const CropPhoto = ({ route, navigation }) => {
     const { t } = useTranslation();
     const { theme } = useTheme();
-    const [isSearching, setIsSearching] = useState(false);
+    const [isSearching, setIsSearching] = useState<boolean>(false);
+    const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+    // Initial card dimensions
+    const initialWidth = screenWidth * 0.6;
+    const initialHeight = screenHeight * 0.2;
+    const [cardWidth, setCardWidth] = useState<number>(initialWidth);
+    const [cardHeight, setCardHeight] = useState<number>(initialHeight);
     const searchImage = route.params;
-    const screenHeight = Dimensions.get('window').height;
 
 
 
-    const classifyImageAsync = async (source) => {
+    const classifyImageAsync = async (image: any) => {
         try {
             setIsSearching(true);
+            const source = await resizeImage(image.uri, { width: cardWidth, height: cardHeight });
             const imageAssetPath = Image.resolveAssetSource(source);
             const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
             const rawImageData = await response.arrayBuffer();
@@ -54,7 +61,12 @@ const CropPhoto = ({ route, navigation }) => {
             <View style={styles().container}>
                 <View style={styles(screenHeight).imageContainer}>
                     <ImageBackground source={searchImage} resizeMode="cover" style={styles().image}>
-                        <DraggableResizableBox />
+                        <DraggableResizableBox
+                            cardWidth={cardWidth}
+                            cardHeight={cardHeight}
+                            setCardWidth={setCardWidth}
+                            setCardHeight={setCardHeight}
+                        />
                     </ImageBackground>
                 </View>
             </View>
