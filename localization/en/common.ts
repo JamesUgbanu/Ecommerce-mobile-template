@@ -38,5 +38,6 @@ export default {
     loading: 'Loading...',
     takeAPhoto: 'Take a photo',
     uploadImage: 'Upload an image',
-    cameraAccessPermissionAlert: 'Sorry, we need camera roll permissions to make this work'
+    cameraAccessPermissionAlert: 'Sorry, we need camera roll permissions to make this work',
+    slowSearch: 'Search maybe slow for the first time. Please be patient',
 };

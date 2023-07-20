@@ -17,6 +17,7 @@ type ILoadingProps = {
     iconColor?: string;
     iconType?: string;
     text: string;
+    subText?: string;
     iconName?: string;
     iconProps?: IconProps;
     fullScreen?: boolean;
@@ -28,7 +29,8 @@ const Loading = (props: ILoadingProps) => {
         fullScreen = true,
         isVisible, iconColor, text, iconName = 'search',
         iconType = 'font-awesome', iconProps = { size: 30, name: 'search' },
-        color
+        color,
+        subText
     } = props;
 
     const sharedValue = useSharedValue(1);
@@ -59,6 +61,7 @@ const Loading = (props: ILoadingProps) => {
                 </Animated.View>
             )}
             <Text h1 style={[styles.searchText, { color }]}>{text}</Text>
+            {subText && <Text h3 style={[styles.searchText, { color }]}>{subText}</Text>}
         </Overlay>
     );
 }

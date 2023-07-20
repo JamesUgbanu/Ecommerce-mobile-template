@@ -31,10 +31,11 @@ const CropPhoto = ({ route, navigation }) => {
 
 
 
-    const classifyImageAsync = async (image: any) => {
+    const classifyImageAsync = async (image: { uri: string}) => {
         try {
             setIsSearching(true);
             const source = await resizeImage(image.uri, { width: cardWidth, height: cardHeight });
+
             const imageAssetPath = Image.resolveAssetSource(source);
             const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
             const rawImageData = await response.arrayBuffer();
@@ -54,7 +55,8 @@ const CropPhoto = ({ route, navigation }) => {
             <Loading
                 isVisible={isSearching}
                 iconColor={theme.colors.error}
-                text={t('common:findingResults')}
+                text={ t('common:findingResults')}
+                subText={!mobilenetClassification.mobilenetModel ? t('common:slowSearch') : undefined }
                 color={theme.colors.black}
             />
 
