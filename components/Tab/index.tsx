@@ -25,7 +25,8 @@ const RneTab = (props: TabProps) => {
         style,
         items,
         setIndex,
-        index
+        index,
+        theme
     } = props
 
 
@@ -37,7 +38,7 @@ const RneTab = (props: TabProps) => {
                         value={index}
                         onChange={setIndex}
                         dense
-                        indicatorStyle={styles(props.theme.colors.error).indicatorStyle}
+                        indicatorStyle={styles(theme?.colors.error).indicatorStyle}
                         containerStyle={[styles().container, style, { height: TAB_HEIGHT}]}
                         scrollable={items.length > MAXIMUM_NUMBER_OF_ITEMS && true}
                     >

@@ -45,7 +45,7 @@ class MobilenetClassification {
             await this.loadModel();
         }
 
-        const imageTensor = this.imageToTensor(imageBuffer);
+        const imageTensor = this.imageToTensor(imageBuffer) as any;
         return this.mobilenetModel?.classify(imageTensor, topk);
     };
 }

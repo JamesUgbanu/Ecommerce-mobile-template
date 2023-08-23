@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 import { View, ImageBackground, Dimensions, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { useTheme, Icon } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
-import "@tensorflow/tfjs-react-native";
 import { fetch } from "@tensorflow/tfjs-react-native";
 import { styles } from './styles';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';

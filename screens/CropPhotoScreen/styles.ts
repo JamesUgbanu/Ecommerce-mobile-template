@@ -10,7 +10,8 @@ export const styles = (height?: number) => StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   horizontalContainer: {
     flexDirection: 'row',

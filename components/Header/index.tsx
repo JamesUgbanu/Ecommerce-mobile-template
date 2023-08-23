@@ -73,7 +73,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
                         </View>
                     }
                     centerComponent={{ text: title, style: styles.title }}
-                    backgroundColor={!isShowHeading && theme.colors.white}
+                    backgroundColor={!isShowHeading ? theme.colors.white : undefined}
                 />
             )}
         </View>

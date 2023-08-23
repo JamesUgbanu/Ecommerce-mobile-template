@@ -10,10 +10,10 @@ import { View, ImageBackground, Dimensions, Platform } from 'react-native';
 import { Button, Text } from '@rneui/themed';
 import { useTranslation } from "react-i18next";
 import * as ImagePicker from "expo-image-picker";
-import * as ImageManipulator from "expo-image-manipulator";
 import { styles } from './styles';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import { visualSearchBanner } from "../../data";
+import { resizeImage } from '../../utils/resizeImage';
 
 const VisualSearch = ({ navigation }) => {
     const { t } = useTranslation();
@@ -30,13 +30,7 @@ const VisualSearch = ({ navigation }) => {
     
           if (!response.canceled) {
             // resize image to avoid out of memory crashes
-            const manipResponse = await ImageManipulator.manipulateAsync(
-              response.assets[0].uri,
-              [{ resize: { width: 900 } }],
-              { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
-            );
-    
-            const source = { uri: manipResponse.uri };
+            const source = await resizeImage(response.assets[0].uri)
             navigation.navigate('CropPhoto', source)
           }
         } catch (error) {
@@ -51,7 +45,7 @@ const VisualSearch = ({ navigation }) => {
                     status,
                 } = await ImagePicker.requestMediaLibraryPermissionsAsync();
                 if (status !== "granted") {
-                    alert("Sorry, we need camera roll permissions to make this work!");
+                    alert(t('common:cameraAccessPermissionAlert'));
                 }
             }
         };
@@ -65,13 +59,13 @@ const VisualSearch = ({ navigation }) => {
                         <Text style={styles().text}>{visualSearchBanner.text}</Text>
                         <Button
                             uppercase
-                            title="TAKE A PHOTO"
+                            title={t('common:takeAPhoto')}
                             onPress={() => navigation.navigate('SearchPhoto')}
                             containerStyle={styles().button}
                         />
                         <Button
                             uppercase
-                            title="UPLOAD AN IMAGE"
+                            title={t('common:uploadImage')}
                             onPress={selectImageAsync}
                             containerStyle={styles().button}
                             buttonStyle={styles().border}
