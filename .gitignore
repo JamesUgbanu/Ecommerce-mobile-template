@@ -1,5 +1,6 @@
 node_modules/
 .expo/
+.env
 dist/
 npm-debug.*
 *.jks
@@ -9,6 +10,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+assets/models/mobilenet_v2_1.0_224.tflite
 
 # macOS
 .DS_Store
