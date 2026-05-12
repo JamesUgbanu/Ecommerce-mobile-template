@@ -1,10 +1,25 @@
-# E-commerce Mobile Template
+# E-commerce Template using React Native and Expo
 
 A reusable React Native + Expo starter for e-commerce experiences. It includes auth UI, product browsing, product detail, filter flows, and an optional visual search feature that supports both a local TFLite provider and a remote AI provider stub.
 
 This repo is meant to be a cleaner production-friendly template, not a finished commerce app. The current bag, favorites, and profile areas are intentionally simple so teams can connect real backend logic without fighting demo-only assumptions.
 
-## Stack
+The original UX design this template is based on can be found on Figma [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community)).
+
+## Screenshots
+
+<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200"> | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Visual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200"> | <img src="/assets/screenshots/sort_screen.png" alt="Sort Screen" width="200">
+
+## Features
+
+- User authentication screens: sign up, sign in, and forgot password
+- Product browsing flows: home, shop, categories, filters, and sorting
+- Product detail screens and reusable product UI components
+- Visual search flow with pluggable providers
+- Bag, favorites, and profile template areas ready for backend wiring
+- Reusable Expo + React Native app structure for commerce projects
+
+## Technology stack
 
 - Expo SDK 55
 - React Native 0.83
