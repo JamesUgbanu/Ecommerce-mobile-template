@@ -1,5 +1,6 @@
-import { Icon, IconProps, Overlay, Text } from '@rneui/themed';
+import { Overlay, Text } from '@rneui/themed';
 import React from 'react';
+import AppIcon, { type AppIconProps } from '../common/AppIcon';
 import { styles } from './styles';
 
 type ILoadingProps = {
@@ -8,7 +9,7 @@ type ILoadingProps = {
   iconType?: string;
   text: string;
   iconName?: string;
-  iconProps?: IconProps;
+  iconProps?: Partial<AppIconProps>;
   fullScreen?: boolean;
   color: string;
 };
@@ -27,7 +28,14 @@ const Loading = (props: ILoadingProps) => {
 
   return (
     <Overlay fullScreen={fullScreen} isVisible={isVisible} overlayStyle={styles.searchOverlay}>
-      {iconName && <Icon name={iconName} type={iconType} color={iconColor} iconProps={iconProps} />}
+      {iconName ? (
+        <AppIcon
+          name={iconProps?.name ?? iconName}
+          type={iconProps?.type ?? iconType}
+          color={iconProps?.color ?? iconColor}
+          size={iconProps?.size}
+        />
+      ) : null}
       <Text h1 style={[styles.searchText, { color }]}>
         {text}
       </Text>

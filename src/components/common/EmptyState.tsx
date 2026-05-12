@@ -1,6 +1,7 @@
-import { Icon, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import AppIcon from './AppIcon';
 
 type EmptyStateProps = {
   title: string;
@@ -13,7 +14,7 @@ const EmptyState = ({ title, description, iconName = 'search-off' }: EmptyStateP
 
   return (
     <View style={styles.container}>
-      <Icon name={iconName} type='material-community' size={44} color={theme.colors.grey0} />
+      <AppIcon name={iconName} type='material-community' size={44} color={theme.colors.grey0} />
       <Text style={styles.title}>{title}</Text>
       <Text h3 style={styles.description}>
         {description}

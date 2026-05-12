@@ -1,9 +1,10 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Icon, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import Loading from '../../components/Loading';
+import AppIcon from '../../components/common/AppIcon';
 import EmptyState from '../../components/common/EmptyState';
 import ErrorState from '../../components/common/ErrorState';
 import ProviderBadge from '../../components/search/ProviderBadge';
@@ -38,14 +39,14 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
           onPress={() => search(imageUri)}
           disabled={isSearching}
         >
-          <Icon name='search' type='font-awesome' color='#FFFFFF' />
+          <AppIcon name='search' type='font-awesome' color='#FFFFFF' />
           <Text style={styles.searchButtonText}>Run visual search</Text>
         </TouchableOpacity>
 
         {!isConfigured ? (
           <EmptyState
             title='Search provider needs configuration'
-            description='Set the provider env vars or switch to the TensorFlow/local option in .env.'
+            description='Set the provider env vars or switch to the TFLite/local option in .env.'
           />
         ) : null}
 

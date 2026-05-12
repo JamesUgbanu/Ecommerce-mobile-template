@@ -1,7 +1,7 @@
 import { visualSearchConfig } from '../ai/config';
 import { NoneVisualSearchProvider } from './providers/none-provider';
 import { RemoteVisualSearchProvider } from './providers/remote-provider';
-import { TensorflowVisualSearchProvider } from './providers/tensorflow-provider';
+import { TfliteVisualSearchProvider } from './providers/tflite-provider';
 
 export const createVisualSearchProvider = () => {
   switch (visualSearchConfig.provider) {
@@ -12,8 +12,7 @@ export const createVisualSearchProvider = () => {
       );
     case 'none':
       return new NoneVisualSearchProvider();
-    case 'tensorflow':
     default:
-      return new TensorflowVisualSearchProvider();
+      return new TfliteVisualSearchProvider();
   }
 };

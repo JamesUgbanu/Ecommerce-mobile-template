@@ -1,8 +1,10 @@
-import { Header as HeaderRNE, Icon, useTheme } from '@rneui/themed';
+import { Header as HeaderRNE, useTheme } from '@rneui/themed';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
+
 import { getHeaderTitle } from '../../utils/getRoute';
+import AppIcon from '../common/AppIcon';
 import { styles } from './styles';
 
 interface HeaderComponentProps {
@@ -43,7 +45,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
             <View>
               {isShowBackIcon && (
                 <TouchableOpacity onPress={goBack}>
-                  <Icon
+                  <AppIcon
                     type='antdesign'
                     name='left'
                     color={theme.colors.black}
@@ -57,7 +59,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
             <View>
               {isShowSearchIcon && (
                 <TouchableOpacity onPress={handleSearch}>
-                  <Icon
+                  <AppIcon
                     type='fontawesome-5'
                     name='search'
                     color={theme.colors.black}

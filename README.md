@@ -1,41 +1,19 @@
 # E-commerce Mobile Template
 
-A reusable React Native + Expo e-commerce starter with:
+A reusable React Native + Expo starter for e-commerce experiences. It includes auth UI, product browsing, product detail, filter flows, and an optional visual search feature that supports both a local TFLite provider and a remote AI provider stub.
 
-- auth UI screens
-- home and category browsing flows
-- product detail screen
-- filter UI
-- optional visual search
-- Biome formatting and linting
-
-This repo is intentionally positioned as a production-friendly template, not a finished commerce app. The cart, favorites, and profile areas are now cleaner template placeholders so teams can wire them to real backend data without inheriting misleading screen mappings.
-
-## Why the Expo version stayed conservative
-
-The project still targets `Expo SDK 49` and `React Native 0.72`.
-
-That was a deliberate choice:
-
-- the current TensorFlow React Native path (`@tensorflow/tfjs-react-native`) is tied to the older Expo / RN generation
-- newer Expo SDKs move into the newer React Native architecture faster than the TensorFlow React Native adapter has kept up
-- this update prioritizes a stable, maintainable template over a risky SDK jump that could silently break visual search
-
-If you want to move to a newer Expo SDK later, the new visual-search provider abstraction makes it much easier to replace the TensorFlow provider with a remote AI service or a different local runtime.
-
-## Screenshots
-
-<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200"> | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Visual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200"> | <img src="/assets/screenshots/sort_screen.png" alt="Sort Screen" width="200">
+This repo is meant to be a cleaner production-friendly template, not a finished commerce app. The current bag, favorites, and profile areas are intentionally simple so teams can connect real backend logic without fighting demo-only assumptions.
 
 ## Stack
 
-- React Native
-- Expo
+- Expo SDK 55
+- React Native 0.83
+- React 19
 - React Navigation
 - React Native Elements
 - Formik + Yup
 - Biome
-- TensorFlow.js React Native adapter for local visual search
+- `react-native-fast-tflite` for local visual search
 
 ## Setup
 
@@ -46,107 +24,112 @@ git clone https://github.com/JamesUgbanu/Ecommerce-mobile-template.git
 cd Ecommerce-mobile-template
 ```
 
-2. Copy the environment example
+2. Use a supported Node version
+
+Expo 55 and React Native 0.83 require a newer Node runtime. Use Node `20.19.4+` or a current Node 22 LTS release.
+
+3. Copy the environment example
 
 ```bash
 cp .env.example .env
 ```
 
-3. Install dependencies
+4. Install dependencies
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 ```
 
-The `--legacy-peer-deps` flag is currently required because the TensorFlow React Native packages still have a fragile peer-dependency story.
-
-4. Start Expo
+5. Start the project
 
 ```bash
 npm run start
 ```
 
+The default setup keeps visual search disabled so the app can boot cleanly without native AI setup.
+
+6. Download the local model only if you want on-device visual search
+
+```bash
+npm run download:model
+```
+
+For local native testing with the TFLite provider, switch the env var to `tflite` and use a dev build:
+
+```bash
+npm run prebuild
+npm run start:dev-client
+```
+
 ## Environment variables
 
-The app uses Expo public env vars for visual-search provider selection:
-
 ```env
-EXPO_PUBLIC_VISUAL_SEARCH_PROVIDER=tensorflow
+EXPO_PUBLIC_VISUAL_SEARCH_PROVIDER=none
 EXPO_PUBLIC_REMOTE_VISUAL_SEARCH_URL=
 EXPO_PUBLIC_REMOTE_VISUAL_SEARCH_API_KEY=
 ```
 
 Supported provider values:
 
-- `tensorflow`: on-device TensorFlow.js / MobileNet provider
-- `remote`: stub for a remote image-search API
-- `none`: disables visual search gracefully
+- `none`: default safe mode that keeps the app runnable without native AI setup
+- `tflite`: local on-device MobileNet classification
+- `remote`: stub for a backend image-search API
+- `tensorflow`: accepted as a backward-compatible alias for `tflite`
 
 ## Project structure
 
 ```text
 .
 ├── assets/
+│   └── models/
 ├── src/
 │   ├── app/
 │   ├── components/
 │   │   ├── common/
-│   │   ├── search/
-│   │   └── ...
+│   │   ├── product/
+│   │   └── search/
 │   ├── constants/
 │   ├── data/
 │   ├── hooks/
-│   ├── localization/
 │   ├── navigation/
 │   ├── screens/
 │   ├── services/
 │   │   ├── ai/
 │   │   └── visual-search/
-│   ├── styles/
 │   ├── types/
 │   └── utils/
 ├── App.tsx
+├── app.json
 ├── biome.json
+├── metro.config.js
 └── package.json
 ```
 
 ## Visual search
 
-### Current TensorFlow option
+Visual search now lives behind a provider abstraction so the template can support multiple AI strategies without rewriting UI flows.
 
-TensorFlow is still reasonable here if you want:
+Current providers:
 
-- offline inference
-- zero API dependency
-- a template-friendly local demo of visual search
+- `TfliteVisualSearchProvider`: local bundled MobileNet model
+- `RemoteVisualSearchProvider`: remote API integration stub
+- `NoneVisualSearchProvider`: graceful fallback when visual search is disabled
 
-But it is not the cleanest long-term choice for every Expo app because:
+The repo only bundles the files needed for local inference:
 
-- the React Native adapter moves slowly
-- dependency installation is brittle
-- upgrading Expo becomes harder
-- MobileNet classification is useful for demo search, but not the same thing as strong retail similarity search
+- `assets/models/ImageNetLabels.txt`
 
-### What changed
+The actual `.tflite` model is intentionally not committed. The repo ships with a tiny placeholder so Expo can resolve the asset path, and `npm run download:model` replaces that placeholder with the real model locally.
 
-Visual search now lives behind a provider contract:
+### Why TFLite instead of TensorFlow.js
 
-- `TensorflowVisualSearchProvider`
-- `RemoteVisualSearchProvider`
-- `NoneVisualSearchProvider`
+The repo previously used TensorFlow.js in Expo. That path made dependency resolution brittle and blocked clean Expo upgrades. TFLite is the better default here because it fits the modern React Native ecosystem more naturally and avoids the older `tfjs-react-native` bridge.
 
-The UI now:
+This local provider is still a demo-friendly classifier, not a full retail similarity search engine. For production-grade visual discovery, most teams will eventually want a backend search service or embedding-based retrieval pipeline.
 
-- shows which provider is active
-- lets users take a photo or upload one
-- opens a preview screen before search
-- displays search results or a graceful empty/error state
+### Remote provider
 
-### Remote AI provider
-
-The remote provider is intentionally a stub. It is meant to be replaced with your own upload + inference API flow later.
-
-Do not hardcode API keys in the app. Use env vars and a backend whenever you need secret credentials.
+The remote provider intentionally does not hardcode secrets. Wire it to your own backend and keep API credentials outside the client app.
 
 ## Biome
 
@@ -165,30 +148,33 @@ npm run typecheck
 Commands used during this refresh:
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm run check
 npm run lint
 npm run format:check
 npm run typecheck
 npx expo config --type public
+npx expo config --type introspect
 CI=1 npx expo start --clear --port 8088
 ```
 
-Notes:
+Validation notes:
 
-- `expo config` succeeded and resolved the app config correctly for SDK `49.0.0`
-- `expo start` began booting the project, but the CLI session stayed open as expected in this environment
-- port `8081` was already occupied locally, so validation was moved to `8088`
+- Biome checks pass
+- TypeScript check passes
+- Expo config resolves correctly for SDK `55.0.0`
+- the app is configured to start safely with visual search disabled by default
+- `expo start` is still sensitive to the local Node runtime in this environment because the machine is on Node `20.9.0`, while Expo 55 expects `20.19.4+`
 
 ## Extending the template
 
-Good next steps for product teams:
+Good next steps:
 
-- connect catalog data to an API instead of local mock data
-- wire the bag and favorites tabs to real persistence
-- replace the remote visual-search stub with a backend image-search endpoint
-- migrate the filter UI to real product query params
-- add lightweight screen tests around the product and visual-search flows
+- connect catalog data to a real API
+- wire bag and favorites to persistence
+- replace the remote provider stub with a backend image-search endpoint
+- swap the local classifier for a stronger retrieval model if product similarity matters
+- add focused screen and service tests around product and visual-search flows
 
 ## License
 

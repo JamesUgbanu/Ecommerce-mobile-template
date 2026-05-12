@@ -1,6 +1,7 @@
-import { Icon, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import AppIcon from './AppIcon';
 
 type ErrorStateProps = {
   title: string;
@@ -12,7 +13,7 @@ const ErrorState = ({ title, description }: ErrorStateProps) => {
 
   return (
     <View style={styles.container}>
-      <Icon
+      <AppIcon
         name='alert-circle-outline'
         type='material-community'
         size={44}

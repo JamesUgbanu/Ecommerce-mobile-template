@@ -6,17 +6,12 @@
     "esModuleInterop": true,
     "jsx": "react-native",
     "lib": ["DOM", "ESNext"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "target": "ESNext"
   },
   "include": ["App.tsx", "src"],
-  "exclude": [
-    "node_modules",
-    "src/store",
-    "src/screens/CropPhotoScreen",
-    "src/screens/SearchPhotoScreen"
-  ]
+  "exclude": ["node_modules", "src/store"]
 }

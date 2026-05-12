@@ -4,7 +4,7 @@
  * Licensed under the MIT License.
  */
 
-import { Button, Icon, Text, useTheme } from '@rneui/themed';
+import { Button, Text, useTheme } from '@rneui/themed';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,9 @@ import * as yup from 'yup';
 import AnimatedTextInput from '../../components/AnimatedInput';
 import AppContainer from '../../components/HOC/AppContainer';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
+
 import Socials from '../../components/Socials';
+import AppIcon from '../../components/common/AppIcon';
 import { styles } from './styles';
 
 const Login = ({ navigation }) => {
@@ -81,7 +83,7 @@ const Login = ({ navigation }) => {
                   >
                     <View style={styles.link}>
                       <Text h3>{t('common:forgotYourPassword')}</Text>
-                      <Icon
+                      <AppIcon
                         type='material-icons'
                         size={16}
                         name='trending-flat'

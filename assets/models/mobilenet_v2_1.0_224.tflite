@@ -1,0 +1,2 @@
+Placeholder file for local development.
+Run `npm run download:model` to replace this file with the real TensorFlow Lite model.

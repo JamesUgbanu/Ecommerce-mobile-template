@@ -4,10 +4,11 @@
  * Licensed under the MIT License.
  */
 
-import { Badge, Icon, Text, useTheme } from '@rneui/themed';
+import { Badge, Text, useTheme } from '@rneui/themed';
 import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
+import AppIcon from '../common/AppIcon';
 import { styles } from './styles';
 
 type ProductCardProps = {
@@ -93,7 +94,7 @@ const ProductCard = (props: ProductCardProps) => {
             ]}
             textStyle={{ fontSize: 11, fontWeight: '700' }}
           />
-          <Icon
+          <AppIcon
             raised
             name={button.iconName}
             type={button.iconType}
@@ -114,7 +115,7 @@ const ProductCard = (props: ProductCardProps) => {
             for (let i = 1; i <= ratingCount; i++) {
               if (i <= ratingValue && totalRating !== 0) {
                 rating.push(
-                  <Icon
+                  <AppIcon
                     key={i}
                     name='star'
                     type='ionicons'
@@ -124,7 +125,7 @@ const ProductCard = (props: ProductCardProps) => {
                 );
               } else {
                 rating.push(
-                  <Icon
+                  <AppIcon
                     key={i}
                     name='star-outline'
                     type='ionicons'

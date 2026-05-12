@@ -4,15 +4,17 @@
  * Licensed under the MIT License.
  */
 
-import { Icon, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
 import React, { useRef, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { ActionSheetRef } from 'react-native-actions-sheet';
+
 import Chip from '../../components/Chip';
 import Dialog from '../../components/Dialog';
 import AppContainer from '../../components/HOC/AppContainer';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import ProductCard from '../../components/ProductCard';
+import AppIcon from '../../components/common/AppIcon';
 import { products, sortItems, tags } from '../../data';
 import SortBy from './SortBy';
 import { styles } from './styles';
@@ -43,15 +45,30 @@ const Category = ({ route, navigation }) => {
               style={styles.row}
               onPress={() => navigation.navigate('ProductFilter')}
             >
-              <Icon type='material-icons' size={25} name='filter-list' color={theme.colors.black} />
+              <AppIcon
+                type='material-icons'
+                size={25}
+                name='filter-list'
+                color={theme.colors.black}
+              />
               <Text style={styles.filterText}>{'Filters'}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.row} onPress={() => actionSheetRef.current?.show()}>
-              <Icon type='material-icons' size={25} name='swap-vert' color={theme.colors.black} />
+              <AppIcon
+                type='material-icons'
+                size={25}
+                name='swap-vert'
+                color={theme.colors.black}
+              />
               <Text style={styles.filterText}>{sortItems[currentSortIndex].name}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.row}>
-              <Icon type='material-icons' size={25} name='view-list' color={theme.colors.black} />
+              <AppIcon
+                type='material-icons'
+                size={25}
+                name='view-list'
+                color={theme.colors.black}
+              />
             </TouchableOpacity>
           </View>
         </View>

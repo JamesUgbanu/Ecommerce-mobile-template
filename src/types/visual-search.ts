@@ -1,4 +1,4 @@
-export type VisualSearchProviderId = 'tensorflow' | 'remote' | 'none';
+export type VisualSearchProviderId = 'tflite' | 'remote' | 'none';
 
 export type VisualSearchPrediction = {
   label: string;

@@ -25,13 +25,15 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      "expo-dev-client",
       [
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos from your gallery."
         }
-      ]
+      ],
+      "react-native-fast-tflite"
     ],
-    "jsEngine": "jsc"
+    "jsEngine": "hermes"
   }
 }

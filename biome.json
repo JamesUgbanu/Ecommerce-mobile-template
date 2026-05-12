@@ -6,8 +6,7 @@
       ".expo",
       "src/store",
       "src/screens/CropPhotoScreen",
-      "src/screens/SearchPhotoScreen",
-      "src/utils/mobilenetClassification.ts"
+      "src/screens/SearchPhotoScreen"
     ]
   },
   "formatter": {
