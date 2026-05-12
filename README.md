@@ -1,136 +1,195 @@
-# E-commerce Template using React Native and Expo
+# E-commerce Mobile Template
 
-This is a simple e-commerce template with a visual search using TensorFlow built with React Native and Expo. It provides a basic structure and components to help you kickstart your e-commerce app development. The link to the UX design can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
+A reusable React Native + Expo e-commerce starter with:
+
+- auth UI screens
+- home and category browsing flows
+- product detail screen
+- filter UI
+- optional visual search
+- Biome formatting and linting
+
+This repo is intentionally positioned as a production-friendly template, not a finished commerce app. The cart, favorites, and profile areas are now cleaner template placeholders so teams can wire them to real backend data without inheriting misleading screen mappings.
+
+## Why the Expo version stayed conservative
+
+The project still targets `Expo SDK 49` and `React Native 0.72`.
+
+That was a deliberate choice:
+
+- the current TensorFlow React Native path (`@tensorflow/tfjs-react-native`) is tied to the older Expo / RN generation
+- newer Expo SDKs move into the newer React Native architecture faster than the TensorFlow React Native adapter has kept up
+- this update prioritizes a stable, maintainable template over a risky SDK jump that could silently break visual search
+
+If you want to move to a newer Expo SDK later, the new visual-search provider abstraction makes it much easier to replace the TensorFlow provider with a remote AI service or a different local runtime.
 
 ## Screenshots
 
-<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200">  | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Vissual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200"> | <img src="/assets/screenshots/sort_screen.png" alt="Sort Screen" width="200">  
+<img src="/assets/screenshots/login_screen.png" alt="Login Screen" width="200"> | <img src="/assets/screenshots/register_screen.png" alt="Register Screen" width="200"> | <img src="/assets/screenshots/forgot_password_screen.png" alt="Forgot Password Screen" width="200"> | <img src="/assets/screenshots/home_screen.png" alt="Home Screen" width="200"> | <img src="/assets/screenshots/shop_screen.png" alt="Shop Screen" width="200"> | <img src="/assets/screenshots/category_screen.png" alt="Category Screen" width="200"> | <img src="/assets/screenshots/filter_screen.png" alt="Filter Screen" width="200"> | <img src="/assets/screenshots/visual_search_screen.png" alt="Visual Search Screen" width="200"> | <img src="/assets/screenshots/crop_screen.png" alt="Search Screen" width="200"> | <img src="/assets/screenshots/sort_screen.png" alt="Sort Screen" width="200">
 
-## Features
+## Stack
 
-- User authentication (Sign up, Sign in, Forgot password)
-- Product Listing
-- Product search (Visual Search)
-- Product details
-- Add to cart
-- Cart management (Add, update, remove items)
-- Checkout flow
-- Order history
-- User profile management
+- React Native
+- Expo
+- React Navigation
+- React Native Elements
+- Formik + Yup
+- Biome
+- TensorFlow.js React Native adapter for local visual search
 
-## Technology Stack
+## Setup
 
-- [React Native](https://reactnative.dev/): A JavaScript framework for building native mobile applications.
-- [Expo](https://docs.expo.io/): Expo is an open-source platform for making universal native apps for Android, iOS, and the web with JavaScript and React.
-- [Redux](https://redux.js.org/): A predictable state container for managing the application state.
-- [React Navigation](https://reactnavigation.org/): A navigation library for managing navigation between screens.
-- [Axios](https://axios-http.com/): A promise-based HTTP client for making API requests.
-- [React Native Elements](https://reactnativeelements.com/): A UI toolkit for building reusable UI components.
-- [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons): A library for adding vector icons to your React Native application.
-- [Formik](https://formik.org/): A form library for building scalable and reusable forms.
-- [Yup](https://github.com/jquense/yup): A schema validation library for form validation.
+1. Clone the repository
 
-## Prerequisites
-
-Make sure you have the following installed:
-
-- Node.js
-- npm or yarn
-- Expo CLI
-
-## Getting Started
-
-1. Clone the repository:
-
-```
-git clone https://github.com/JamesUgbanu/Ecommerce-mobile.git
+```bash
+git clone https://github.com/JamesUgbanu/Ecommerce-mobile-template.git
+cd Ecommerce-mobile-template
 ```
 
-2. Navigate to the project directory:
+2. Copy the environment example
 
-```
-cd ecommerce-mobile-template
-```
-
-3. Remove 2 packages that doesn't support react 18 from package.json
-
-```
-@tensorflow/tfjs-react-native and @tensorflow-models/mobilenet
+```bash
+cp .env.example .env
 ```
 
-4. Install dependencies:
+3. Install dependencies
 
-```
-npm install
-```
-or
-```
-yarn install
+```bash
+npm install --legacy-peer-deps
 ```
 
-5. Force install the 2 package removed initially
+The `--legacy-peer-deps` flag is currently required because the TensorFlow React Native packages still have a fragile peer-dependency story.
 
-```
-npm install @tensorflow/tfjs-react-native @tensorflow-models/mobilenet --force
-```
+4. Start Expo
 
-6. Start the development server:
-
-```
+```bash
 npm run start
 ```
 
-This will open the Expo Developer Tools in your browser.
+## Environment variables
 
-7. Choose the desired platform (iOS, Android, or web) to run the app.
+The app uses Expo public env vars for visual-search provider selection:
 
-8. Use the Expo client app or an emulator to run the app on your device.
-
-## Folder Structure
-
-The project structure is organized as follows:
-
-```
-├── assets
-│   ├── fonts
-│   ├── images
-├── components
-│   ├── auth
-│   ├── cart
-│   ├── common
-│   ├── products
-│   ├── profile
-├── constants
-├── localization
-├── navigation
-├── screens
-├── services
-├── store
-├── utils
+```env
+EXPO_PUBLIC_VISUAL_SEARCH_PROVIDER=tensorflow
+EXPO_PUBLIC_REMOTE_VISUAL_SEARCH_URL=
+EXPO_PUBLIC_REMOTE_VISUAL_SEARCH_API_KEY=
 ```
 
-- **assets**: Contains font files and image assets used in the app.
-- **components**: Contains reusable UI components used throughout the app, organized by feature or functionality.
-- **navigation**: Contains the app's navigation configuration.
-- **screens**: Contains individual app screens.
-- **services**: Contains services or utility functions used across the app.
-- **utils**: Contains helper functions and utility scripts.
+Supported provider values:
 
-Feel free to modify the folder structure based on your project requirements.
+- `tensorflow`: on-device TensorFlow.js / MobileNet provider
+- `remote`: stub for a remote image-search API
+- `none`: disables visual search gracefully
 
-## Contributing
+## Project structure
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. UX design can be found [here](https://www.figma.com/file/h8Qh89sALKZK9Ru38NDg1u/E-Commerce-App-Design-(Community))
+```text
+.
+├── assets/
+├── src/
+│   ├── app/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── search/
+│   │   └── ...
+│   ├── constants/
+│   ├── data/
+│   ├── hooks/
+│   ├── localization/
+│   ├── navigation/
+│   ├── screens/
+│   ├── services/
+│   │   ├── ai/
+│   │   └── visual-search/
+│   ├── styles/
+│   ├── types/
+│   └── utils/
+├── App.tsx
+├── biome.json
+└── package.json
+```
+
+## Visual search
+
+### Current TensorFlow option
+
+TensorFlow is still reasonable here if you want:
+
+- offline inference
+- zero API dependency
+- a template-friendly local demo of visual search
+
+But it is not the cleanest long-term choice for every Expo app because:
+
+- the React Native adapter moves slowly
+- dependency installation is brittle
+- upgrading Expo becomes harder
+- MobileNet classification is useful for demo search, but not the same thing as strong retail similarity search
+
+### What changed
+
+Visual search now lives behind a provider contract:
+
+- `TensorflowVisualSearchProvider`
+- `RemoteVisualSearchProvider`
+- `NoneVisualSearchProvider`
+
+The UI now:
+
+- shows which provider is active
+- lets users take a photo or upload one
+- opens a preview screen before search
+- displays search results or a graceful empty/error state
+
+### Remote AI provider
+
+The remote provider is intentionally a stub. It is meant to be replaced with your own upload + inference API flow later.
+
+Do not hardcode API keys in the app. Use env vars and a backend whenever you need secret credentials.
+
+## Biome
+
+Available scripts:
+
+```bash
+npm run format
+npm run format:check
+npm run lint
+npm run check
+npm run typecheck
+```
+
+## Validation
+
+Commands used during this refresh:
+
+```bash
+npm install --legacy-peer-deps
+npm run check
+npm run lint
+npm run format:check
+npm run typecheck
+npx expo config --type public
+CI=1 npx expo start --clear --port 8088
+```
+
+Notes:
+
+- `expo config` succeeded and resolved the app config correctly for SDK `49.0.0`
+- `expo start` began booting the project, but the CLI session stayed open as expected in this environment
+- port `8081` was already occupied locally, so validation was moved to `8088`
+
+## Extending the template
+
+Good next steps for product teams:
+
+- connect catalog data to an API instead of local mock data
+- wire the bag and favorites tabs to real persistence
+- replace the remote visual-search stub with a backend image-search endpoint
+- migrate the filter UI to real product query params
+- add lightweight screen tests around the product and visual-search flows
 
 ## License
 
-This project is licensed under the MIT License. Feel free to use it for commercial or personal use.
-
-## Acknowledgments
-
-This project is inspired by the React Native and Expo community. Thank you to all the developers who contribute to these amazing open-source frameworks.
-
-## Resources
-
-- [React Native Documentation](https://reactnative.dev/docs/getting-started)
-- [Expo Documentation](https://docs.expo.io/)
+MIT
