@@ -9,6 +9,8 @@ import React from 'react';
 import { View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 
+import GlassSurface from '../surfaces/GlassSurface';
+
 type DialogProps = {
   children: React.ReactNode;
   indicatorStyle?: { [key: string]: any };
@@ -28,7 +30,7 @@ const Dialog = (props: DialogProps) => {
     containerStyle = {
       borderTopLeftRadius: 25,
       borderTopRightRadius: 25,
-      backgroundColor: theme.colors.white,
+      backgroundColor: 'transparent',
     },
     actionSheetRef,
     style = {
@@ -44,7 +46,13 @@ const Dialog = (props: DialogProps) => {
       containerStyle={containerStyle}
       ref={actionSheetRef}
     >
-      <View style={style}>{children}</View>
+      <GlassSurface
+        elevated
+        surfaceRole='sheet'
+        style={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
+      >
+        <View style={style}>{children}</View>
+      </GlassSurface>
     </ActionSheet>
   );
 };

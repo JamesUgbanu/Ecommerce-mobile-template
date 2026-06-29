@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { radius, shadows, spacing } from '../../design-system';
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -80,12 +82,11 @@ export const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     paddingBottom: 50,
-    backgroundColor: '#fff',
-    paddingVertical: 25,
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 2 },
-    shadowOpacity: 0.2,
-    elevation: 3,
+    paddingVertical: spacing.xl,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+    borderRadius: radius.xl,
+    ...shadows.glass,
   },
   button: {
     backgroundColor: 'transparent',

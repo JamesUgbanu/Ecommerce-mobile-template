@@ -1,6 +1,6 @@
 # E-commerce Template using React Native and Expo
 
-A reusable React Native + Expo starter for e-commerce experiences. It includes auth UI, product browsing, product detail, filter flows, and an optional visual search feature that supports both a local TFLite provider and a remote AI provider stub.
+A reusable React Native + Expo starter for e-commerce experiences. It includes auth UI, product browsing, product detail, filter flows, adaptive Liquid Glass-ready UI primitives, and an optional visual search feature that supports both a local TFLite provider and a remote AI provider stub.
 
 This repo is meant to be a cleaner production-friendly template, not a finished commerce app. The current bag, favorites, and profile areas are intentionally simple so teams can connect real backend logic without fighting demo-only assumptions.
 
@@ -15,17 +15,20 @@ The original UX design this template is based on can be found on Figma [here](ht
 - User authentication screens: sign up, sign in, and forgot password
 - Product browsing flows: home, shop, categories, filters, and sorting
 - Product detail screens and reusable product UI components
+- Expo-first design system with reusable tokens, adaptive surfaces, and haptic-ready controls
+- Liquid Glass support on capable iOS versions with blur/tinted fallbacks elsewhere
 - Visual search flow with pluggable providers
 - Bag, favorites, and profile template areas ready for backend wiring
 - Reusable Expo + React Native app structure for commerce projects
 
 ## Technology stack
 
-- Expo SDK 55
-- React Native 0.83
+- Expo SDK 56
+- React Native 0.85
 - React 19
 - React Navigation
 - React Native Elements
+- Expo GlassEffect, Blur, Image, Haptics, Splash Screen, Secure Store, and System UI
 - Formik + Yup
 - Biome
 - `react-native-fast-tflite` for local visual search
@@ -41,7 +44,7 @@ cd Ecommerce-mobile-template
 
 2. Use a supported Node version
 
-Expo 55 and React Native 0.83 require a newer Node runtime. Use Node `20.19.4+` or a current Node 22 LTS release.
+Expo 56 and React Native 0.85 require Node `22.13.x+`. Use the version in `.nvmrc` where possible.
 
 3. Copy the environment example
 
@@ -82,6 +85,8 @@ npm run start:dev-client
 EXPO_PUBLIC_VISUAL_SEARCH_PROVIDER=none
 EXPO_PUBLIC_REMOTE_VISUAL_SEARCH_URL=
 EXPO_PUBLIC_REMOTE_VISUAL_SEARCH_API_KEY=
+EXPO_PUBLIC_LIQUID_GLASS_ENABLED=true
+EXPO_PUBLIC_USE_DEV_CLIENT=true
 ```
 
 Supported provider values:
@@ -101,10 +106,11 @@ Supported provider values:
 │   ├── app/
 │   ├── components/
 │   │   ├── common/
-│   │   ├── product/
+│   │   ├── surfaces/
 │   │   └── search/
 │   ├── constants/
 │   ├── data/
+│   ├── design-system/
 │   ├── hooks/
 │   ├── navigation/
 │   ├── screens/
@@ -114,11 +120,27 @@ Supported provider values:
 │   ├── types/
 │   └── utils/
 ├── App.tsx
-├── app.json
+├── app.config.js
 ├── biome.json
 ├── metro.config.js
 └── package.json
 ```
+
+## Adaptive design system
+
+The template now has an app-owned design system instead of relying only on component-level hardcoded styles.
+
+- `src/design-system/tokens.ts` defines color, glass, blur, radius, spacing, typography, shadow, and motion tokens.
+- `src/components/surfaces/GlassSurface.tsx` renders native `expo-glass-effect` Liquid Glass when available, falls back to `expo-blur` on older Apple platforms, and uses performant tinted/elevated surfaces on Android.
+- `src/components/surfaces/ThemedSurface.tsx` provides standard non-glass surfaces for high-density content.
+- `src/components/common/AppButton.tsx` centralizes button variants and haptics.
+- `src/hooks/useGlassAvailability.ts` guards Liquid Glass APIs so unsupported iOS, Android, web, and older builds stay stable.
+
+Recommended usage:
+
+- Use glass for navigation chrome, tab bars, floating actions, hero overlays, and sheet chrome.
+- Prefer standard surfaces for long product grids and form-heavy checkout content.
+- Keep all colors, spacing, radii, and shadows flowing through tokens so the template remains easy to brand.
 
 ## Visual search
 
@@ -145,6 +167,15 @@ This local provider is still a demo-friendly classifier, not a full retail simil
 ### Remote provider
 
 The remote provider intentionally does not hardcode secrets. Wire it to your own backend and keep API credentials outside the client app.
+
+## Expo and native builds
+
+This app uses dynamic Expo config in `app.config.js` so teams can control native plugins and feature flags per environment.
+
+- Liquid Glass requires Expo SDK 56+ and a capable iOS runtime. Unsupported platforms use the app fallback path.
+- The TFLite provider uses `react-native-fast-tflite` and should be tested in a development build or production build.
+- Keep `EXPO_PUBLIC_VISUAL_SEARCH_PROVIDER=none` for Expo Go or when native AI setup is not needed.
+- Use `npx expo-doctor` after dependency changes and `npx expo config --type introspect` before native prebuilds.
 
 ## Biome
 
@@ -175,11 +206,10 @@ CI=1 npx expo start --clear --port 8088
 
 Validation notes:
 
-- Biome checks pass
 - TypeScript check passes
-- Expo config resolves correctly for SDK `55.0.0`
+- SDK and UI dependencies have been upgraded to the Expo SDK 56 generation
 - the app is configured to start safely with visual search disabled by default
-- `expo start` is still sensitive to the local Node runtime in this environment because the machine is on Node `20.9.0`, while Expo 55 expects `20.19.4+`
+- full Expo config/start validation should be run on Node `22.13.x+`
 
 ## Extending the template
 
@@ -188,6 +218,7 @@ Good next steps:
 - connect catalog data to a real API
 - wire bag and favorites to persistence
 - replace the remote provider stub with a backend image-search endpoint
+- migrate route files to Expo Router if deep linking, web routing, or typed file routes become priorities
 - swap the local classifier for a stronger retrieval model if product similarity matters
 - add focused screen and service tests around product and visual-search flows
 

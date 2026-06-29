@@ -1,6 +1,8 @@
 import { Text, useTheme } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { spacing, typography } from '../../design-system';
+import ThemedSurface from '../surfaces/ThemedSurface';
 import AppIcon from './AppIcon';
 
 type EmptyStateProps = {
@@ -13,26 +15,26 @@ const EmptyState = ({ title, description, iconName = 'search-off' }: EmptyStateP
   const { theme } = useTheme();
 
   return (
-    <View style={styles.container}>
+    <ThemedSurface muted style={styles.container}>
       <AppIcon name={iconName} type='material-community' size={44} color={theme.colors.grey0} />
       <Text style={styles.title}>{title}</Text>
       <Text h3 style={styles.description}>
         {description}
       </Text>
-    </View>
+    </ThemedSurface>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    gap: 12,
-    paddingHorizontal: 24,
-    paddingVertical: 32,
+    gap: spacing.md,
+    marginHorizontal: spacing.xl,
+    paddingHorizontal: spacing['2xl'],
+    paddingVertical: spacing['3xl'],
   },
   title: {
-    fontSize: 18,
-    fontWeight: '600',
+    ...typography.title,
   },
   description: {
     color: '#6E6E6E',

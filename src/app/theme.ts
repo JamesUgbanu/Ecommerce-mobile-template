@@ -1,5 +1,6 @@
 import { createTheme } from '@rneui/themed';
 
+import { designTokens, lightColors } from '../design-system';
 import { theme } from '../styles/Theme';
 
 export const appTheme = createTheme({
@@ -8,32 +9,30 @@ export const appTheme = createTheme({
   components: {
     Text: {
       h1Style: {
-        fontWeight: '700',
-        fontSize: 34,
+        ...designTokens.typography.titleLarge,
       },
       h2Style: {
-        fontWeight: '300',
+        fontWeight: '500',
       },
       h3Style: {
-        fontWeight: '300',
+        fontWeight: '400',
         fontSize: 14,
       },
       h4Style: {
-        fontWeight: '300',
-        fontSize: 11,
+        ...designTokens.typography.caption,
       },
     },
     Button: {
       buttonStyle: {
-        backgroundColor: '#DB3022',
-        borderRadius: 25,
-        paddingVertical: 15,
+        backgroundColor: lightColors.accent,
+        borderRadius: designTokens.radius.pill,
+        paddingVertical: designTokens.spacing.md,
       },
       containerStyle: {
         height: 48,
       },
       titleStyle: {
-        fontSize: 14,
+        ...designTokens.typography.button,
       },
     },
   },

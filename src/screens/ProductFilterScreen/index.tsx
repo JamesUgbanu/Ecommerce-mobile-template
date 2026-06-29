@@ -4,12 +4,13 @@
  * Licensed under the MIT License.
  */
 
-import { Button, useTheme } from '@rneui/themed';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import AppContainer from '../../components/HOC/AppContainer';
+import AppButton from '../../components/common/AppButton';
+import GlassSurface from '../../components/surfaces/GlassSurface';
 import { colors, productCategories, sizes } from '../../data';
 import CategorySelection from './CategorySelection';
 import ColorSelection from './ColorSelection';
@@ -18,7 +19,6 @@ import SizeSelection from './SizeSelection';
 import { styles } from './styles';
 
 const ProductFilter = ({ navigation }) => {
-  const { theme } = useTheme();
   const { t } = useTranslation();
   const [low, setLow] = useState<number>(78);
   const [high, setHigh] = useState<number>(143);
@@ -75,18 +75,17 @@ const ProductFilter = ({ navigation }) => {
           />
         </View>
       </AppContainer>
-      <View style={styles.bottom}>
+      <GlassSurface surfaceRole='chrome' style={styles.bottom}>
         <View style={[styles.horizontalContainer, { justifyContent: 'space-between' }]}>
-          <Button
+          <AppButton
             title={t('common:discard')}
             onPress={() => navigation.goBack()}
             style={{ width: scale(155) }}
-            buttonStyle={[styles.button, { borderColor: theme.colors.black }]}
-            titleStyle={{ color: theme.colors.black, fontWeight: '500' }}
+            variant='outline'
           />
-          <Button title={t('common:apply')} onPress={() => {}} style={{ width: scale(155) }} />
+          <AppButton title={t('common:apply')} onPress={() => {}} style={{ width: scale(155) }} />
         </View>
-      </View>
+      </GlassSurface>
     </>
   );
 };

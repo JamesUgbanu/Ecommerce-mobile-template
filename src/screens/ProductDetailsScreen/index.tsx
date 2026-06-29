@@ -1,19 +1,35 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Button, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
+import AppButton from '../../components/common/AppButton';
+import GlassSurface from '../../components/surfaces/GlassSurface';
+import { radius, shadows, spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import type { RootStackParamList } from '../../navigation/types';
 
 type ProductDetailsScreenProps = NativeStackScreenProps<RootStackParamList, 'ProductDetails'>;
 
 const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
   const { product } = route.params;
 
   return (
-    <ScrollView style={styles.container}>
-      <Image source={product.image} style={styles.image} resizeMode='cover' />
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={styles.hero}>
+        <Image source={product.image} style={styles.image} contentFit='cover' transition={180} />
+        <LinearGradient
+          colors={['transparent', 'rgba(0,0,0,0.56)']}
+          style={StyleSheet.absoluteFill}
+        />
+        <GlassSurface surfaceRole='overlay' style={styles.heroBadge}>
+          <Text style={styles.heroBadgeText}>{product.category}</Text>
+        </GlassSurface>
+      </View>
       <View style={styles.content}>
         <Text h4 style={styles.brand}>
           {product.category}
@@ -35,7 +51,7 @@ const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
           {product.description ??
             'This starter template keeps the product detail experience intentionally lightweight so it is easy to replace with real catalog data later.'}
         </Text>
-        <Button title='Add to bag' onPress={() => {}} containerStyle={styles.button} />
+        <AppButton title='Add to bag' onPress={() => {}} containerStyle={styles.button} />
       </View>
     </ScrollView>
   );
@@ -44,26 +60,39 @@ const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+  },
+  hero: {
+    position: 'relative',
   },
   image: {
     width: '100%',
     height: 420,
   },
   content: {
-    gap: 16,
-    padding: 20,
+    gap: spacing.lg,
+    padding: spacing.xl,
   },
   brand: {
     color: '#9B9B9B',
   },
+  heroBadge: {
+    borderRadius: radius.pill,
+    bottom: spacing.xl,
+    left: spacing.xl,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+    position: 'absolute',
+  },
+  heroBadgeText: {
+    color: '#FFFFFF',
+    ...typography.caption,
+  },
   priceRow: {
     flexDirection: 'row',
-    gap: 12,
+    gap: spacing.md,
   },
   price: {
-    fontSize: 24,
-    fontWeight: '700',
+    ...typography.price,
   },
   strikethrough: {
     color: '#9B9B9B',
@@ -75,6 +104,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 8,
+    ...shadows.md,
   },
 });
 

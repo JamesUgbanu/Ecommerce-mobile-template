@@ -1,6 +1,7 @@
 import { Text } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { spacing } from '../../design-system';
 
 type SectionHeaderProps = {
   title: string;
@@ -31,8 +32,8 @@ const SectionHeader = ({ title, subtitle, actionLabel, onActionPress }: SectionH
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 15,
-    marginTop: 30,
+    marginHorizontal: spacing.lg,
+    marginTop: spacing['3xl'],
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

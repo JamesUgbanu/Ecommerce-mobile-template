@@ -4,32 +4,40 @@
  * Licensed under the MIT License.
  */
 
-import { Button, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, ImageBackground, ScrollView, TouchableHighlight, View } from 'react-native';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import ProductCard from '../../components/ProductCard';
+import AppButton from '../../components/common/AppButton';
 import SectionHeader from '../../components/common/SectionHeader';
 import { banner, products } from '../../data';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
 
 const Home = ({ navigation }) => {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
   const screenHeight = Dimensions.get('window').height;
   const sixtyFivePercentOfScreenHeight = screenHeight * 0.67;
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: colors.background }}>
       <View style={styles().container}>
         <View style={styles(sixtyFivePercentOfScreenHeight).imageContainer}>
           <ImageBackground source={banner.image} resizeMode='cover' style={styles().image}>
+            <LinearGradient
+              colors={['transparent', 'rgba(0,0,0,0.68)']}
+              style={styles().heroGradient}
+            />
             <Text style={styles().text}>{banner.text}</Text>
-            <Button
-              size='sm'
+            <AppButton
               title={banner.buttonText}
               onPress={() => {}}
+              variant='glass'
               containerStyle={styles().button}
             />
           </ImageBackground>

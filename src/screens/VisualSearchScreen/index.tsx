@@ -1,10 +1,12 @@
-import { Button, Text } from '@rneui/themed';
+import { Text } from '@rneui/themed';
 import * as ImageManipulator from 'expo-image-manipulator';
 import * as ImagePicker from 'expo-image-picker';
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Dimensions, ImageBackground, Platform, View } from 'react-native';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
+import AppButton from '../../components/common/AppButton';
 import ProviderBadge from '../../components/search/ProviderBadge';
 import { visualSearchBanner } from '../../data';
 import { visualSearchConfig } from '../../services/ai/config';
@@ -80,20 +82,20 @@ const VisualSearch = ({ navigation }) => {
           resizeMode='cover'
           style={styles().image}
         >
+          <LinearGradient colors={['transparent', 'rgba(0,0,0,0.72)']} style={styles().gradient} />
           <ProviderBadge providerId={visualSearchConfig.provider} />
           <Text style={styles().text}>{visualSearchBanner.text}</Text>
-          <Button
-            uppercase
+          <AppButton
             title={t('common:takePhoto')}
             onPress={captureImageAsync}
+            variant='glass'
             containerStyle={styles().button}
           />
-          <Button
-            uppercase
+          <AppButton
             title={t('common:uploadImage')}
             onPress={selectImageAsync}
             containerStyle={styles().button}
-            buttonStyle={styles().border}
+            variant='outline'
           />
         </ImageBackground>
       </View>

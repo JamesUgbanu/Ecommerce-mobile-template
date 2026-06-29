@@ -1,6 +1,8 @@
 import { Text, useTheme } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { spacing, typography } from '../../design-system';
+import ThemedSurface from '../surfaces/ThemedSurface';
 import AppIcon from './AppIcon';
 
 type ErrorStateProps = {
@@ -12,7 +14,7 @@ const ErrorState = ({ title, description }: ErrorStateProps) => {
   const { theme } = useTheme();
 
   return (
-    <View style={styles.container}>
+    <ThemedSurface muted style={styles.container}>
       <AppIcon
         name='alert-circle-outline'
         type='material-community'
@@ -23,20 +25,20 @@ const ErrorState = ({ title, description }: ErrorStateProps) => {
       <Text h3 style={styles.description}>
         {description}
       </Text>
-    </View>
+    </ThemedSurface>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    gap: 12,
-    paddingHorizontal: 24,
-    paddingVertical: 32,
+    gap: spacing.md,
+    marginHorizontal: spacing.xl,
+    paddingHorizontal: spacing['2xl'],
+    paddingVertical: spacing['3xl'],
   },
   title: {
-    fontSize: 18,
-    fontWeight: '600',
+    ...typography.title,
   },
   description: {
     color: '#6E6E6E',

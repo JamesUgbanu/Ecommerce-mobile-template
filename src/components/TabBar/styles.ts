@@ -1,34 +1,32 @@
 import { StyleSheet } from 'react-native';
 
+import { radius, spacing, typography } from '../../design-system';
+
 export const styles = (height?: number) =>
   StyleSheet.create({
     container: {
-      overflow: 'hidden',
       height: height,
-      borderTopLeftRadius: 12,
-      borderTopRightRadius: 12,
-      elevation: 8,
-      shadowColor: 'rgba(0, 0, 0, 0.3)',
-      shadowRadius: 8,
+      marginBottom: spacing.sm,
+      marginHorizontal: spacing.md,
+      borderRadius: radius['2xl'],
     },
     content: {
       flex: 1,
       flexDirection: 'row',
-      backgroundColor: '#fff',
     },
     navItem: {
       flex: 1,
-      paddingTop: 10,
-      alignItems: 'center',
-    },
-    center: {
-      width: 56,
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    center: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      minWidth: 56,
     },
     navText: {
       marginTop: 3,
       alignSelf: 'center',
-      fontSize: 10,
+      ...typography.caption,
     },
   });

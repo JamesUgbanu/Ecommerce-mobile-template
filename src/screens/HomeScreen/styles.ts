@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { spacing, typography } from '../../design-system';
+
 export const styles = (height?: number) =>
   StyleSheet.create({
     container: {
@@ -16,16 +18,21 @@ export const styles = (height?: number) =>
       paddingBottom: 40,
       paddingHorizontal: 20,
     },
+    heroGradient: {
+      bottom: 0,
+      left: 0,
+      position: 'absolute',
+      right: 0,
+      top: 0,
+    },
     text: {
       color: 'white',
-      fontSize: 48,
-      lineHeight: 48,
-      fontWeight: '900',
+      ...typography.display,
       width: 190,
     },
     button: {
       width: 160,
-      marginTop: 20,
+      marginTop: spacing.xl,
       textAlign: 'center',
     },
     titleContainer: {

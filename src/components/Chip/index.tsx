@@ -6,7 +6,7 @@
 
 import { Text } from '@rneui/themed';
 import React from 'react';
-import { View } from 'react-native';
+import GlassSurface from '../surfaces/GlassSurface';
 import { styles } from './styles';
 
 type ChipProps = {
@@ -29,7 +29,11 @@ const Chip = (props: ChipProps) => {
   } = props;
 
   return (
-    <View style={[styles.contentView, { paddingVertical, paddingHorizontal, backgroundColor }]}>
+    <GlassSurface
+      elevated={false}
+      surfaceRole='control'
+      style={[styles.contentView, { paddingVertical, paddingHorizontal, backgroundColor }]}
+    >
       <Text
         style={{
           color,
@@ -38,7 +42,7 @@ const Chip = (props: ChipProps) => {
       >
         {text}
       </Text>
-    </View>
+    </GlassSurface>
   );
 };
 

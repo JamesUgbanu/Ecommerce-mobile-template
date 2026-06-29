@@ -5,10 +5,12 @@
  */
 
 import { Badge, Text, useTheme } from '@rneui/themed';
+import { Image } from 'expo-image';
 import React from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
 import AppIcon from '../common/AppIcon';
+import GlassSurface from '../surfaces/GlassSurface';
 import { styles } from './styles';
 
 type ProductCardProps = {
@@ -75,7 +77,8 @@ const ProductCard = (props: ProductCardProps) => {
         <TouchableOpacity onPress={onPress}>
           <Image
             source={image}
-            resizeMode='cover'
+            contentFit='cover'
+            transition={180}
             style={[styles(imageWidth).image, imageStyle, { height: verticalScale(imageHeight) }]}
           />
           <Badge
@@ -94,18 +97,15 @@ const ProductCard = (props: ProductCardProps) => {
             ]}
             textStyle={{ fontSize: 11, fontWeight: '700' }}
           />
-          <AppIcon
-            raised
-            name={button.iconName}
-            type={button.iconType}
-            color={button.iconColor}
-            size={button.iconSize}
-            containerStyle={[
-              { position: 'absolute', bottom: -20, right: -10, backgroundColor: '#fff' },
-              buttonStyle,
-            ]}
-            onPress={() => console.log('hello')}
-          />
+          <GlassSurface surfaceRole='control' style={[styles().favoriteButton, buttonStyle]}>
+            <AppIcon
+              name={button.iconName}
+              type={button.iconType}
+              color={button.iconColor}
+              size={button.iconSize}
+              onPress={() => console.log('hello')}
+            />
+          </GlassSurface>
         </TouchableOpacity>
       </View>
       <View style={styles().productInfo}>
