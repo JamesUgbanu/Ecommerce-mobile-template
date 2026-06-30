@@ -71,7 +71,7 @@ const AppButton = ({
         <Text
           style={[
             styles.text,
-            { color: variant === 'solid' ? '#FFFFFF' : colors.textPrimary },
+            { color: variant === 'solid' ? colors.textInverse : colors.textPrimary },
             textStyle,
           ]}
         >

@@ -13,6 +13,7 @@ import ProviderBadge from '../../components/search/ProviderBadge';
 import SearchResultsCard from '../../components/search/SearchResultsCard';
 import GlassSurface from '../../components/surfaces/GlassSurface';
 import { radius, spacing } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { useVisualSearch } from '../../hooks/useVisualSearch';
 import type { RootStackParamList } from '../../navigation/types';
 
@@ -23,6 +24,7 @@ type VisualSearchPreviewScreenProps = NativeStackScreenProps<
 
 const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) => {
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
   const { error, isConfigured, isSearching, providerId, result, search } = useVisualSearch();
   const { imageUri } = route.params;
 
@@ -35,7 +37,10 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
         iconProps={{ size: 44, name: 'search' }}
         color={theme.colors.black}
       />
-      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <ScrollView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        contentContainerStyle={styles.content}
+      >
         <View style={styles.hero}>
           <Image
             source={{ uri: imageUri }}
@@ -49,7 +54,7 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
         </View>
         <AppButton
           disabled={isSearching}
-          icon={<AppIcon name='search' type='font-awesome' color='#FFFFFF' />}
+          icon={<AppIcon name='search' type='font-awesome' color={colors.textInverse} />}
           onPress={() => search(imageUri)}
           title='Run visual search'
         />
@@ -76,12 +81,11 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   content: {
-    gap: 16,
-    paddingHorizontal: 20,
-    paddingBottom: 32,
+    gap: spacing.lg,
+    paddingBottom: spacing['3xl'],
+    paddingHorizontal: spacing.xl,
   },
   hero: {
     borderRadius: radius.xl,

@@ -7,6 +7,7 @@
 import { Text } from '@rneui/themed';
 import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
 
 type ColorSelectionProps = {
@@ -22,18 +23,27 @@ type ColorSelectionProps = {
 
 const ColorSelection = (props: ColorSelectionProps) => {
   const { colors, onColorSelection, title } = props;
+  const { colors: themeColors } = useAppTheme();
 
   return (
     <>
-      <Text style={styles.text}>{title}</Text>
-      <View style={styles.range}>
+      <Text style={[styles.text, { color: themeColors.textPrimary }]}>{title}</Text>
+      <View
+        style={[
+          styles.range,
+          { backgroundColor: themeColors.surface, borderColor: themeColors.borderSubtle },
+        ]}
+      >
         <ScrollView horizontal>
           <View style={styles.horizontalContainer}>
             {colors.length &&
               colors.map((color, index) => (
                 <View
                   key={index}
-                  style={[styles.bigCircle, color.selected && styles.selectedCircle]}
+                  style={[
+                    styles.bigCircle,
+                    color.selected && [styles.selectedCircle, { borderColor: themeColors.accent }],
+                  ]}
                 >
                   <TouchableOpacity
                     onPress={() => onColorSelection(index)}

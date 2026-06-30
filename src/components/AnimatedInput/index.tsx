@@ -14,6 +14,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { radius, spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
 
 type InputTextProps = {
@@ -40,14 +42,14 @@ const AnimatedIcon = Animated.createAnimatedComponent(Feather);
 const AnimatedTextInput = (props: InputTextProps) => {
   const {
     textInputProps,
-    labelTopValue = -20,
+    labelTopValue = -spacing.xl,
     borderColor = 'transparent',
     borderWidth = 1,
-    paddingVertical = 15,
-    borderRadius = 4,
+    paddingVertical = spacing.md,
+    borderRadius = radius.md,
     placeholder = 'Email',
     value = '',
-    marginBottom = 10,
+    marginBottom = spacing.md,
     marginTop = 0,
     onChangeText,
     onBlur,
@@ -59,19 +61,35 @@ const AnimatedTextInput = (props: InputTextProps) => {
   const labelSharedValue = useSharedValue(0);
   const iconSharedValue = useSharedValue(0);
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
+  const inputStyles = styles(
+    paddingVertical,
+    borderWidth,
+    borderRadius,
+    isError ? theme.colors.error : borderColor,
+    undefined,
+    colors.surface,
+    colors.textPrimary
+  );
 
   const inputRef = useRef<TextInput>(null);
 
   const animatedLabelProps = useAnimatedStyle(() => {
     return {
-      fontSize: withTiming(interpolate(labelSharedValue.value, [0, 1], [16, 12])),
+      fontSize: withTiming(
+        interpolate(
+          labelSharedValue.value,
+          [0, 1],
+          [typography.body.fontSize, typography.caption.fontSize]
+        )
+      ),
       top: withTiming(interpolate(labelSharedValue.value, [0, 1], [0, labelTopValue])),
     };
   });
 
   const animatedIconProps = useAnimatedStyle(() => {
     return {
-      marginRight: 14,
+      marginRight: spacing.lg,
       opacity: interpolate(iconSharedValue.value, [0, 1], [0, 1]),
       transform: [
         {
@@ -92,16 +110,7 @@ const AnimatedTextInput = (props: InputTextProps) => {
 
   return (
     <View style={{ marginBottom, marginTop, ...style }}>
-      <View
-        style={
-          styles(
-            paddingVertical,
-            borderWidth,
-            borderRadius,
-            isError ? theme.colors.error : borderColor
-          ).textInput
-        }
-      >
+      <View style={inputStyles.textInput}>
         <TextInput
           {...textInputProps}
           ref={inputRef}
@@ -109,14 +118,19 @@ const AnimatedTextInput = (props: InputTextProps) => {
           onBlur={onBlur}
           value={value}
           onChangeText={onChangeText}
-          style={[styles().textInputStyle]}
+          placeholderTextColor={colors.textSecondary}
+          style={[inputStyles.textInputStyle]}
         />
         <Animated.View style={styles().textInputLabelWrapper}>
           <Pressable onPress={labelHandler}>
             <Animated.Text
               style={[
                 animatedLabelProps,
-                { color: isError ? theme.colors.error : theme.colors.grey0, paddingHorizontal: 2 },
+                {
+                  backgroundColor: colors.surface,
+                  color: isError ? theme.colors.error : colors.textSecondary,
+                  paddingHorizontal: spacing.xs,
+                },
               ]}
             >
               {placeholder}
@@ -135,7 +149,7 @@ const AnimatedTextInput = (props: InputTextProps) => {
         )}
       </View>
       {isError && (
-        <Text h3 style={{ color: theme.colors.error, textAlign: 'center', marginTop: 2 }}>
+        <Text h3 style={[styles().errorText, { color: theme.colors.error }]}>
           {errorText}
         </Text>
       )}

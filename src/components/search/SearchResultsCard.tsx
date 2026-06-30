@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { radius, shadows, spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import type { VisualSearchResult } from '../../types/visual-search';
 import ThemedSurface from '../surfaces/ThemedSurface';
 
@@ -11,6 +12,8 @@ type SearchResultsCardProps = {
 };
 
 const SearchResultsCard = ({ result }: SearchResultsCardProps) => {
+  const { colors } = useAppTheme();
+
   return (
     <ThemedSurface style={styles.card}>
       <Text style={styles.title}>Top matches</Text>
@@ -20,7 +23,7 @@ const SearchResultsCard = ({ result }: SearchResultsCardProps) => {
           <Text h4>{Math.round(prediction.confidence * 100)}%</Text>
         </View>
       ))}
-      <Text h4 style={styles.meta}>
+      <Text h4 style={[styles.meta, { color: colors.textSecondary }]}>
         Provider: {result.provider} • {result.latencyMs}ms
       </Text>
     </ThemedSurface>
@@ -47,9 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     ...typography.body,
   },
-  meta: {
-    color: '#6E6E6E',
-  },
+  meta: {},
 });
 
 export default SearchResultsCard;

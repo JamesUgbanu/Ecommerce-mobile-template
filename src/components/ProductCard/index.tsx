@@ -9,6 +9,8 @@ import { Image } from 'expo-image';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
+import { radius, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import AppIcon from '../common/AppIcon';
 import GlassSurface from '../surfaces/GlassSurface';
 import { styles } from './styles';
@@ -43,14 +45,13 @@ type ProductCardProps = {
 
 const ProductCard = (props: ProductCardProps) => {
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
   let {
     imageStyle,
     image,
     label,
     badgeStyle,
-    buttonStyle = {
-      backgroundColor: '#fff',
-    },
+    buttonStyle,
     ratingValue = 0,
     ratingCount = 5,
     totalRating = 0,
@@ -65,7 +66,7 @@ const ProductCard = (props: ProductCardProps) => {
     button = {
       iconName: 'favorite-border',
       iconType: 'material-icons',
-      iconColor: '#9B9B9B',
+      iconColor: colors.textSecondary,
       iconSize: 18,
     },
     isFavorite = false,
@@ -90,20 +91,18 @@ const ProductCard = (props: ProductCardProps) => {
             style={[styles(imageWidth).image, imageStyle, { height: verticalScale(imageHeight) }]}
           />
           <Badge
-            status='primary'
             value={label ? label : ''}
             containerStyle={{ position: 'absolute', top: 10, left: 8 }}
             badgeStyle={[
               label && {
-                backgroundColor: '#000',
+                backgroundColor: colors.textPrimary,
                 borderColor: 'transparent',
-                borderRadius: 25,
-                paddingHorizontal: 2,
+                borderRadius: radius.pill,
                 height: 24,
               },
               badgeStyle,
             ]}
-            textStyle={{ fontSize: 11, fontWeight: '700' }}
+            textStyle={typography.caption}
           />
           <GlassSurface surfaceRole='control' style={[styles().favoriteButton, buttonStyle]}>
             <AppIcon
@@ -155,12 +154,18 @@ const ProductCard = (props: ProductCardProps) => {
         </Text>
         <Text style={styles().text}>{name}</Text>
         <View style={styles().priceContainer}>
-          <Text style={[styles().price, salePrice && { textDecorationLine: 'line-through' }]}>
+          <Text
+            style={[
+              styles().price,
+              { color: colors.textSecondary },
+              salePrice && styles().strikethrough,
+            ]}
+          >
             {price}
             {currency}
           </Text>
           {salePrice && (
-            <Text style={styles().salePrice}>
+            <Text style={[styles().salePrice, { color: colors.danger }]}>
               {salePrice}
               {currency}
             </Text>

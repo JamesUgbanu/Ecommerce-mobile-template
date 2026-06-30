@@ -25,9 +25,9 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
           fontWeight: '500',
         },
         h3Style: {
+          ...designTokens.typography.caption,
           color: colors.textMuted,
           fontWeight: '400',
-          fontSize: 14,
         },
         h4Style: {
           ...designTokens.typography.caption,

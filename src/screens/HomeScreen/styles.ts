@@ -7,7 +7,7 @@ export const styles = (height?: number) =>
     container: {
       flex: 1,
       height: '100%',
-      marginBottom: 20,
+      marginBottom: spacing.xl,
     },
     imageContainer: {
       height,
@@ -15,8 +15,8 @@ export const styles = (height?: number) =>
     image: {
       flex: 1,
       justifyContent: 'flex-end',
-      paddingBottom: 40,
-      paddingHorizontal: 20,
+      paddingBottom: spacing['4xl'],
+      paddingHorizontal: spacing.xl,
     },
     heroGradient: {
       bottom: 0,
@@ -26,7 +26,6 @@ export const styles = (height?: number) =>
       top: 0,
     },
     text: {
-      color: 'white',
       ...typography.display,
       width: 190,
     },
@@ -36,18 +35,16 @@ export const styles = (height?: number) =>
       textAlign: 'center',
     },
     titleContainer: {
-      marginTop: 30,
-      marginHorizontal: 15,
+      marginHorizontal: spacing.lg,
+      marginTop: spacing['3xl'],
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
     },
-    subTitle: {
-      color: '#9B9B9B',
-    },
+    subTitle: {},
     productContainer: {
-      marginTop: 20,
-      marginHorizontal: 10,
+      marginHorizontal: spacing.md,
+      marginTop: spacing.xl,
       flexDirection: 'row',
       flexWrap: 'wrap',
     },

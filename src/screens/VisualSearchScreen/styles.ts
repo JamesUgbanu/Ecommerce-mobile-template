@@ -14,8 +14,8 @@ export const styles = (height?: number) =>
     image: {
       flex: 1,
       justifyContent: 'center',
-      paddingHorizontal: 20,
-      paddingVertical: 20,
+      paddingHorizontal: spacing.xl,
+      paddingVertical: spacing.xl,
     },
     gradient: {
       bottom: 0,
@@ -25,7 +25,6 @@ export const styles = (height?: number) =>
       top: 0,
     },
     text: {
-      color: 'white',
       ...typography.title,
       marginBottom: spacing.md,
       marginTop: spacing.xl,
@@ -35,7 +34,6 @@ export const styles = (height?: number) =>
     },
     border: {
       borderWidth: 1,
-      borderColor: '#fff',
       backgroundColor: 'transparent',
     },
   });

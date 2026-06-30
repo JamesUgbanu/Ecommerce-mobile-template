@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     minWidth: 44,
   },
   icon: {
-    fontSize: 22,
+    fontSize: typography.title.fontSize,
   },
   transparentContainer: {
     backgroundColor: 'transparent',

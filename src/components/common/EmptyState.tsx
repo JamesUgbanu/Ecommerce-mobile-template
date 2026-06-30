@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     ...typography.title,
   },
   description: {
-    color: '#6E6E6E',
     textAlign: 'center',
   },
 });

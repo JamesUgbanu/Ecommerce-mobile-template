@@ -4,9 +4,11 @@
  * Licensed under the MIT License.
  */
 
-import { ListItem, Text, useTheme } from '@rneui/themed';
+import { ListItem, Text } from '@rneui/themed';
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 
 type SortByProps = {
   sortItems: { [key: string]: any }[];
@@ -16,27 +18,27 @@ type SortByProps = {
 
 const SortBy = (props: SortByProps) => {
   const { sortItems, setCurrentSort, currentSortIndex } = props;
-  const { theme } = useTheme();
+  const { colors } = useAppTheme();
 
   return (
-    <View style={{ marginVertical: 10 }}>
-      <Text style={{ fontSize: 18, fontWeight: '500', textAlign: 'center' }}>Sort by</Text>
-      <View style={{ marginTop: 20 }}>
+    <View style={styles.container}>
+      <Text style={[styles.title, { color: colors.textPrimary }]}>Sort by</Text>
+      <View style={styles.list}>
         {sortItems.length &&
           sortItems.map((sortItem, index) => (
             <ListItem
               key={index}
               containerStyle={[
-                { backgroundColor: theme.colors.white },
-                currentSortIndex === index && { backgroundColor: theme.colors.error },
+                { backgroundColor: colors.surface },
+                currentSortIndex === index && { backgroundColor: colors.accent },
               ]}
               onPress={() => setCurrentSort(index)}
             >
               <ListItem.Content>
                 <ListItem.Title
                   style={[
-                    { color: theme.colors.black },
-                    currentSortIndex === index && { color: theme.colors.white },
+                    { color: colors.textPrimary },
+                    currentSortIndex === index && { color: colors.textInverse },
                   ]}
                 >
                   {sortItem.name}
@@ -48,5 +50,18 @@ const SortBy = (props: SortByProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: spacing.md,
+  },
+  list: {
+    marginTop: spacing.xl,
+  },
+  title: {
+    ...typography.bodyStrong,
+    textAlign: 'center',
+  },
+});
 
 export default SortBy;

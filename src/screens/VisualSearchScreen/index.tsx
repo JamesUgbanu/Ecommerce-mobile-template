@@ -9,12 +9,14 @@ import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import AppButton from '../../components/common/AppButton';
 import ProviderBadge from '../../components/search/ProviderBadge';
 import { visualSearchBanner } from '../../data';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { visualSearchConfig } from '../../services/ai/config';
 import { styles } from './styles';
 
 const VisualSearch = ({ navigation }) => {
   const { t } = useTranslation();
   const screenHeight = Dimensions.get('window').height;
+  const { colors } = useAppTheme();
 
   const openSearchPreview = async (imageUri: string) => {
     const manipResponse = await ImageManipulator.manipulateAsync(
@@ -82,9 +84,14 @@ const VisualSearch = ({ navigation }) => {
           resizeMode='cover'
           style={styles().image}
         >
-          <LinearGradient colors={['transparent', 'rgba(0,0,0,0.72)']} style={styles().gradient} />
+          <LinearGradient
+            colors={['transparent', colors.overlayStrong]}
+            style={styles().gradient}
+          />
           <ProviderBadge providerId={visualSearchConfig.provider} />
-          <Text style={styles().text}>{visualSearchBanner.text}</Text>
+          <Text style={[styles().text, { color: colors.textInverse }]}>
+            {visualSearchBanner.text}
+          </Text>
           <AppButton
             title={t('common:takePhoto')}
             onPress={captureImageAsync}

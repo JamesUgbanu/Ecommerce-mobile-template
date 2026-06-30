@@ -2,6 +2,8 @@ import { Text } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { radius, spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import type { VisualSearchProviderId } from '../../types/visual-search';
 
 type ProviderBadgeProps = {
@@ -15,9 +17,16 @@ const labels: Record<VisualSearchProviderId, string> = {
 };
 
 const ProviderBadge = ({ providerId }: ProviderBadgeProps) => {
+  const { colors } = useAppTheme();
+
   return (
-    <View style={styles.badge}>
-      <Text h4 style={styles.text}>
+    <View
+      style={[
+        styles.badge,
+        { backgroundColor: colors.surfaceMuted, borderColor: colors.borderSubtle },
+      ]}
+    >
+      <Text h4 style={[styles.text, { color: colors.textMuted }]}>
         {labels[providerId]}
       </Text>
     </View>
@@ -27,14 +36,13 @@ const ProviderBadge = ({ providerId }: ProviderBadgeProps) => {
 const styles = StyleSheet.create({
   badge: {
     alignSelf: 'flex-start',
-    borderRadius: 999,
-    backgroundColor: '#F6F6F6',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderRadius: radius.pill,
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
   },
   text: {
-    color: '#555555',
-    fontWeight: '600',
+    ...typography.caption,
   },
 });
 

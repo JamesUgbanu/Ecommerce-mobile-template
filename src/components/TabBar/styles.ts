@@ -25,7 +25,7 @@ export const styles = (height?: number) =>
       minWidth: 56,
     },
     navText: {
-      marginTop: 3,
+      marginTop: spacing.xs,
       alignSelf: 'center',
       ...typography.caption,
     },

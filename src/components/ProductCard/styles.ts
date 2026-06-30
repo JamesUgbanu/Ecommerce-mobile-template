@@ -39,7 +39,7 @@ export const styles = (width?) =>
       alignContent: 'center',
     },
     text: {
-      marginTop: 2,
+      marginTop: spacing.xxs,
       ...typography.bodyStrong,
     },
     priceContainer: {
@@ -47,10 +47,12 @@ export const styles = (width?) =>
     },
     price: {
       fontSize: typography.caption.fontSize,
-      color: '#9B9B9B',
-      marginRight: 3,
+      marginRight: spacing.xs,
     },
     salePrice: {
-      color: '#DB3022',
+      ...typography.caption,
+    },
+    strikethrough: {
+      textDecorationLine: 'line-through',
     },
   });

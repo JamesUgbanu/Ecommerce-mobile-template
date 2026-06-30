@@ -1,41 +1,29 @@
 import { StyleSheet } from 'react-native';
+import { spacing } from '../../design-system';
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: spacing.md,
   },
   form: {
-    paddingHorizontal: 15,
-    marginTop: 50,
-  },
-  inputContainer: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 4,
-    height: 64,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    marginTop: spacing['3xl'],
+    paddingHorizontal: spacing.xl,
   },
   linkContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginVertical: 5,
+    marginVertical: spacing.sm,
   },
   buttonContainer: {
-    marginTop: 30,
+    marginTop: spacing['2xl'],
   },
   socialContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 100,
+    justifyContent: 'center',
+    marginTop: spacing['4xl'],
   },
   heading: {
-    marginTop: 10,
-    marginLeft: 15,
+    marginLeft: spacing.xl,
+    marginTop: spacing.md,
   },
 });

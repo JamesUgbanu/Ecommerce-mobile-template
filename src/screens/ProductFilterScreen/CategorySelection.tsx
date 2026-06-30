@@ -7,6 +7,7 @@
 import { Text } from '@rneui/themed';
 import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
 
 type CategorySelectionProps = {
@@ -18,11 +19,17 @@ type CategorySelectionProps = {
 
 const CategorySelection = (props: CategorySelectionProps) => {
   const { categories, onCategorySelection, title, currentCategory } = props;
+  const { colors } = useAppTheme();
 
   return (
     <>
-      <Text style={styles.text}>{title}</Text>
-      <View style={styles.range}>
+      <Text style={[styles.text, { color: colors.textPrimary }]}>{title}</Text>
+      <View
+        style={[
+          styles.range,
+          { backgroundColor: colors.surface, borderColor: colors.borderSubtle },
+        ]}
+      >
         <View style={styles.wrapContainer}>
           {categories.length &&
             categories.map((category, index) => (
@@ -31,10 +38,18 @@ const CategorySelection = (props: CategorySelectionProps) => {
                 key={index}
                 style={[
                   styles.rectangle,
-                  currentCategory === index ? styles.selectedBox : styles.unSelectedBox,
+                  currentCategory === index
+                    ? { backgroundColor: colors.accent }
+                    : [styles.unSelectedBox, { borderColor: colors.borderStrong }],
                 ]}
               >
-                <Text style={currentCategory === index && { color: '#fff' }}>{category}</Text>
+                <Text
+                  style={{
+                    color: currentCategory === index ? colors.textInverse : colors.textPrimary,
+                  }}
+                >
+                  {category}
+                </Text>
               </TouchableOpacity>
             ))}
         </View>

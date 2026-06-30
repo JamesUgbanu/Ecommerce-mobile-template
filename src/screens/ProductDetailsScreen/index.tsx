@@ -1,5 +1,5 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Text, useTheme } from '@rneui/themed';
+import { Text } from '@rneui/themed';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
@@ -15,7 +15,6 @@ import type { RootStackParamList } from '../../navigation/types';
 type ProductDetailsScreenProps = NativeStackScreenProps<RootStackParamList, 'ProductDetails'>;
 
 const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
-  const { theme } = useTheme();
   const { colors } = useAppTheme();
   const { addToCart } = useCommerce();
   const { product } = route.params;
@@ -25,31 +24,38 @@ const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
       <View style={styles.hero}>
         <Image source={product.image} style={styles.image} contentFit='cover' transition={180} />
         <LinearGradient
-          colors={['transparent', 'rgba(0,0,0,0.56)']}
+          colors={['transparent', colors.overlayMedium]}
           style={StyleSheet.absoluteFill}
         />
         <GlassSurface surfaceRole='overlay' style={styles.heroBadge}>
-          <Text style={styles.heroBadgeText}>{product.category}</Text>
+          <Text style={[styles.heroBadgeText, { color: colors.textInverse }]}>
+            {product.category}
+          </Text>
         </GlassSurface>
       </View>
       <View style={styles.content}>
-        <Text h4 style={styles.brand}>
+        <Text h4 style={[styles.brand, { color: colors.textSecondary }]}>
           {product.category}
         </Text>
         <Text h1>{product.name}</Text>
         <View style={styles.priceRow}>
-          <Text style={[styles.price, product.salePrice ? styles.strikethrough : undefined]}>
+          <Text
+            style={[
+              styles.price,
+              product.salePrice ? [styles.strikethrough, { color: colors.textSecondary }] : null,
+            ]}
+          >
             {product.currency}
             {product.price}
           </Text>
           {product.salePrice ? (
-            <Text style={[styles.price, { color: theme.colors.error }]}>
+            <Text style={[styles.price, { color: colors.danger }]}>
               {product.currency}
               {product.salePrice}
             </Text>
           ) : null}
         </View>
-        <Text h3 style={styles.description}>
+        <Text h3 style={[styles.description, { color: colors.textMuted }]}>
           {product.description ??
             'This starter template keeps the product detail experience intentionally lightweight so it is easy to replace with real catalog data later.'}
         </Text>
@@ -78,9 +84,7 @@ const styles = StyleSheet.create({
     gap: spacing.lg,
     padding: spacing.xl,
   },
-  brand: {
-    color: '#9B9B9B',
-  },
+  brand: {},
   heroBadge: {
     borderRadius: radius.pill,
     bottom: spacing.xl,
@@ -90,7 +94,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   heroBadgeText: {
-    color: '#FFFFFF',
     ...typography.caption,
   },
   priceRow: {
@@ -101,15 +104,13 @@ const styles = StyleSheet.create({
     ...typography.price,
   },
   strikethrough: {
-    color: '#9B9B9B',
     textDecorationLine: 'line-through',
   },
   description: {
-    color: '#444444',
     lineHeight: 22,
   },
   button: {
-    marginTop: 8,
+    marginTop: spacing.sm,
     ...shadows.md,
   },
 });
