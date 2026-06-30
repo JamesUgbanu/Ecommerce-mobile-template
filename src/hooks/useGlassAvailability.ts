@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { Platform } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { AccessibilityInfo, Platform } from 'react-native';
 
 let glassEffectApiAvailable = false;
 let liquidGlassAvailable = false;
@@ -19,16 +19,38 @@ try {
   liquidGlassAvailable = false;
 }
 
-export const getGlassAvailability = () => {
+export const getGlassAvailability = (isReduceTransparencyEnabled = false) => {
   const supportsNativeGlass =
-    Platform.OS === 'ios' && glassEffectApiAvailable && liquidGlassAvailable;
+    process.env.EXPO_PUBLIC_LIQUID_GLASS_ENABLED !== 'false' &&
+    !isReduceTransparencyEnabled &&
+    Platform.OS === 'ios' &&
+    glassEffectApiAvailable &&
+    liquidGlassAvailable;
 
   return {
     supportsNativeGlass,
     supportsBlurFallback:
-      Platform.OS === 'ios' || Platform.OS === 'android' || Platform.OS === 'web',
+      !isReduceTransparencyEnabled &&
+      (Platform.OS === 'ios' || Platform.OS === 'android' || Platform.OS === 'web'),
     platform: Platform.OS,
   };
 };
 
-export const useGlassAvailability = () => useMemo(getGlassAvailability, []);
+export const useGlassAvailability = () => {
+  const [isReduceTransparencyEnabled, setIsReduceTransparencyEnabled] = useState(false);
+
+  useEffect(() => {
+    AccessibilityInfo.isReduceTransparencyEnabled().then(setIsReduceTransparencyEnabled);
+    const subscription = AccessibilityInfo.addEventListener(
+      'reduceTransparencyChanged',
+      setIsReduceTransparencyEnabled
+    );
+
+    return () => subscription.remove();
+  }, []);
+
+  return useMemo(
+    () => getGlassAvailability(isReduceTransparencyEnabled),
+    [isReduceTransparencyEnabled]
+  );
+};

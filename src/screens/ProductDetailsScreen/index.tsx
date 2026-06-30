@@ -7,6 +7,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import AppButton from '../../components/common/AppButton';
 import GlassSurface from '../../components/surfaces/GlassSurface';
+import { useCommerce } from '../../context/CommerceContext';
 import { radius, shadows, spacing, typography } from '../../design-system';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import type { RootStackParamList } from '../../navigation/types';
@@ -16,6 +17,7 @@ type ProductDetailsScreenProps = NativeStackScreenProps<RootStackParamList, 'Pro
 const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
   const { theme } = useTheme();
   const { colors } = useAppTheme();
+  const { addToCart } = useCommerce();
   const { product } = route.params;
 
   return (
@@ -51,7 +53,11 @@ const ProductDetailsScreen = ({ route }: ProductDetailsScreenProps) => {
           {product.description ??
             'This starter template keeps the product detail experience intentionally lightweight so it is easy to replace with real catalog data later.'}
         </Text>
-        <AppButton title='Add to bag' onPress={() => {}} containerStyle={styles.button} />
+        <AppButton
+          title='Add to bag'
+          onPress={() => addToCart(product)}
+          containerStyle={styles.button}
+        />
       </View>
     </ScrollView>
   );

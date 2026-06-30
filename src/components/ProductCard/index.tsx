@@ -36,6 +36,8 @@ type ProductCardProps = {
     iconColor?: string;
     iconSize?: number;
   };
+  isFavorite?: boolean;
+  onFavoritePress?: () => void;
   onPress?: () => void;
 };
 
@@ -66,6 +68,8 @@ const ProductCard = (props: ProductCardProps) => {
       iconColor: '#9B9B9B',
       iconSize: 18,
     },
+    isFavorite = false,
+    onFavoritePress,
     onPress,
   } = props;
 
@@ -74,7 +78,11 @@ const ProductCard = (props: ProductCardProps) => {
   return (
     <View style={[styles(imageWidth).container]}>
       <View style={styles(imageWidth).imageContainer}>
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity
+          accessibilityLabel={`Open ${name} details`}
+          accessibilityRole='button'
+          onPress={onPress}
+        >
           <Image
             source={image}
             contentFit='cover'
@@ -101,9 +109,12 @@ const ProductCard = (props: ProductCardProps) => {
             <AppIcon
               name={button.iconName}
               type={button.iconType}
-              color={button.iconColor}
+              color={isFavorite ? theme.colors.error : button.iconColor}
               size={button.iconSize}
-              onPress={() => console.log('hello')}
+              accessibilityLabel={
+                isFavorite ? `Remove ${name} from favorites` : `Save ${name} to favorites`
+              }
+              onPress={onFavoritePress}
             />
           </GlassSurface>
         </TouchableOpacity>

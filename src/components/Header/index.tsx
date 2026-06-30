@@ -58,6 +58,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
             <View style={styles.side}>
               {isShowBackIcon && (
                 <TouchableOpacity
+                  accessibilityLabel='Go back'
                   accessibilityRole='button'
                   onPress={goBack}
                   style={styles.iconButton}
@@ -76,6 +77,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
             <View style={styles.side}>
               {isShowSearchIcon && (
                 <TouchableOpacity
+                  accessibilityLabel='Open visual search'
                   accessibilityRole='button'
                   onPress={handleSearch}
                   style={styles.iconButton}

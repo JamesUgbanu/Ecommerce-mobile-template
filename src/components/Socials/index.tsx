@@ -23,11 +23,19 @@ const Socials = (props: SocialsProps) => {
     <View>
       <Text>{loginOrRegisterText}</Text>
       <View style={styles.socials}>
-        <TouchableOpacity style={styles.socialButton}>
+        <TouchableOpacity
+          accessibilityLabel='Continue with Google'
+          accessibilityRole='button'
+          style={styles.socialButton}
+        >
           <SvgIcon name='google' width={width} height={height} />
         </TouchableOpacity>
         <View style={{ marginHorizontal: spacing }} />
-        <TouchableOpacity style={styles.socialButton}>
+        <TouchableOpacity
+          accessibilityLabel='Continue with Facebook'
+          accessibilityRole='button'
+          style={styles.socialButton}
+        >
           <SvgIcon name='facebook' width={width} height={height} />
         </TouchableOpacity>
       </View>

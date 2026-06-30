@@ -13,6 +13,7 @@ import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import ProductCard from '../../components/ProductCard';
 import AppButton from '../../components/common/AppButton';
 import SectionHeader from '../../components/common/SectionHeader';
+import { useCommerce } from '../../context/CommerceContext';
 import { banner, products } from '../../data';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
@@ -21,6 +22,7 @@ const Home = ({ navigation }) => {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { colors } = useAppTheme();
+  const { isFavorite, toggleFavorite } = useCommerce();
   const screenHeight = Dimensions.get('window').height;
   const sixtyFivePercentOfScreenHeight = screenHeight * 0.67;
 
@@ -36,7 +38,7 @@ const Home = ({ navigation }) => {
             <Text style={styles().text}>{banner.text}</Text>
             <AppButton
               title={banner.buttonText}
-              onPress={() => {}}
+              onPress={() => navigation.navigate('Shop')}
               variant='glass'
               containerStyle={styles().button}
             />
@@ -62,7 +64,9 @@ const Home = ({ navigation }) => {
                   salePrice={product.salePrice}
                   image={product.image}
                   buttonStyle={{ backgroundColor: `${theme.colors.primary}` }}
+                  isFavorite={isFavorite(product.id)}
                   label='NEW'
+                  onFavoritePress={() => toggleFavorite(product)}
                   onPress={() => navigation.navigate('ProductDetails', { product })}
                 />
               ))}

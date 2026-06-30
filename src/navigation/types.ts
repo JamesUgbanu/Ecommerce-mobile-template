@@ -13,8 +13,10 @@ export type MainTabParamList = {
 export type RootStackParamList = {
   App: NavigatorScreenParams<MainTabParamList>;
   Category: { category: string };
+  Checkout: undefined;
   ProductDetails: { product: Product };
   ProductFilter: undefined;
+  Settings: undefined;
   VisualSearch: undefined;
   VisualSearchPreview: { imageUri: string };
 };

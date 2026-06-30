@@ -5,14 +5,16 @@ import { ThemeProvider } from '@rneui/themed';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { CommerceProvider, useCommerce } from '../context/CommerceContext';
 import '../localization/i18n';
 import StackNavigator from '../navigation/StackNavigator';
 import TabNavigator from '../navigation/TabNavigator';
-import { appTheme } from './theme';
+import { useAppThemeFactory } from './theme';
 
-const isAuthenticated = true;
+const AppContent = () => {
+  const { isAuthenticated } = useCommerce();
+  const appTheme = useAppThemeFactory();
 
-const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -23,5 +25,11 @@ const App = () => {
     </SafeAreaProvider>
   );
 };
+
+const App = () => (
+  <CommerceProvider>
+    <AppContent />
+  </CommerceProvider>
+);
 
 export default App;

@@ -8,7 +8,7 @@ import { Button, Text } from '@rneui/themed';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import * as yup from 'yup';
 import AnimatedTextInput from '../../components/AnimatedInput';
 import AppContainer from '../../components/HOC/AppContainer';
@@ -35,7 +35,12 @@ const ForgotPassword = () => {
           <Formik
             initialValues={{ email: '' }}
             validationSchema={validationSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+              Alert.alert(
+                'Password reset',
+                `A reset link would be sent to ${values.email} once a backend is connected.`
+              );
+            }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
               <>

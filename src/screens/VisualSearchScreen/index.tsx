@@ -29,7 +29,7 @@ const VisualSearch = ({ navigation }) => {
   const selectImageAsync = async () => {
     try {
       const response = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
       });

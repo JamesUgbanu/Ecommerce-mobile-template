@@ -47,6 +47,9 @@ const AppButton = ({
   const pressable = (
     <Pressable
       {...pressableProps}
+      accessibilityLabel={pressableProps.accessibilityLabel ?? title}
+      accessibilityRole={pressableProps.accessibilityRole ?? 'button'}
+      accessibilityState={{ disabled, ...pressableProps.accessibilityState }}
       disabled={disabled}
       onPress={handlePress}
       style={({ pressed }) => [

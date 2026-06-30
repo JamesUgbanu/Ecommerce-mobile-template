@@ -11,6 +11,7 @@ import { scale } from 'react-native-size-matters';
 import AppContainer from '../../components/HOC/AppContainer';
 import AppButton from '../../components/common/AppButton';
 import GlassSurface from '../../components/surfaces/GlassSurface';
+import { useCommerce } from '../../context/CommerceContext';
 import { colors, productCategories, sizes } from '../../data';
 import CategorySelection from './CategorySelection';
 import ColorSelection from './ColorSelection';
@@ -20,11 +21,14 @@ import { styles } from './styles';
 
 const ProductFilter = ({ navigation }) => {
   const { t } = useTranslation();
-  const [low, setLow] = useState<number>(78);
-  const [high, setHigh] = useState<number>(143);
+  const { applyFilters, filters, resetFilters } = useCommerce();
+  const [low, setLow] = useState<number>(filters.low);
+  const [high, setHigh] = useState<number>(filters.high);
   const [colorList, setColorList] = useState<any>(colors);
   const [sizeList, setSizeList] = useState<any>(sizes);
-  const [currentCategory, setCurrentCategory] = useState<number>(0);
+  const [currentCategory, setCurrentCategory] = useState<number>(
+    Math.max(productCategories.indexOf(filters.category), 0)
+  );
 
   const handleValueChange = useCallback((lowValue: number, highValue: number) => {
     setLow(lowValue);
@@ -79,11 +83,27 @@ const ProductFilter = ({ navigation }) => {
         <View style={[styles.horizontalContainer, { justifyContent: 'space-between' }]}>
           <AppButton
             title={t('common:discard')}
-            onPress={() => navigation.goBack()}
+            onPress={() => {
+              resetFilters();
+              navigation.goBack();
+            }}
             style={{ width: scale(155) }}
             variant='outline'
           />
-          <AppButton title={t('common:apply')} onPress={() => {}} style={{ width: scale(155) }} />
+          <AppButton
+            title={t('common:apply')}
+            onPress={() => {
+              applyFilters({
+                category: productCategories[currentCategory],
+                colors: colorList.filter((item) => item.selected).map((item) => item.color),
+                high,
+                low,
+                sizes: sizeList.filter((item) => item.selected).map((item) => item.size),
+              });
+              navigation.goBack();
+            }}
+            style={{ width: scale(155) }}
+          />
         </View>
       </GlassSurface>
     </>

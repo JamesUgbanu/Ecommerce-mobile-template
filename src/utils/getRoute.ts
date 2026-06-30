@@ -17,6 +17,10 @@ export const getRouteName = (route: any) => {
       return t('common:shop');
     case 'ProductFilter':
       return t('common:filters');
+    case 'Checkout':
+      return 'Checkout';
+    case 'Settings':
+      return 'Settings';
     case 'VisualSearch':
       return t('common:visualSearch');
     case 'VisualSearchPreview':
@@ -27,7 +31,7 @@ export const getRouteName = (route: any) => {
       return t('common:bag');
     case 'Favorites':
       return t('common:favorites');
-    case 'Profile':
+    case 'ProfileStack':
       return 'My Profile';
     default:
       return route?.params?.category ?? '';
@@ -46,6 +50,10 @@ export const getHeaderTitle = (route) => {
       return t('common:categories');
     case t('common:filters'):
       return t('common:filters');
+    case 'Checkout':
+      return 'Checkout';
+    case 'Settings':
+      return 'Settings';
     case t('common:visualSearch'):
       return t('common:visualSearch');
     case t('common:previewSearch'):
@@ -56,7 +64,7 @@ export const getHeaderTitle = (route) => {
       return t('common:bag');
     case t('common:favorites'):
       return t('common:favorites');
-    case 'Profile':
+    case 'My Profile':
       return 'My Profile';
     default:
       return route?.params?.category ?? '';

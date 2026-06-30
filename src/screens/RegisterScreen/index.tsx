@@ -16,11 +16,13 @@ import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 
 import Socials from '../../components/Socials';
 import AppIcon from '../../components/common/AppIcon';
+import { useCommerce } from '../../context/CommerceContext';
 import { styles } from './styles';
 
 const Register = ({ navigation }) => {
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const { register } = useCommerce();
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -47,7 +49,7 @@ const Register = ({ navigation }) => {
           <Formik
             initialValues={{ name: '', email: '', password: '' }}
             validationSchema={validationSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => register(values.email, values.name)}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
               <>

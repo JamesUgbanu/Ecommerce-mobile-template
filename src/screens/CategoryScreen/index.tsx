@@ -15,15 +15,28 @@ import AppContainer from '../../components/HOC/AppContainer';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import ProductCard from '../../components/ProductCard';
 import AppIcon from '../../components/common/AppIcon';
+import EmptyState from '../../components/common/EmptyState';
+import { type SortId, useCommerce } from '../../context/CommerceContext';
 import { products, sortItems, tags } from '../../data';
 import SortBy from './SortBy';
 import { styles } from './styles';
 
 const Category = ({ route, navigation }) => {
   const { theme } = useTheme();
+  const { filteredProducts, isFavorite, setSortId, sortId, toggleFavorite } = useCommerce();
   const actionSheetRef = useRef<ActionSheetRef>(null);
-  const [currentSortIndex, setCurrentSort] = useState(3);
+  const [isGridView, setIsGridView] = useState(true);
+  const currentSortIndex = Math.max(
+    sortItems.findIndex((sortItem) => sortItem.id === sortId),
+    0
+  );
   const category: string = route.params.category;
+  const visibleProducts = filteredProducts;
+
+  const handleSort = (index: number) => {
+    setSortId(sortItems[index].id as SortId);
+    actionSheetRef.current?.hide();
+  };
 
   return (
     <AppContainer>
@@ -42,6 +55,8 @@ const Category = ({ route, navigation }) => {
           </ScrollView>
           <View style={styles.filterContainer}>
             <TouchableOpacity
+              accessibilityLabel='Open filters'
+              accessibilityRole='button'
               style={styles.row}
               onPress={() => navigation.navigate('ProductFilter')}
             >
@@ -53,7 +68,12 @@ const Category = ({ route, navigation }) => {
               />
               <Text style={styles.filterText}>{'Filters'}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.row} onPress={() => actionSheetRef.current?.show()}>
+            <TouchableOpacity
+              accessibilityLabel='Open sort options'
+              accessibilityRole='button'
+              style={styles.row}
+              onPress={() => actionSheetRef.current?.show()}
+            >
               <AppIcon
                 type='material-icons'
                 size={25}
@@ -62,7 +82,12 @@ const Category = ({ route, navigation }) => {
               />
               <Text style={styles.filterText}>{sortItems[currentSortIndex].name}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.row}>
+            <TouchableOpacity
+              accessibilityLabel={isGridView ? 'Switch to list view' : 'Switch to grid view'}
+              accessibilityRole='button'
+              style={styles.row}
+              onPress={() => setIsGridView((value) => !value)}
+            >
               <AppIcon
                 type='material-icons'
                 size={25}
@@ -73,8 +98,8 @@ const Category = ({ route, navigation }) => {
           </View>
         </View>
         <View style={styles.productContainer}>
-          {products &&
-            products.map((product, index) => (
+          {visibleProducts.length ? (
+            visibleProducts.map((product, index) => (
               <ProductCard
                 key={index}
                 category={product.category}
@@ -85,19 +110,28 @@ const Category = ({ route, navigation }) => {
                 salePrice={product.salePrice}
                 image={product.image}
                 buttonStyle={{ backgroundColor: `${theme.colors.primary}` }}
-                imageWidth={155}
+                imageWidth={isGridView ? 155 : 330}
                 imageHeight={160}
+                isFavorite={isFavorite(product.id)}
                 label={product.discount}
                 badgeStyle={product.discount && { backgroundColor: theme.colors.error }}
+                onFavoritePress={() => toggleFavorite(product)}
                 onPress={() => navigation.navigate('ProductDetails', { product })}
               />
-            ))}
+            ))
+          ) : (
+            <EmptyState
+              title='No matching products'
+              description='Adjust your filters or discard them to see the full catalog again.'
+              iconName='filter-off-outline'
+            />
+          )}
         </View>
       </View>
       <Dialog actionSheetRef={actionSheetRef}>
         <SortBy
           sortItems={sortItems}
-          setCurrentSort={setCurrentSort}
+          setCurrentSort={handleSort}
           currentSortIndex={currentSortIndex}
         />
       </Dialog>

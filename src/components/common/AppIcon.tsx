@@ -25,6 +25,7 @@ type SupportedIconType =
   | 'material-icons';
 
 export type AppIconProps = {
+  accessibilityLabel?: string;
   name: string;
   type?: SupportedIconType | string;
   color?: string;
@@ -48,6 +49,7 @@ const iconRegistry = {
 } as const;
 
 const AppIcon = ({
+  accessibilityLabel,
   color = '#222222',
   containerStyle,
   disabled = false,
@@ -81,7 +83,13 @@ const AppIcon = ({
   }
 
   return (
-    <TouchableOpacity disabled={disabled} onPress={onPress}>
+    <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole='button'
+      accessibilityState={{ disabled }}
+      disabled={disabled}
+      onPress={onPress}
+    >
       {content}
     </TouchableOpacity>
   );
