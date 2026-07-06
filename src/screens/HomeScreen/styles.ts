@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native';
 
+import { spacing, typography } from '../../design-system';
+
 export const styles = (height?: number) =>
   StyleSheet.create({
     container: {
       flex: 1,
       height: '100%',
-      marginBottom: 20,
+      marginBottom: spacing.xl,
     },
     imageContainer: {
       height,
@@ -13,34 +15,36 @@ export const styles = (height?: number) =>
     image: {
       flex: 1,
       justifyContent: 'flex-end',
-      paddingBottom: 40,
-      paddingHorizontal: 20,
+      paddingBottom: spacing['4xl'],
+      paddingHorizontal: spacing.xl,
+    },
+    heroGradient: {
+      bottom: 0,
+      left: 0,
+      position: 'absolute',
+      right: 0,
+      top: 0,
     },
     text: {
-      color: 'white',
-      fontSize: 48,
-      lineHeight: 48,
-      fontWeight: '900',
+      ...typography.display,
       width: 190,
     },
     button: {
       width: 160,
-      marginTop: 20,
+      marginTop: spacing.xl,
       textAlign: 'center',
     },
     titleContainer: {
-      marginTop: 30,
-      marginHorizontal: 15,
+      marginHorizontal: spacing.lg,
+      marginTop: spacing['3xl'],
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
     },
-    subTitle: {
-      color: '#9B9B9B',
-    },
+    subTitle: {},
     productContainer: {
-      marginTop: 20,
-      marginHorizontal: 10,
+      marginHorizontal: spacing.md,
+      marginTop: spacing.xl,
       flexDirection: 'row',
       flexWrap: 'wrap',
     },

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { spacing, typography } from '../../design-system';
+
 export const styles = (height?: number) =>
   StyleSheet.create({
     container: {
@@ -12,23 +14,26 @@ export const styles = (height?: number) =>
     image: {
       flex: 1,
       justifyContent: 'center',
-      paddingHorizontal: 20,
-      paddingVertical: 20,
+      paddingHorizontal: spacing.xl,
+      paddingVertical: spacing.xl,
+    },
+    gradient: {
+      bottom: 0,
+      left: 0,
+      position: 'absolute',
+      right: 0,
+      top: 0,
     },
     text: {
-      color: 'white',
-      fontSize: 31,
-      lineHeight: 38,
-      fontWeight: '500',
-      marginBottom: 10,
+      ...typography.title,
+      marginBottom: spacing.md,
+      marginTop: spacing.xl,
     },
     button: {
-      marginTop: 20,
-      borderRadius: 25,
+      marginTop: spacing.md,
     },
     border: {
       borderWidth: 1,
-      borderColor: '#fff',
       backgroundColor: 'transparent',
     },
   });

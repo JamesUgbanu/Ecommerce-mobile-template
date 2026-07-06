@@ -1,30 +1,24 @@
 import { StyleSheet } from 'react-native';
+import { radius, shadows, spacing, typography } from '../../design-system';
 
-export const styles = (white?, black?) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      borderRadius: 12,
-      elevation: 2,
-      shadowColor: '#777',
-      shadowOffset: {
-        height: 1,
-        width: 0,
-      },
-      margin: 10,
-      backgroundColor: white,
-      alignItems: 'center',
-      flexDirection: 'row',
-    },
-    image: {
-      borderBottomRightRadius: 5,
-      borderTopRightRadius: 5,
-    },
-    text: {
-      flex: 2,
-      fontSize: 18,
-      fontWeight: '500',
-      marginLeft: 20,
-      color: black,
-    },
-  });
+export const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    borderRadius: radius.lg,
+    borderWidth: StyleSheet.hairlineWidth,
+    flex: 1,
+    flexDirection: 'row',
+    margin: spacing.md,
+    overflow: 'hidden',
+    ...shadows.sm,
+  },
+  image: {
+    borderBottomRightRadius: radius.sm,
+    borderTopRightRadius: radius.sm,
+  },
+  text: {
+    flex: 2,
+    marginLeft: spacing.xl,
+    ...typography.bodyStrong,
+  },
+});

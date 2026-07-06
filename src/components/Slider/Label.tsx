@@ -1,10 +1,14 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { radius, spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 
 const Label = ({ text, ...restProps }) => {
+  const { colors } = useAppTheme();
+
   return (
-    <View style={styles.root} {...restProps}>
-      <Text style={styles.text}>{text}</Text>
+    <View style={[styles.root, { backgroundColor: colors.accent }]} {...restProps}>
+      <Text style={[styles.text, { color: colors.textInverse }]}>{text}</Text>
     </View>
   );
 };
@@ -12,13 +16,11 @@ const Label = ({ text, ...restProps }) => {
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
-    padding: 8,
-    backgroundColor: '#DB3022',
-    borderRadius: 4,
+    padding: spacing.sm,
+    borderRadius: radius.xs,
   },
   text: {
-    fontSize: 14,
-    color: '#fff',
+    ...typography.button,
   },
 });
 

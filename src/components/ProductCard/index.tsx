@@ -5,10 +5,14 @@
  */
 
 import { Badge, Text, useTheme } from '@rneui/themed';
+import { Image } from 'expo-image';
 import React from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
+import { radius, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import AppIcon from '../common/AppIcon';
+import GlassSurface from '../surfaces/GlassSurface';
 import { styles } from './styles';
 
 type ProductCardProps = {
@@ -34,19 +38,20 @@ type ProductCardProps = {
     iconColor?: string;
     iconSize?: number;
   };
+  isFavorite?: boolean;
+  onFavoritePress?: () => void;
   onPress?: () => void;
 };
 
 const ProductCard = (props: ProductCardProps) => {
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
   let {
     imageStyle,
     image,
     label,
     badgeStyle,
-    buttonStyle = {
-      backgroundColor: '#fff',
-    },
+    buttonStyle,
     ratingValue = 0,
     ratingCount = 5,
     totalRating = 0,
@@ -61,9 +66,11 @@ const ProductCard = (props: ProductCardProps) => {
     button = {
       iconName: 'favorite-border',
       iconType: 'material-icons',
-      iconColor: '#9B9B9B',
+      iconColor: colors.textSecondary,
       iconSize: 18,
     },
+    isFavorite = false,
+    onFavoritePress,
     onPress,
   } = props;
 
@@ -72,40 +79,43 @@ const ProductCard = (props: ProductCardProps) => {
   return (
     <View style={[styles(imageWidth).container]}>
       <View style={styles(imageWidth).imageContainer}>
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity
+          accessibilityLabel={`Open ${name} details`}
+          accessibilityRole='button'
+          onPress={onPress}
+        >
           <Image
             source={image}
-            resizeMode='cover'
+            contentFit='cover'
+            transition={180}
             style={[styles(imageWidth).image, imageStyle, { height: verticalScale(imageHeight) }]}
           />
           <Badge
-            status='primary'
             value={label ? label : ''}
             containerStyle={{ position: 'absolute', top: 10, left: 8 }}
             badgeStyle={[
               label && {
-                backgroundColor: '#000',
+                backgroundColor: colors.textPrimary,
                 borderColor: 'transparent',
-                borderRadius: 25,
-                paddingHorizontal: 2,
+                borderRadius: radius.pill,
                 height: 24,
               },
               badgeStyle,
             ]}
-            textStyle={{ fontSize: 11, fontWeight: '700' }}
+            textStyle={typography.caption}
           />
-          <AppIcon
-            raised
-            name={button.iconName}
-            type={button.iconType}
-            color={button.iconColor}
-            size={button.iconSize}
-            containerStyle={[
-              { position: 'absolute', bottom: -20, right: -10, backgroundColor: '#fff' },
-              buttonStyle,
-            ]}
-            onPress={() => console.log('hello')}
-          />
+          <GlassSurface surfaceRole='control' style={[styles().favoriteButton, buttonStyle]}>
+            <AppIcon
+              name={button.iconName}
+              type={button.iconType}
+              color={isFavorite ? theme.colors.error : button.iconColor}
+              size={button.iconSize}
+              accessibilityLabel={
+                isFavorite ? `Remove ${name} from favorites` : `Save ${name} to favorites`
+              }
+              onPress={onFavoritePress}
+            />
+          </GlassSurface>
         </TouchableOpacity>
       </View>
       <View style={styles().productInfo}>
@@ -144,12 +154,18 @@ const ProductCard = (props: ProductCardProps) => {
         </Text>
         <Text style={styles().text}>{name}</Text>
         <View style={styles().priceContainer}>
-          <Text style={[styles().price, salePrice && { textDecorationLine: 'line-through' }]}>
+          <Text
+            style={[
+              styles().price,
+              { color: colors.textSecondary },
+              salePrice && styles().strikethrough,
+            ]}
+          >
             {price}
             {currency}
           </Text>
           {salePrice && (
-            <Text style={styles().salePrice}>
+            <Text style={[styles().salePrice, { color: colors.danger }]}>
               {salePrice}
               {currency}
             </Text>

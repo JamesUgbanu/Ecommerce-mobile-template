@@ -8,7 +8,7 @@ export class NoneVisualSearchProvider implements VisualSearchProvider {
   id = 'none' as const;
 
   isConfigured() {
-    return true;
+    return false;
   }
 
   async classifyImage(_: VisualSearchRequest): Promise<VisualSearchResult> {

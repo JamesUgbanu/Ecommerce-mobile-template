@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native';
 
+import { radius, spacing } from '../../design-system';
+
 export const styles = StyleSheet.create({
   contentView: {
-    borderRadius: 25,
+    borderRadius: radius.pill,
     alignSelf: 'flex-start',
-    marginRight: 5,
-    marginBottom: 5,
+    marginRight: spacing.xs,
+    marginBottom: spacing.xs,
     justifyContent: 'center',
     alignItems: 'center',
   },

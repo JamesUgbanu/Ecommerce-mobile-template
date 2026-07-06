@@ -7,6 +7,7 @@
 import { Text } from '@rneui/themed';
 import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
 
 type SizeSelectionProps = {
@@ -22,11 +23,17 @@ type SizeSelectionProps = {
 
 const SizeSelection = (props: SizeSelectionProps) => {
   const { sizes, onSizeSelection, title } = props;
+  const { colors } = useAppTheme();
 
   return (
     <>
-      <Text style={styles.text}>{title}</Text>
-      <View style={styles.range}>
+      <Text style={[styles.text, { color: colors.textPrimary }]}>{title}</Text>
+      <View
+        style={[
+          styles.range,
+          { backgroundColor: colors.surface, borderColor: colors.borderSubtle },
+        ]}
+      >
         <ScrollView horizontal>
           <View style={styles.horizontalContainer}>
             {sizes.length &&
@@ -34,9 +41,16 @@ const SizeSelection = (props: SizeSelectionProps) => {
                 <TouchableOpacity
                   onPress={() => onSizeSelection(index)}
                   key={index}
-                  style={[styles.square, size.selected ? styles.selectedBox : styles.unSelectedBox]}
+                  style={[
+                    styles.square,
+                    size.selected
+                      ? { backgroundColor: colors.accent }
+                      : [styles.unSelectedBox, { borderColor: colors.borderStrong }],
+                  ]}
                 >
-                  <Text style={size.selected && { color: '#fff' }}>{size.size}</Text>
+                  <Text style={{ color: size.selected ? colors.textInverse : colors.textPrimary }}>
+                    {size.size}
+                  </Text>
                 </TouchableOpacity>
               ))}
           </View>

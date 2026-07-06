@@ -1,27 +1,18 @@
 import { StyleSheet } from 'react-native';
+import { radius, shadows, spacing, typography } from '../../design-system';
 
 export const styles = StyleSheet.create({
   banner: {
-    backgroundColor: '#DB3022',
-    borderRadius: 12,
-    elevation: 2,
-    shadowColor: '#777',
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-    margin: 10,
     alignItems: 'center',
+    borderRadius: radius.lg,
     justifyContent: 'center',
-    color: 'white',
+    margin: spacing.md,
+    ...shadows.sm,
   },
   title: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
+    ...typography.price,
   },
   subText: {
-    fontSize: 14,
-    color: 'white',
+    ...typography.caption,
   },
 });

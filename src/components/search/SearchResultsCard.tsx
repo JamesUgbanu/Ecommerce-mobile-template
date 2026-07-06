@@ -2,15 +2,20 @@ import { Text } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { radius, shadows, spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import type { VisualSearchResult } from '../../types/visual-search';
+import ThemedSurface from '../surfaces/ThemedSurface';
 
 type SearchResultsCardProps = {
   result: VisualSearchResult;
 };
 
 const SearchResultsCard = ({ result }: SearchResultsCardProps) => {
+  const { colors } = useAppTheme();
+
   return (
-    <View style={styles.card}>
+    <ThemedSurface style={styles.card}>
       <Text style={styles.title}>Top matches</Text>
       {result.predictions.map((prediction) => (
         <View key={prediction.label} style={styles.row}>
@@ -18,43 +23,34 @@ const SearchResultsCard = ({ result }: SearchResultsCardProps) => {
           <Text h4>{Math.round(prediction.confidence * 100)}%</Text>
         </View>
       ))}
-      <Text h4 style={styles.meta}>
+      <Text h4 style={[styles.meta, { color: colors.textSecondary }]}>
         Provider: {result.provider} • {result.latencyMs}ms
       </Text>
-    </View>
+    </ThemedSurface>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    gap: 12,
-    borderRadius: 20,
-    backgroundColor: '#FFFFFF',
-    marginHorizontal: 20,
-    marginTop: 16,
-    padding: 20,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    elevation: 2,
+    gap: spacing.md,
+    borderRadius: radius.xl,
+    marginTop: spacing.lg,
+    padding: spacing.xl,
+    ...shadows.sm,
   },
   title: {
-    fontSize: 18,
-    fontWeight: '700',
+    ...typography.title,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 12,
+    gap: spacing.md,
   },
   label: {
     flex: 1,
-    fontSize: 16,
+    ...typography.body,
   },
-  meta: {
-    color: '#6E6E6E',
-  },
+  meta: {},
 });
 
 export default SearchResultsCard;

@@ -5,11 +5,13 @@ import Header from '../components/Header';
 import TabBar from '../components/TabBar';
 import Bag from '../screens/BagScreen';
 import Category from '../screens/CategoryScreen';
+import Checkout from '../screens/CheckoutScreen';
 import Favorites from '../screens/FavoritesScreen';
 import Home from '../screens/HomeScreen';
 import ProductDetails from '../screens/ProductDetailsScreen';
 import ProductFilter from '../screens/ProductFilterScreen';
 import Profile from '../screens/ProfileScreen';
+import Settings from '../screens/SettingsScreen';
 import Shop from '../screens/ShopScreen';
 import VisualSearchPreview from '../screens/VisualSearchPreviewScreen';
 import VisualSearch from '../screens/VisualSearchScreen';
@@ -142,8 +144,24 @@ const App = () => (
   <RootStack.Navigator>
     <RootStack.Screen name='App' component={MainTabs} options={{ headerShown: false }} />
     <RootStack.Screen
+      name='Checkout'
+      component={Checkout}
+      options={{
+        headerTransparent: true,
+        header: (properties) => <Header {...properties} isShowBackIcon />,
+      }}
+    />
+    <RootStack.Screen
       name='ProductFilter'
       component={ProductFilter}
+      options={{
+        headerTransparent: true,
+        header: (properties) => <Header {...properties} isShowBackIcon />,
+      }}
+    />
+    <RootStack.Screen
+      name='Settings'
+      component={Settings}
       options={{
         headerTransparent: true,
         header: (properties) => <Header {...properties} isShowBackIcon />,

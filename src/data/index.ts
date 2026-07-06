@@ -6,6 +6,8 @@ export const products: Product[] = [
     id: 'evening-dress',
     name: 'Evening Dress',
     category: 'Dorothy Perkins',
+    colors: ['black', 'red'],
+    department: 'Women',
     ratingValue: 3,
     totalRating: 10,
     salePrice: 12,
@@ -14,11 +16,14 @@ export const products: Product[] = [
     image: images.product1,
     description:
       'A reusable sample product seeded into the template for home, category, and detail flows.',
+    sizes: ['S', 'M'],
   },
   {
     id: 'sport-dress',
     name: 'Sport Dress',
     category: 'Sitily',
+    colors: ['green', 'blue'],
+    department: 'Women',
     ratingValue: 5,
     totalRating: 2,
     salePrice: 22,
@@ -26,25 +31,32 @@ export const products: Product[] = [
     currency: '$',
     image: images.product2,
     discount: '-20%',
+    sizes: ['M', 'L'],
   },
   {
     id: 'sport-dress-2',
     name: 'Sport Dress',
     category: 'Dorothy Perkins',
+    colors: ['grey', 'blue'],
+    department: 'Women',
     price: 14,
     currency: '$',
     image: images.product3,
+    sizes: ['XS', 'S'],
   },
   {
     id: 'light-blouse',
     name: 'Light Blouse',
     category: 'Dorothy Perkins',
+    colors: ['gold', 'white'],
+    department: 'Women',
     ratingValue: 4,
     totalRating: 50,
     price: 12,
     currency: '$',
     image: images.product3,
     discount: '-20%',
+    sizes: ['S', 'M', 'L'],
   },
 ];
 
@@ -158,7 +170,7 @@ export const sortItems = [
 export const colors = [
   {
     color: 'black',
-    selected: true,
+    selected: false,
   },
   {
     color: 'grey',
@@ -174,7 +186,7 @@ export const colors = [
   },
   {
     color: 'gold',
-    selected: true,
+    selected: false,
   },
   {
     color: 'blue',
@@ -189,11 +201,11 @@ export const sizes = [
   },
   {
     size: 'S',
-    selected: true,
+    selected: false,
   },
   {
     size: 'M',
-    selected: true,
+    selected: false,
   },
   {
     size: 'L',

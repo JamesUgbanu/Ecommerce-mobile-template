@@ -1,8 +1,12 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { radius } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 
 const Rail = () => {
-  return <View style={styles.root} />;
+  const { colors } = useAppTheme();
+
+  return <View style={[styles.root, { backgroundColor: colors.textSecondary }]} />;
 };
 
 export default memo(Rail);
@@ -11,7 +15,6 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     height: 3,
-    borderRadius: 2,
-    backgroundColor: '#9B9B9B',
+    borderRadius: radius.xs,
   },
 });

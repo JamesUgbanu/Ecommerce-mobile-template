@@ -6,39 +6,53 @@
 
 import { Text } from '@rneui/themed';
 import React from 'react';
-import { View } from 'react-native';
+import { spacing, typography } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
+import GlassSurface from '../surfaces/GlassSurface';
 import { styles } from './styles';
 
 type ChipProps = {
   paddingVertical?: number;
   paddingHorizontal?: number;
-  backgroundColor: string;
-  color: string;
+  backgroundColor?: string;
+  color?: string;
   fontSize?: number;
   text: string;
 };
 
 const Chip = (props: ChipProps) => {
   const {
-    paddingVertical = 5,
-    paddingHorizontal = 20,
-    backgroundColor = 'black',
+    paddingVertical = spacing.sm,
+    paddingHorizontal = spacing.xl,
+    backgroundColor,
     color,
     text,
     fontSize,
   } = props;
+  const { colors } = useAppTheme();
 
   return (
-    <View style={[styles.contentView, { paddingVertical, paddingHorizontal, backgroundColor }]}>
+    <GlassSurface
+      elevated={false}
+      surfaceRole='control'
+      style={[
+        styles.contentView,
+        {
+          backgroundColor: backgroundColor ?? colors.textPrimary,
+          paddingHorizontal,
+          paddingVertical,
+        },
+      ]}
+    >
       <Text
         style={{
-          color,
-          fontSize,
+          color: color ?? colors.textInverse,
+          fontSize: fontSize ?? typography.button.fontSize,
         }}
       >
         {text}
       </Text>
-    </View>
+    </GlassSurface>
   );
 };
 

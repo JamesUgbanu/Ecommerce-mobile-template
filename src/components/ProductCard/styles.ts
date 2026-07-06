@@ -1,51 +1,58 @@
 import { StyleSheet } from 'react-native';
 
+import { radius, shadows, spacing, typography } from '../../design-system';
+
 export const styles = (width?) =>
   StyleSheet.create({
     container: {
       flexBasis: '44%',
-      borderRadius: 12,
-      elevation: 2,
+      borderRadius: radius.lg,
       width,
-      shadowColor: '#777',
-      shadowOffset: {
-        height: 1,
-        width: 0,
-      },
-      marginHorizontal: 10,
-      marginVertical: 10,
+      ...shadows.sm,
+      marginHorizontal: spacing.md,
+      marginVertical: spacing.md,
       justifyContent: 'flex-start',
+    },
+    favoriteButton: {
+      alignItems: 'center',
+      borderRadius: radius.pill,
+      bottom: -20,
+      height: 44,
+      justifyContent: 'center',
+      position: 'absolute',
+      right: -10,
+      width: 44,
     },
     imageContainer: {
       flex: 1,
       width,
     },
     image: {
-      borderTopLeftRadius: 5,
-      borderTopRightRadius: 5,
+      borderRadius: radius.md,
       width,
     },
     productInfo: {
-      marginTop: 10,
+      marginTop: spacing.md,
     },
     star: {
       flexDirection: 'row',
       alignContent: 'center',
     },
     text: {
-      marginTop: 2,
-      fontSize: 16,
-      fontWeight: '500',
+      marginTop: spacing.xxs,
+      ...typography.bodyStrong,
     },
     priceContainer: {
       flexDirection: 'row',
     },
     price: {
-      fontSize: 14,
-      color: '#9B9B9B',
-      marginRight: 3,
+      fontSize: typography.caption.fontSize,
+      marginRight: spacing.xs,
     },
     salePrice: {
-      color: '#DB3022',
+      ...typography.caption,
+    },
+    strikethrough: {
+      textDecorationLine: 'line-through',
     },
   });

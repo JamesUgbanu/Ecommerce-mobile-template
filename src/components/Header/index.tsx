@@ -5,6 +5,7 @@ import { TouchableOpacity, View } from 'react-native';
 
 import { getHeaderTitle } from '../../utils/getRoute';
 import AppIcon from '../common/AppIcon';
+import GlassSurface from '../surfaces/GlassSurface';
 import { styles } from './styles';
 
 interface HeaderComponentProps {
@@ -36,15 +37,32 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     navigation.canGoBack() && navigation.goBack();
   };
 
+  if (!isShowHeader) {
+    return (
+      <View style={styles.hiddenContainer}>
+        <StatusBar style='auto' />
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
+    <GlassSurface
+      elevated={!isShowHeading}
+      surfaceRole='chrome'
+      style={[styles.container, isShowHeading && styles.transparentContainer]}
+    >
       <StatusBar style='auto' />
-      {isShowHeader && (
+      <View style={styles.headerClip}>
         <HeaderRNE
           leftComponent={
-            <View>
+            <View style={styles.side}>
               {isShowBackIcon && (
-                <TouchableOpacity onPress={goBack}>
+                <TouchableOpacity
+                  accessibilityLabel='Go back'
+                  accessibilityRole='button'
+                  onPress={goBack}
+                  style={styles.iconButton}
+                >
                   <AppIcon
                     type='antdesign'
                     name='left'
@@ -56,9 +74,14 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
             </View>
           }
           rightComponent={
-            <View>
+            <View style={styles.side}>
               {isShowSearchIcon && (
-                <TouchableOpacity onPress={handleSearch}>
+                <TouchableOpacity
+                  accessibilityLabel='Open visual search'
+                  accessibilityRole='button'
+                  onPress={handleSearch}
+                  style={styles.iconButton}
+                >
                   <AppIcon
                     type='fontawesome-5'
                     name='search'
@@ -70,10 +93,11 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
             </View>
           }
           centerComponent={{ text: title, style: styles.title }}
-          backgroundColor={!isShowHeading && theme.colors.white}
+          backgroundColor='transparent'
+          containerStyle={styles.rneContainer}
         />
-      )}
-    </View>
+      </View>
+    </GlassSurface>
   );
 };
 

@@ -10,6 +10,7 @@ import { View } from 'react-native';
 import Rail from '../../components/Slider/Rail';
 import RailSelected from '../../components/Slider/RailSelected';
 import Thumb from '../../components/Slider/Thumb';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { styles } from './styles';
 
 const Slider = require('rn-range-slider').default as React.ComponentType<Record<string, unknown>>;
@@ -25,6 +26,7 @@ type PriceRangeProps = {
 
 const PriceRange = (props: PriceRangeProps) => {
   const { title, onValueChanged, low, high, min = 0, max = 200 } = props;
+  const { colors } = useAppTheme();
 
   const renderThumb = useCallback((name: 'high' | 'low') => <Thumb name={name} />, []);
   const renderRail = useCallback(() => <Rail />, []);
@@ -32,14 +34,19 @@ const PriceRange = (props: PriceRangeProps) => {
 
   return (
     <>
-      <Text style={styles.text}>{title}</Text>
-      <View style={styles.range}>
+      <Text style={[styles.text, { color: colors.textPrimary }]}>{title}</Text>
+      <View
+        style={[
+          styles.range,
+          { backgroundColor: colors.surface, borderColor: colors.borderSubtle },
+        ]}
+      >
         <View style={[styles.horizontalContainer, { justifyContent: 'space-between' }]}>
-          <Text style={styles.valueText}>
+          <Text style={[styles.valueText, { color: colors.textMuted }]}>
             {'$'}
             {low}
           </Text>
-          <Text style={styles.valueText}>
+          <Text style={[styles.valueText, { color: colors.textMuted }]}>
             {'$'}
             {high}
           </Text>

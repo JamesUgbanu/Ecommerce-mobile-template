@@ -4,7 +4,7 @@
  * Licensed under the MIT License.
  */
 
-import { Button, Text, useTheme } from '@rneui/themed';
+import { Text, useTheme } from '@rneui/themed';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,12 +15,15 @@ import AppContainer from '../../components/HOC/AppContainer';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 
 import Socials from '../../components/Socials';
+import AppButton from '../../components/common/AppButton';
 import AppIcon from '../../components/common/AppIcon';
+import { useCommerce } from '../../context/CommerceContext';
 import { styles } from './styles';
 
 const Register = ({ navigation }) => {
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const { register } = useCommerce();
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -47,7 +50,7 @@ const Register = ({ navigation }) => {
           <Formik
             initialValues={{ name: '', email: '', password: '' }}
             validationSchema={validationSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => register(values.email, values.name)}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
               <>
@@ -98,7 +101,7 @@ const Register = ({ navigation }) => {
                   />
                 </View>
                 <View style={styles.buttonContainer}>
-                  <Button title={t('common:register')} uppercase onPress={() => handleSubmit()} />
+                  <AppButton title={t('common:register')} onPress={() => handleSubmit()} />
                 </View>
                 <View style={styles.socialContainer}>
                   <Socials spacing={5} loginOrRegisterText={t('common:registerWithSocials')} />

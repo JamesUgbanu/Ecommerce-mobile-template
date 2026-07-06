@@ -4,9 +4,12 @@
  * Licensed under the MIT License.
  */
 
+import { Text } from '@rneui/themed';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import SvgIcon from '../../components/SvgIcon';
+import { spacing as spacingTokens } from '../../design-system';
+import ThemedSurface from '../surfaces/ThemedSurface';
 import { styles } from './styles';
 
 type SocialsProps = {
@@ -21,14 +24,20 @@ const Socials = (props: SocialsProps) => {
 
   return (
     <View>
-      <Text>{loginOrRegisterText}</Text>
+      <Text h3 style={styles.label}>
+        {loginOrRegisterText}
+      </Text>
       <View style={styles.socials}>
-        <TouchableOpacity style={styles.socialButton}>
-          <SvgIcon name='google' width={width} height={height} />
+        <TouchableOpacity accessibilityLabel='Continue with Google' accessibilityRole='button'>
+          <ThemedSurface style={styles.socialButton}>
+            <SvgIcon name='google' width={width} height={height} />
+          </ThemedSurface>
         </TouchableOpacity>
-        <View style={{ marginHorizontal: spacing }} />
-        <TouchableOpacity style={styles.socialButton}>
-          <SvgIcon name='facebook' width={width} height={height} />
+        <View style={{ marginHorizontal: spacing ?? spacingTokens.sm }} />
+        <TouchableOpacity accessibilityLabel='Continue with Facebook' accessibilityRole='button'>
+          <ThemedSurface style={styles.socialButton}>
+            <SvgIcon name='facebook' width={width} height={height} />
+          </ThemedSurface>
         </TouchableOpacity>
       </View>
     </View>

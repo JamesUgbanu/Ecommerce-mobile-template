@@ -4,15 +4,17 @@
  * Licensed under the MIT License.
  */
 
-import { Button, Text } from '@rneui/themed';
+import { Text } from '@rneui/themed';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import * as yup from 'yup';
 import AnimatedTextInput from '../../components/AnimatedInput';
 import AppContainer from '../../components/HOC/AppContainer';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
+import AppButton from '../../components/common/AppButton';
+import { spacing } from '../../design-system';
 import { styles } from './styles';
 
 const ForgotPassword = () => {
@@ -35,7 +37,12 @@ const ForgotPassword = () => {
           <Formik
             initialValues={{ email: '' }}
             validationSchema={validationSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+              Alert.alert(
+                'Password reset',
+                `A reset link would be sent to ${values.email} once a backend is connected.`
+              );
+            }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
               <>
@@ -53,10 +60,10 @@ const ForgotPassword = () => {
                   onBlur={handleBlur('email')}
                   isError={touched.email && errors.email ? true : false}
                   errorText={errors.email}
-                  style={{ marginTop: 10 }}
+                  style={{ marginTop: spacing.md }}
                 />
                 <View style={styles.buttonContainer}>
-                  <Button title={t('common:send')} uppercase onPress={() => handleSubmit()} />
+                  <AppButton title={t('common:send')} onPress={() => handleSubmit()} />
                 </View>
               </>
             )}

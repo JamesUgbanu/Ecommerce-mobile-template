@@ -1,20 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { radius, spacing } from '../../design-system';
 
 export const styles = StyleSheet.create({
+  label: {
+    textAlign: 'center',
+  },
   socialButton: {
-    backgroundColor: '#fff',
-    borderRadius: 24,
-    shadowColor: 'rgba(0, 0, 0, 0.05)',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
-    paddingVertical: 20,
-    paddingHorizontal: 35,
-    marginTop: 15,
+    alignItems: 'center',
+    borderRadius: radius.xl,
+    justifyContent: 'center',
+    marginTop: spacing.md,
+    minHeight: 64,
+    minWidth: 92,
+    paddingHorizontal: spacing['2xl'],
+    paddingVertical: spacing.lg,
   },
   socials: {
     flexDirection: 'row',

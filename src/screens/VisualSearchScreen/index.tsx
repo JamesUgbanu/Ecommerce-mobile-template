@@ -1,18 +1,22 @@
-import { Button, Text } from '@rneui/themed';
+import { Text } from '@rneui/themed';
 import * as ImageManipulator from 'expo-image-manipulator';
 import * as ImagePicker from 'expo-image-picker';
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Dimensions, ImageBackground, Platform, View } from 'react-native';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
+import AppButton from '../../components/common/AppButton';
 import ProviderBadge from '../../components/search/ProviderBadge';
 import { visualSearchBanner } from '../../data';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { visualSearchConfig } from '../../services/ai/config';
 import { styles } from './styles';
 
 const VisualSearch = ({ navigation }) => {
   const { t } = useTranslation();
   const screenHeight = Dimensions.get('window').height;
+  const { colors } = useAppTheme();
 
   const openSearchPreview = async (imageUri: string) => {
     const manipResponse = await ImageManipulator.manipulateAsync(
@@ -27,7 +31,7 @@ const VisualSearch = ({ navigation }) => {
   const selectImageAsync = async () => {
     try {
       const response = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
       });
@@ -80,20 +84,25 @@ const VisualSearch = ({ navigation }) => {
           resizeMode='cover'
           style={styles().image}
         >
+          <LinearGradient
+            colors={['transparent', colors.overlayStrong]}
+            style={styles().gradient}
+          />
           <ProviderBadge providerId={visualSearchConfig.provider} />
-          <Text style={styles().text}>{visualSearchBanner.text}</Text>
-          <Button
-            uppercase
+          <Text style={[styles().text, { color: colors.textInverse }]}>
+            {visualSearchBanner.text}
+          </Text>
+          <AppButton
             title={t('common:takePhoto')}
             onPress={captureImageAsync}
+            variant='glass'
             containerStyle={styles().button}
           />
-          <Button
-            uppercase
+          <AppButton
             title={t('common:uploadImage')}
             onPress={selectImageAsync}
             containerStyle={styles().button}
-            buttonStyle={styles().border}
+            variant='outline'
           />
         </ImageBackground>
       </View>

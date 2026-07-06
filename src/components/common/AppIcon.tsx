@@ -15,6 +15,8 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
+import { radius, shadows, spacing } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 
 type SupportedIconType =
   | 'antdesign'
@@ -25,6 +27,7 @@ type SupportedIconType =
   | 'material-icons';
 
 export type AppIconProps = {
+  accessibilityLabel?: string;
   name: string;
   type?: SupportedIconType | string;
   color?: string;
@@ -48,7 +51,8 @@ const iconRegistry = {
 } as const;
 
 const AppIcon = ({
-  color = '#222222',
+  accessibilityLabel,
+  color,
   containerStyle,
   disabled = false,
   iconStyle,
@@ -56,19 +60,23 @@ const AppIcon = ({
   onPress,
   raised = false,
   reverse = false,
-  reverseColor = '#FFFFFF',
+  reverseColor,
   size = 24,
   type = 'material-icons',
 }: AppIconProps) => {
+  const { colors } = useAppTheme();
   const IconComponent = iconRegistry[type as keyof typeof iconRegistry] ?? MaterialIcons;
-  const actualColor = reverse ? reverseColor : color;
+  const baseColor = color ?? colors.textPrimary;
+  const actualColor = reverse ? (reverseColor ?? colors.textInverse) : baseColor;
 
   const content = (
     <View
       style={[
         styles.container,
-        reverse ? [styles.reverse, { backgroundColor: color }] : null,
-        raised ? styles.raised : null,
+        reverse ? [styles.reverse, { backgroundColor: baseColor }] : null,
+        raised
+          ? [styles.raised, { backgroundColor: colors.surface, borderColor: colors.borderSubtle }]
+          : null,
         containerStyle,
       ]}
     >
@@ -81,7 +89,13 @@ const AppIcon = ({
   }
 
   return (
-    <TouchableOpacity disabled={disabled} onPress={onPress}>
+    <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole='button'
+      accessibilityState={{ disabled }}
+      disabled={disabled}
+      onPress={onPress}
+    >
       {content}
     </TouchableOpacity>
   );
@@ -93,18 +107,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   reverse: {
-    borderRadius: 999,
-    padding: 10,
+    borderRadius: radius.pill,
+    padding: spacing.sm,
   },
   raised: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 999,
-    elevation: 3,
-    padding: 10,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.16,
-    shadowRadius: 6,
+    borderRadius: radius.pill,
+    borderWidth: StyleSheet.hairlineWidth,
+    padding: spacing.sm,
+    ...shadows.sm,
   },
 });
 

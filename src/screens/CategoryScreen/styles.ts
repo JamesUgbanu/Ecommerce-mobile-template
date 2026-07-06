@@ -1,49 +1,45 @@
 import { StyleSheet } from 'react-native';
+import { radius, shadows, spacing, typography } from '../../design-system';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: spacing.xl,
+    marginTop: spacing.xl,
   },
   topBox: {
-    paddingLeft: 20,
-    paddingVertical: 10,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 3 },
-    shadowOpacity: 0.1,
-    elevation: 5,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    paddingLeft: spacing.xl,
+    paddingVertical: spacing.md,
+    ...shadows.sm,
   },
   filterContainer: {
+    borderRadius: radius.pill,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginRight: 15,
-    marginTop: 10,
-    backgroundColor: '#F9F9F9',
+    marginRight: spacing.lg,
+    marginTop: spacing.md,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
   },
   filterText: {
-    fontSize: 12,
-    marginLeft: 5,
+    ...typography.caption,
+    marginLeft: spacing.xs,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   productContainer: {
-    marginTop: 10,
+    marginTop: spacing.md,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   contentView: {
-    marginHorizontal: 5,
-    backgroundColor: 'black',
-    borderRadius: 25,
-    paddingVertical: 5,
-    paddingHorizontal: 5,
-  },
-  text: {
-    color: 'white',
+    marginHorizontal: spacing.xs,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.xs,
+    paddingVertical: spacing.xs,
   },
 });

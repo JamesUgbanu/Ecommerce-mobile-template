@@ -1,14 +1,19 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Text, useTheme } from '@rneui/themed';
+import { Image } from 'expo-image';
 import React from 'react';
-import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import Loading from '../../components/Loading';
+import AppButton from '../../components/common/AppButton';
 import AppIcon from '../../components/common/AppIcon';
 import EmptyState from '../../components/common/EmptyState';
 import ErrorState from '../../components/common/ErrorState';
 import ProviderBadge from '../../components/search/ProviderBadge';
 import SearchResultsCard from '../../components/search/SearchResultsCard';
+import GlassSurface from '../../components/surfaces/GlassSurface';
+import { radius, spacing } from '../../design-system';
+import { useAppTheme } from '../../hooks/useAppTheme';
 import { useVisualSearch } from '../../hooks/useVisualSearch';
 import type { RootStackParamList } from '../../navigation/types';
 
@@ -19,6 +24,7 @@ type VisualSearchPreviewScreenProps = NativeStackScreenProps<
 
 const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) => {
   const { theme } = useTheme();
+  const { colors } = useAppTheme();
   const { error, isConfigured, isSearching, providerId, result, search } = useVisualSearch();
   const { imageUri } = route.params;
 
@@ -31,17 +37,27 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
         iconProps={{ size: 44, name: 'search' }}
         color={theme.colors.black}
       />
-      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-        <Image source={{ uri: imageUri }} resizeMode='cover' style={styles.image} />
-        <ProviderBadge providerId={providerId} />
-        <TouchableOpacity
-          style={[styles.searchButton, { backgroundColor: theme.colors.error }]}
+      <ScrollView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        contentContainerStyle={styles.content}
+      >
+        <View style={styles.hero}>
+          <Image
+            source={{ uri: imageUri }}
+            contentFit='cover'
+            style={styles.image}
+            transition={180}
+          />
+          <GlassSurface surfaceRole='overlay' style={styles.providerOverlay}>
+            <ProviderBadge providerId={providerId} />
+          </GlassSurface>
+        </View>
+        <AppButton
+          disabled={isSearching || !isConfigured}
+          icon={<AppIcon name='search' type='font-awesome' color={colors.textInverse} />}
           onPress={() => search(imageUri)}
-          disabled={isSearching}
-        >
-          <AppIcon name='search' type='font-awesome' color='#FFFFFF' />
-          <Text style={styles.searchButtonText}>Run visual search</Text>
-        </TouchableOpacity>
+          title={isConfigured ? 'Run visual search' : 'Visual search disabled'}
+        />
 
         {!isConfigured ? (
           <EmptyState
@@ -65,30 +81,27 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   content: {
-    gap: 16,
-    paddingBottom: 32,
+    gap: spacing.lg,
+    paddingBottom: spacing['3xl'],
+    paddingHorizontal: spacing.xl,
+  },
+  hero: {
+    borderRadius: radius.xl,
+    marginTop: spacing.lg,
+    overflow: 'hidden',
+    position: 'relative',
   },
   image: {
     width: '100%',
     height: 460,
   },
-  searchButton: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    borderRadius: 999,
-    flexDirection: 'row',
-    gap: 10,
-    marginTop: 4,
-    paddingHorizontal: 24,
-    paddingVertical: 14,
-  },
-  searchButtonText: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '700',
+  providerOverlay: {
+    left: spacing.md,
+    padding: spacing.xs,
+    position: 'absolute',
+    top: spacing.md,
   },
 });
 
