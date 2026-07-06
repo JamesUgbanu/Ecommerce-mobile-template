@@ -19,13 +19,25 @@ import PriceRange from './PriceRange';
 import SizeSelection from './SizeSelection';
 import { styles } from './styles';
 
+const syncColorSelections = (selectedColors: string[]) =>
+  colors.map((item) => ({
+    ...item,
+    selected: selectedColors.includes(item.color),
+  }));
+
+const syncSizeSelections = (selectedSizes: string[]) =>
+  sizes.map((item) => ({
+    ...item,
+    selected: selectedSizes.includes(item.size),
+  }));
+
 const ProductFilter = ({ navigation }) => {
   const { t } = useTranslation();
   const { applyFilters, filters, resetFilters } = useCommerce();
   const [low, setLow] = useState<number>(filters.low);
   const [high, setHigh] = useState<number>(filters.high);
-  const [colorList, setColorList] = useState<any>(colors);
-  const [sizeList, setSizeList] = useState<any>(sizes);
+  const [colorList, setColorList] = useState<any>(() => syncColorSelections(filters.colors));
+  const [sizeList, setSizeList] = useState<any>(() => syncSizeSelections(filters.sizes));
   const [currentCategory, setCurrentCategory] = useState<number>(
     Math.max(productCategories.indexOf(filters.category), 0)
   );

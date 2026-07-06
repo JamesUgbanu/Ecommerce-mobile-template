@@ -12,7 +12,7 @@ export type MainTabParamList = {
 
 export type RootStackParamList = {
   App: NavigatorScreenParams<MainTabParamList>;
-  Category: { category: string };
+  Category: { category: string; department?: string };
   Checkout: undefined;
   ProductDetails: { product: Product };
   ProductFilter: undefined;

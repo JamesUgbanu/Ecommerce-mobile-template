@@ -22,6 +22,10 @@ import { useAppTheme } from '../../hooks/useAppTheme';
 import SortBy from './SortBy';
 import { styles } from './styles';
 
+const broadCategoryNames = ['new', 'clothing', 'shoes', 'accessories', 'baby'];
+
+const normalizeValue = (value?: string) => value?.trim().toLowerCase() ?? '';
+
 const Category = ({ route, navigation }) => {
   const { colors } = useAppTheme();
   const { filteredProducts, isFavorite, setSortId, sortId, toggleFavorite } = useCommerce();
@@ -32,7 +36,29 @@ const Category = ({ route, navigation }) => {
     0
   );
   const category: string = route.params.category;
-  const visibleProducts = filteredProducts;
+  const department: string | undefined = route.params.department;
+  const normalizedCategory = normalizeValue(category);
+  const normalizedDepartment = normalizeValue(department);
+  const visibleProducts = filteredProducts.filter((product) => {
+    if (!normalizedCategory || normalizedCategory === 'all') return true;
+
+    const productDepartment = normalizeValue(product.department);
+    const productCategory = normalizeValue(product.category);
+    const productName = normalizeValue(product.name);
+    const matchesDepartment = normalizedDepartment
+      ? productDepartment === normalizedDepartment
+      : productDepartment === normalizedCategory;
+
+    if (broadCategoryNames.includes(normalizedCategory)) {
+      return normalizedDepartment ? matchesDepartment : true;
+    }
+
+    return (
+      matchesDepartment ||
+      productCategory.includes(normalizedCategory) ||
+      productName.includes(normalizedCategory)
+    );
+  });
 
   const handleSort = (index: number) => {
     setSortId(sortItems[index].id as SortId);

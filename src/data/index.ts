@@ -170,7 +170,7 @@ export const sortItems = [
 export const colors = [
   {
     color: 'black',
-    selected: true,
+    selected: false,
   },
   {
     color: 'grey',
@@ -186,7 +186,7 @@ export const colors = [
   },
   {
     color: 'gold',
-    selected: true,
+    selected: false,
   },
   {
     color: 'blue',
@@ -201,11 +201,11 @@ export const sizes = [
   },
   {
     size: 'S',
-    selected: true,
+    selected: false,
   },
   {
     size: 'M',
-    selected: true,
+    selected: false,
   },
   {
     size: 'L',

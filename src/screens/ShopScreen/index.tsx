@@ -22,8 +22,8 @@ const Shop = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   const { colors } = useAppTheme();
 
-  const updateCategory = (catgeory: string) => {
-    navigation.navigate('Category', { category: catgeory });
+  const updateCategory = (category: string, department?: string) => {
+    navigation.navigate('Category', { category, department });
   };
 
   return (
@@ -49,7 +49,7 @@ const Shop = ({ navigation }) => {
           items={categories}
           index={index}
           setIndex={setIndex}
-          onPress={(category) => updateCategory(category)}
+          onPress={(category, department) => updateCategory(category, department)}
         />
       </View>
     </AppContainer>

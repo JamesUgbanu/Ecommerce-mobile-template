@@ -23,7 +23,7 @@ type TabViewProps = {
     subcategories?: any[];
   }[];
   animationType?: 'spring' | 'timing';
-  onPress: (name: string) => void;
+  onPress: (name: string, parentName?: string) => void;
 };
 const RneTabView = (props: TabViewProps) => {
   const { style, items, setIndex, index, animationType = 'timing', onPress } = props;
@@ -45,7 +45,7 @@ const RneTabView = (props: TabViewProps) => {
                 key={index}
                 name={subcategory.name}
                 image={subcategory.image}
-                onPress={() => onPress(subcategory.name)}
+                onPress={() => onPress(subcategory.name, item.name)}
               />
             ));
             return (

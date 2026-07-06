@@ -53,10 +53,10 @@ const VisualSearchPreviewScreen = ({ route }: VisualSearchPreviewScreenProps) =>
           </GlassSurface>
         </View>
         <AppButton
-          disabled={isSearching}
+          disabled={isSearching || !isConfigured}
           icon={<AppIcon name='search' type='font-awesome' color={colors.textInverse} />}
           onPress={() => search(imageUri)}
-          title='Run visual search'
+          title={isConfigured ? 'Run visual search' : 'Visual search disabled'}
         />
 
         {!isConfigured ? (

@@ -28,6 +28,7 @@ module.exports = {
         backgroundColor: '#ffffff',
       },
       permissions: ['CAMERA', 'READ_MEDIA_IMAGES'],
+      blockedPermissions: ['android.permission.RECORD_AUDIO'],
     },
     web: {
       favicon: './assets/favicon.png',
